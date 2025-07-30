@@ -1,0 +1,47 @@
+Goal: Build a FastAPI app that lets users manage a task list: create, read, update, and delete tasks.
+
+Skills tested:
+
+FastAPI routing
+
+Pydantic models
+
+SQLAlchemy & Alembic
+
+PostgreSQL connection
+
+Environment config
+
+Git & README setup
+
+✅ Requirements:
+GET /tasks - List all tasks
+
+GET /tasks/{id} - Get one task
+
+POST /tasks - Create a task
+
+PUT /tasks/{id} - Update a task
+
+DELETE /tasks/{id} - Delete a task
+
+Each task should have:
+
+Title (string)
+
+Description (optional)
+
+Status (e.g., pending, completed)
+
+Created_at and updated_at (timestamps)
+
+🔧 Tech Stack:
+FastAPI with Pydantic
+
+PostgreSQL (use Docker or local)
+
+SQLAlchemy ORM
+
+Alembic for migrations
+
+pytest + TestClient for testing
