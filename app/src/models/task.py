@@ -1,8 +1,14 @@
 from sqlalchemy import Column, Integer, String, DateTime
 from sqlalchemy.orm import declarative_base
+from datetime import datetime, timezone
 
 # create a base class for declarative models
 Base = declarative_base()
+
+
+# helper function to get the current UTC time
+def utcnow():
+    return datetime.now(timezone.utc)
 
 
 # Define the Task model
