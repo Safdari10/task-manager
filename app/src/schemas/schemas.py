@@ -1,4 +1,4 @@
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, ConfigDict, Field
 from typing import Optional
 from app.src.models.status import TaskStatus
 
@@ -40,5 +40,6 @@ class TaskResponse(BaseModel):
     created_at: str
     updated_at: str
 
-    class Config:
-        from_attributes = True  # Allows Pydantic to read attributes from the model
+    model_config = ConfigDict(from_attributes=True)
+    # Enables creation of TaskResponse from SQLAlchemy models using from_attributes=True.
+    # In Pydantic v2, model_config replaces the Config class for model configuration.
