@@ -41,4 +41,4 @@ class TaskResponse(BaseModel):
     updated_at: str
 
     class Config:
-        orm_mode = True  # Enable ORM mode for compatibility with SQLAlchemy models
+        from_attributes = True  # Allows Pydantic to read attributes from the model
