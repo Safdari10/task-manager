@@ -11,7 +11,9 @@ class Task(Base):
     __tablename__ = "tasks"
     id = Column(Integer, primary_key=True, index=True)
     title = Column(String, index=True)
-    description = Column(String, optional=True)  # optional field
+    description = Column(
+        String, nullable=True
+    )  # Description is optional so can be null
     status = Column(String, index=True)  # e.g., "pending", "in_progress", "completed"
     created_at = Column(DateTime, nullable=False)
     updated_at = Column(DateTime, nullable=False)
