@@ -8,6 +8,10 @@ class TaskRepository:
     def __init__(self, db: Session) -> None:
         self.db = db
 
+    def get_all_tasks(self) -> list[TaskResponse]:
+        tasks = self.db.query(Task).all()
+        return [TaskResponse.model_validate(task) for task in tasks]
+
     def get_task(self, task_id: int) -> Optional[TaskResponse]:
         task = (
             self.db.query(Task).filter(Task.id == task_id).first()
