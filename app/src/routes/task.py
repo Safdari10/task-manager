@@ -43,3 +43,15 @@ def update_task(
     if not task:
         raise HTTPException(status_code=404, detail="Task not found")
     return task
+
+
+@router.delete("/tasks/{task_id}", response_model=TaskResponse, tags=["Delete a task"])
+def delete_task(
+    task_id: int,
+    db: Session = Depends(get_db_session),
+):
+    service = TaskService(db)
+    task = service.delete_task(task_id)
+    if not task:
+        raise HTTPException(status_code=404, detail="Task not found")
+    return task
