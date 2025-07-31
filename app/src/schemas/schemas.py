@@ -29,3 +29,16 @@ class TaskUpdate(BaseModel):
     status: Optional[TaskStatus] = Field(
         None, max_length=50
     )  # Status of the task, can be updated
+
+
+# schemas for response
+class TaskResponse(BaseModel):
+    id: int
+    title: str
+    description: Optional[str]
+    status: TaskStatus
+    created_at: str
+    updated_at: str
+
+    class Config:
+        orm_mode = True  # Enable ORM mode for compatibility with SQLAlchemy models
