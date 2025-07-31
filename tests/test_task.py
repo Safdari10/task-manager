@@ -72,3 +72,13 @@ def test_update_task():
     TaskResponse.model_validate(
         data
     )  # Validating a single object against the TaskResponse schema
+
+
+def test_delete_task():
+    task_id = create_test_task()
+    response = client.delete(f"/tasks/{task_id}")  # type: ignore
+    assert response.status_code == 200
+    data = response.json()  # type: ignore
+    TaskResponse.model_validate(
+        data
+    )  # Validating a single object against the TaskResponse schema
