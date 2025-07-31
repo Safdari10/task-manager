@@ -36,3 +36,12 @@ class TaskRepository:
         return TaskResponse.model_validate(
             task
         )  # Convert Task model to TaskResponse schema
+
+    def delete_task(self, task_id: int) -> Optional[TaskResponse]:
+        task = self.db.query(Task).filter(Task.id == task_id).first()
+        if not task:
+            return None
+        response = TaskResponse.model_validate(task)  # Convert before deletion
+        self.db.delete(task)
+        self.db.commit()
+        return response
