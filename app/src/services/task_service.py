@@ -24,3 +24,9 @@ class TaskService:
         if not task:
             return None
         return task
+
+    def delete_task(self, task_id: int) -> Optional[TaskResponse]:
+        task = self.task_repository.delete_task(task_id)
+        if not task:
+            return None
+        return task
