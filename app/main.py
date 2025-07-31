@@ -1,9 +1,10 @@
 from fastapi import FastAPI
-from dotevnt import load_dotenv
+from dotenv import load_dotenv
 
 
 # Load environment variables from .env file
 load_dotenv()
+
 
 # for simple FastAPI application setup we can use app = FastAPI() directly
 # but for more complex applications, we might want to encapsulate it in a function
