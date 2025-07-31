@@ -5,6 +5,10 @@ from sqlalchemy import engine_from_config
 from sqlalchemy import pool
 from alembic import context
 
+# Import the Base class from your models
+from app.src.models.task import Base
+
+
 # Load environment variables from .env file
 load_dotenv()
 
@@ -21,7 +25,7 @@ if config.config_file_name is not None:
 # for 'autogenerate' support
 # from myapp import mymodel
 # target_metadata = mymodel.Base.metadata
-target_metadata = None
+target_metadata = Base.metadata  # Use the metadata from your Base model
 
 # other values from the config, defined by the needs of env.py,
 # can be acquired:
