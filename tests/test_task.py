@@ -45,3 +45,15 @@ def test_create_task():
     assert response.status_code in (200, 201)  # Accept either 200 or 201
     data = response.json()  # type: ignore
     TaskResponse.model_validate(data)
+
+
+def test_get_task_by_id():
+    task_id = (
+        create_test_task()
+    )  # get the id from the helper function to ensure the task exists
+    response = client.get(f"/tasks/{task_id}")  # type: ignore
+    assert response.status_code == 200
+    data = response.json()  # type: ignore
+    TaskResponse.model_validate(
+        data
+    )  # Validate the response against the TaskResponse schema, we checking for a specific task
