@@ -2,7 +2,7 @@ from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
 from app.src.db.db import get_db_session
 from app.src.services.task_service import TaskService
-from task_manager.app.src.schemas.schemas import TaskResponse, TaskUpdate
+from task_manager.app.src.schemas.schemas import TaskResponse, TaskUpdate, TaskCreate
 
 
 router = APIRouter()
@@ -17,6 +17,18 @@ def get_task(
     task = service.get_task(task_id)
     if not task:
         raise HTTPException(status_code=404, detail="Task not found")
+    return task
+
+
+@router.post("/tasks", response_model=TaskResponse, tags=["Create a task"])
+def create_task(
+    task_create: TaskCreate,
+    db: Session = Depends(get_db_session),
+):
+    service = TaskService(db)
+    task = service.create_task(task_create)
+    if not task:
+        raise HTTPException(status_code=400, detail="Task could not be created")
     return task
 
 
