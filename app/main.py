@@ -12,3 +12,6 @@ def create_app() -> FastAPI:
     app = FastAPI()
     app.include_router(task_router)
     return app
+
+
+app = create_app()
