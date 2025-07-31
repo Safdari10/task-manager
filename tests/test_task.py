@@ -25,12 +25,23 @@ def create_test_task():
 
 
 def test_get_all_tasks():
-
     response = client.get("/tasks")  # type: ignore
     assert response.status_code == 200  # type: ignore
-    data = response.json()  # type: ignore
+    data = response.json()
     assert isinstance(data, list)  # Ensure the response is a list
     for item in data:  # type: ignore
         TaskResponse.model_validate(
             item
-        )  # Validate each item against the TaskResponse schema
+        )  # Validate each item against the TaskResponse schema, we are checking for a list of tasks
+
+
+def test_create_task():
+    task_data = {
+        "title": "Test Create Task",
+        "description": "This is a test task for creation",
+        "status": "pending",
+    }
+    response = client.post("/tasks", json=task_data)  # type: ignore
+    assert response.status_code in (200, 201)  # Accept either 200 or 201
+    data = response.json()  # type: ignore
+    TaskResponse.model_validate(data)
