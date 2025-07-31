@@ -57,3 +57,18 @@ def test_get_task_by_id():
     TaskResponse.model_validate(
         data
     )  # Validate the response against the TaskResponse schema, we checking for a specific task
+
+
+def test_update_task():
+    task_id = create_test_task()
+    updated_data = {
+        "title": "Updated Task",
+        "description": "This is an updated test task",
+        "status": "completed",
+    }
+    response = client.put(f"/tasks/{task_id}", json=updated_data)  # type: ignore
+    assert response.status_code == 200
+    data = response.json()  # type: ignore
+    TaskResponse.model_validate(
+        data
+    )  # Validating a single object against the TaskResponse schema
