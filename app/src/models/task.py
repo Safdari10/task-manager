@@ -20,9 +20,14 @@ class Task(Base):
     description = Column(
         String, nullable=True
     )  # Description is optional so can be null
-    status = Column(String, index=True)  # e.g., "pending", "in_progress", "completed"
-    created_at = Column(DateTime, nullable=False)
-    updated_at = Column(DateTime, nullable=False)
+    status = Column(String, index=True)
+    created_at = Column(DateTime, nullable=False, default=utcnow)
+    updated_at = Column(
+        DateTime,
+        nullable=False,
+        default=utcnow,
+        onupdate=utcnow,
+    )
 
 
 # index = true means that the column will be indexed for faster search
