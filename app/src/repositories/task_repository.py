@@ -8,6 +8,16 @@ class TaskRepository:
     def __init__(self, db: Session) -> None:
         self.db = db
 
+    def get_task(self, task_id: int) -> Optional[TaskResponse]:
+        task = (
+            self.db.query(Task).filter(Task.id == task_id).first()
+        )  # Find the task by ID
+        if not task:
+            return None
+        return TaskResponse.model_validate(
+            task
+        )  # Convert Task model to TaskResponse schema
+
     def create_task(self, task_create: TaskCreate) -> TaskResponse:
         task = Task(**task_create.model_dump())  # Convert TaskCreate to Task model
         self.db.add(task)
