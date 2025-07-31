@@ -8,6 +8,13 @@ from task_manager.app.src.schemas.schemas import TaskResponse, TaskUpdate, TaskC
 router = APIRouter()
 
 
+@router.get("/tasks", response_model=list[TaskResponse], tags=["Get all tasks"])
+def get_tasks(db: Session = Depends(get_db_session)):
+    service = TaskService(db)
+    tasks = service.get_all_tasks()
+    return tasks
+
+
 @router.get("/tasks/{task_id}", response_model=TaskResponse, tags=["Get a task"])
 def get_task(
     task_id: int,
