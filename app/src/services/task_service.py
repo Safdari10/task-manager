@@ -1,6 +1,6 @@
 from sqlalchemy.orm import Session
 from typing import Optional
-from app.src.schemas.schemas import TaskResponse
+from app.src.schemas.schemas import TaskResponse, TaskCreate
 from app.src.repositories.task_repository import TaskRepository
 
 
@@ -13,3 +13,6 @@ class TaskService:
         if not task:
             return None
         return task
+
+    def create_task(self, task_create: TaskCreate) -> TaskResponse:
+        return self.task_repository.create_task(task_create)
