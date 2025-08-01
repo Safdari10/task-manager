@@ -19,8 +19,10 @@ class User(Base):
     created_at = Column(DateTime, default=utcnow, nullable=False)
     updated_at = Column(DateTime, default=utcnow, onupdate=utcnow, nullable=False)
 
-    __table_args__ = CheckConstraint(
-        "email ~* '^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\\.[a-zA-Z0-9-.]+$'",
-        name="check_email_format",
+    __table_args__ = (
+        CheckConstraint(
+            "email ~* '^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\\.[a-zA-Z0-9-.]+$'",
+            name="check_email_format",
+        ),
     )
     tasks = relationship("Task", back_populates="user")
