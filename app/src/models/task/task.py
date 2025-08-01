@@ -1,11 +1,5 @@
 from sqlalchemy import Column, Integer, String, DateTime
-from datetime import datetime, timezone
-from app.src.db.db import Base
-
-
-# helper function to get the current UTC time
-def utcnow():
-    return datetime.now(timezone.utc)
+from app.src.db.db import Base, utcnow
 
 
 # Define the Task model
