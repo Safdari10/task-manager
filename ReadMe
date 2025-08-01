@@ -1,47 +1,71 @@
-Goal: Build a FastAPI app that lets users manage a task list: create, read, update, and delete tasks.
+## Task Manager FastAPI Project
 
-Skills tested:
+This project is a FastAPI application for managing a task list with full CRUD (Create, Read, Update, Delete) functionality.
 
-FastAPI routing
+### Features
 
-Pydantic models
+- FastAPI routing for RESTful endpoints
+- Pydantic v2 models for request/response validation
+- SQLAlchemy ORM for database models and queries
+- Alembic for database migrations
+- PostgreSQL database (Docker/local)
+- Pytest + FastAPI TestClient for testing
 
-SQLAlchemy & Alembic
+### Requirements
 
-PostgreSQL connection
+- Python 3.10+
+- Docker (recommended for PostgreSQL)
+- PostgreSQL
 
-Environment config
+### Endpoints
 
-Git & README setup
+- `GET /tasks` - List all tasks
+- `GET /tasks/{id}` - Get a single task
+- `POST /tasks` - Create a new task
+- `PUT /tasks/{id}` - Update a task
+- `DELETE /tasks/{id}` - Delete a task
 
-✅ Requirements:
-GET /tasks - List all tasks
+### Task Model
 
-GET /tasks/{id} - Get one task
+Each task has:
 
-POST /tasks - Create a task
+- Title (string, required)
+- Description (string, optional)
+- Status (enum: pending, in_progress, completed, cancelled)
+- created_at (timestamp, set automatically)
+- updated_at (timestamp, set automatically)
 
-PUT /tasks/{id} - Update a task
+### Timestamp Handling (Best Practice)
 
-DELETE /tasks/{id} - Delete a task
+- Timestamps are managed with Python-side defaults in the SQLAlchemy model:
+  - `default=utcnow` for `created_at` and `updated_at`
+  - `onupdate=utcnow` for `updated_at`
+- No server-side defaults are used in the model. This is best for FastAPI + SQLAlchemy apps.
+- Pydantic schemas use `datetime` type for these fields, so FastAPI serializes them as ISO strings in responses.
 
-Each task should have:
+### Migrations
 
-Title (string)
+- Use Alembic to manage schema changes.
+- Only create a new migration if you change the database schema (add/remove columns, change types, etc.).
+- Python-side defaults do not require a migration.
 
-Description (optional)
+### Running the Project
 
-Status (e.g., pending, completed)
+1. Clone the repo and install dependencies (`pip install -r requirements.txt`)
+2. Set up your `.env` file with database credentials
+3. Run PostgreSQL (locally or with Docker)
+4. Run Alembic migrations: `alembic upgrade head`
+5. Start the app: `uvicorn app.main:app --reload`
 
-Created_at and updated_at (timestamps)
+### Testing
 
-🔧 Tech Stack:
-FastAPI with Pydantic
+- Run tests with: `pytest`
 
-PostgreSQL (use Docker or local)
+### Notes
 
-SQLAlchemy ORM
+- For most use cases, you do not need server-side defaults or triggers for timestamps.
+- If you need database-level timestamp handling (for direct SQL), add server defaults or triggers and create a migration.
 
-Alembic for migrations
+---
 
-pytest + TestClient for testing
+This project follows modern best practices for FastAPI, SQLAlchemy, and Pydantic v2.
