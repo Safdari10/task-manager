@@ -1,4 +1,6 @@
-from sqlalchemy import Column, Integer, String, DateTime
+from sqlalchemy import Column, String, DateTime
+from sqlalchemy.dialects.postgresql import UUID
+import uuid
 from app.src.db.db import Base, utcnow
 
 
@@ -6,7 +8,7 @@ from app.src.db.db import Base, utcnow
 # This model represents a task in the task management system
 class Task(Base):
     __tablename__ = "tasks"
-    id = Column(Integer, primary_key=True, index=True)
+    id = Column(UUID(as_uuid=True), primary_key=True, index=True, default=uuid.uuid4)
     title = Column(String, index=True)
     description = Column(
         String, nullable=True
