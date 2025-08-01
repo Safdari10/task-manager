@@ -6,7 +6,11 @@ from sqlalchemy import pool
 from alembic import context
 
 # Import the Base class from your models
-from task_manager.app.src.models.task.task import Base
+from app.src.db.db import Base
+
+# Import all your models so Alembic can detect them
+from app.src.models.task.task import Task  # type: ignore
+from app.src.models.user.user import User  # type: ignore
 
 
 # Load environment variables from .env file
