@@ -1,4 +1,4 @@
-from sqlalchemy import Column, String, DateTime, CheckConstraint
+from sqlalchemy import Column, String, DateTime, CheckConstraint, Enum
 from sqlalchemy.dialects.postgresql import UUID
 import uuid
 from sqlalchemy.orm import relationship
@@ -14,8 +14,8 @@ class User(Base):
     last_name = Column(String(length=50), index=True, nullable=False)
     email = Column(String(length=255), index=True, unique=True, nullable=False)
     hashed_password = Column(String(length=255), nullable=False)
-    role = Column(String(length=50), index=True, default=UserRole.USER.value)
-    status = Column(String(length=50), index=True, default=UserStatus.ACTIVE.value)
+    role = Column(Enum(UserRole), index=True, default=UserRole.USER)
+    status = Column(Enum(UserStatus), index=True, default=UserStatus.ACTIVE)
     created_at = Column(DateTime, default=utcnow, nullable=False)
     updated_at = Column(DateTime, default=utcnow, onupdate=utcnow, nullable=False)
 
