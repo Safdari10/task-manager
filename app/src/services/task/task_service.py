@@ -1,7 +1,11 @@
 from sqlalchemy.orm import Session
 from typing import Optional
-from app.src.schemas.schemas import TaskResponse, TaskCreate, TaskUpdate
-from app.src.repositories.task_repository import TaskRepository
+from app.src.schemas.task.schemas import (
+    TaskResponse,
+    TaskCreate,
+    TaskUpdate,
+)
+from app.src.repositories.task.task_repository import TaskRepository
 
 
 class TaskService:

@@ -5,7 +5,7 @@ sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 
 from fastapi.testclient import TestClient
 from app.main import app
-from app.src.schemas.schemas import TaskResponse
+from app.src.schemas.task.schemas import TaskResponse
 
 # initialize the test client
 client = TestClient(app)
