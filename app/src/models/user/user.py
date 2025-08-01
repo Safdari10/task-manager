@@ -1,6 +1,7 @@
 from sqlalchemy import Column, String, DateTime, CheckConstraint
 from sqlalchemy.dialects.postgresql import UUID
 import uuid
+from sqlalchemy.orm import relationship
 from app.src.db.db import Base, utcnow
 from app.src.models.user.status import UserStatus
 from app.src.models.user.role import UserRole
@@ -22,3 +23,4 @@ class User(Base):
         "email ~* '^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\\.[a-zA-Z0-9-.]+$'",
         name="check_email_format",
     )
+    tasks = relationship("Task", back_populates="user")
