@@ -1,4 +1,4 @@
-from sqlalchemy import Column, String, DateTime
+from sqlalchemy import Column, String, DateTime, CheckConstraint
 from sqlalchemy.dialects.postgresql import UUID
 import uuid
 from app.src.db.db import Base, utcnow
@@ -17,3 +17,8 @@ class User(Base):
     status = Column(String(length=50), index=True, default=UserStatus.ACTIVE.value)
     created_at = Column(DateTime, default=utcnow, nullable=False)
     updated_at = Column(DateTime, default=utcnow, onupdate=utcnow, nullable=False)
+
+    __table_args__ = CheckConstraint(
+        "email ~* '^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\\.[a-zA-Z0-9-.]+$'",
+        name="check_email_format",
+    )
