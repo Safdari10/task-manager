@@ -1,9 +1,6 @@
 from sqlalchemy import Column, Integer, String, DateTime
-from sqlalchemy.orm import declarative_base
 from datetime import datetime, timezone
-
-# create a base class for declarative models
-Base = declarative_base()
+from app.src.db.db import Base
 
 
 # helper function to get the current UTC time
