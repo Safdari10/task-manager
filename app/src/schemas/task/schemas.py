@@ -1,4 +1,4 @@
-from pydantic import BaseModel, ConfigDict, Field
+from pydantic import BaseModel, ConfigDict, Field, UUID4
 from typing import Optional
 from app.src.models.task.status import TaskStatus
 from datetime import datetime
@@ -6,12 +6,13 @@ from datetime import datetime
 
 #  Base model for Task
 class Task(BaseModel):
-    id: int
+    id: UUID4
+    user_id: UUID4
     title: str = Field(..., max_length=255)
     description: Optional[str] = Field(None, max_length=1000)
     status: TaskStatus = Field(..., max_length=50)
-    created_at: datetime = Field(..., max_length=50)
-    updated_at: datetime = Field(..., max_length=50)
+    created_at: datetime = Field(...)
+    updated_at: datetime = Field(...)
 
 
 # Schema for creating
@@ -32,7 +33,8 @@ class TaskUpdate(BaseModel):
 
 # schema for response
 class TaskResponse(BaseModel):
-    id: int
+    id: UUID4
+    user_id: UUID4
     title: str
     description: Optional[str]
     status: TaskStatus
