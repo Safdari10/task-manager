@@ -1,5 +1,6 @@
 from sqlalchemy import create_engine
 from sqlalchemy.orm import declarative_base
+from datetime import datetime, timezone
 from sqlalchemy.orm import sessionmaker
 import os
 from dotenv import load_dotenv
@@ -9,6 +10,11 @@ load_dotenv()
 
 # Create the base class
 Base = declarative_base()
+
+
+# This function is used to set default values for datetime fields in the models in UTC (database standard)
+def utcnow():
+    return datetime.now(timezone.utc)
 
 
 # Retrieve the database URL from environment variables
