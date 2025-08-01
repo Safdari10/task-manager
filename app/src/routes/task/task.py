@@ -41,8 +41,6 @@ def create_task(
 ):
     service = TaskService(db)
     task = service.create_task(user_id, task_create)
-    if not task:
-        raise HTTPException(status_code=400, detail="Task could not be created")
     return task
 
 
