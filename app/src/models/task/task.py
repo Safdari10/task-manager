@@ -9,11 +9,11 @@ from app.src.db.db import Base, utcnow
 class Task(Base):
     __tablename__ = "tasks"
     id = Column(UUID(as_uuid=True), primary_key=True, index=True, default=uuid.uuid4)
-    title = Column(String, index=True)
+    title = Column(String(length=255), index=True)
     description = Column(
-        String, nullable=True
+        String(length=1000), nullable=True
     )  # Description is optional so can be null
-    status = Column(String, index=True)
+    status = Column(String(length=50), index=True)
     created_at = Column(DateTime, nullable=False, default=utcnow)
     updated_at = Column(
         DateTime,
