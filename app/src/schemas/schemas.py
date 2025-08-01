@@ -1,6 +1,7 @@
 from pydantic import BaseModel, ConfigDict, Field
 from typing import Optional
 from app.src.models.status import TaskStatus
+from datetime import datetime
 
 
 #  Base model for Task
@@ -9,8 +10,8 @@ class Task(BaseModel):
     title: str = Field(..., max_length=255)
     description: Optional[str] = Field(None, max_length=1000)
     status: TaskStatus = Field(..., max_length=50)
-    created_at: str = Field(..., max_length=50)
-    updated_at: str = Field(..., max_length=50)
+    created_at: datetime = Field(..., max_length=50)
+    updated_at: datetime = Field(..., max_length=50)
 
 
 # Schema for creating
@@ -35,8 +36,8 @@ class TaskResponse(BaseModel):
     title: str
     description: Optional[str]
     status: TaskStatus
-    created_at: str
-    updated_at: str
+    created_at: datetime
+    updated_at: datetime
 
     model_config = ConfigDict(from_attributes=True)
     # Enables creation of TaskResponse from SQLAlchemy models using from_attributes=True.
