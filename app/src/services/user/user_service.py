@@ -1,7 +1,8 @@
 from sqlalchemy.orm import Session
 from app.src.repositories.user.user_repository import UserRepository
-from app.src.schemas.user.schemas import UserLogin, UserLoginResponse
-from app.src.utils.security import verify_password, generate_jwt_token
+from app.src.schemas.user.schemas import UserLogin, UserLoginResponse, UserCreate, UserResponse
+from app.src.utils.security import verify_password, generate_jwt_token, hash_password
+from app.src.models.user.user import User
 
 
 class UserService:
@@ -23,3 +24,14 @@ class UserService:
             return UserLoginResponse(token=token, token_type="Bearer")
         else:
             raise ValueError("Invalid email or password")
+
+    def register(self, user_create: UserCreate) -> UserResponse:
+        hashed_password = hash_password(user_create.password)
+        user = User(
+            first_name=user_create.first_name,
+            last_name=user_create.last_name,
+            email=user_create.email,
+            hashed_password=hashed_password,
+        )
+        user = self.user_repository.create_user(user)
+        return UserResponse.model_validate(user)
