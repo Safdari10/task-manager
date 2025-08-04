@@ -7,13 +7,13 @@ class UserRepository:
     def __init__(self, db: Session) -> None:
         self.db = db
 
-    def login_user(self, email: str) -> Optional[User]:
+    def get_user_by_email(self, email: str) -> Optional[User]:
         user = self.db.query(User).filter(User.email == email).first()
         if user:
             return user
         return None
 
-    def register_user(self, user: User) -> User:
+    def create_user(self, user: User) -> User:
         self.db.add(user)
         self.db.commit()
         self.db.refresh(user)
