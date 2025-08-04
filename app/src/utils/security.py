@@ -1,5 +1,6 @@
 from passlib.context import CryptContext
 from jose import jwt
+from jose.exceptions import JWTError
 from pydantic import UUID4
 from app.src.db.db import utcnow
 from datetime import timedelta
@@ -40,3 +41,13 @@ def generate_jwt_token(
         "nbf": utcnow(),
     }
     return jwt.encode(payload, secret_key, algorithm=algorithm)
+
+
+def decode_jwt_token(
+    token: str, secret_key: str, algorithm: str = "HS256"
+) -> dict[str, object] | None:
+    """Decode a JWT token."""
+    try:
+        return jwt.decode(token=token, key=secret_key, algorithms=[algorithm])
+    except JWTError:
+        return None
