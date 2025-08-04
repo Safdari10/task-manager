@@ -6,29 +6,19 @@ from datetime import datetime
 
 #  Base model for Task
 class Task(BaseModel):
-    id: UUID4
-    user_id: UUID4
     title: str = Field(..., max_length=255)
     description: Optional[str] = Field(None, max_length=1000)
-    status: TaskStatus = Field(..., max_length=50)
-    created_at: datetime = Field(...)
-    updated_at: datetime = Field(...)
 
 
 # Schema for creating
 class TaskCreate(BaseModel):
-    title: str = Field(..., max_length=255)
-    description: Optional[str] = Field(None, max_length=1000)
-    status: TaskStatus = Field(
-        TaskStatus.PENDING, max_length=50
-    )  # Default status is PENDING
+    pass
 
 
 # Schema for updating
 class TaskUpdate(BaseModel):
     title: Optional[str] = Field(None, max_length=255)
     description: Optional[str] = Field(None, max_length=1000)
-    status: Optional[TaskStatus] = Field(None, max_length=50)
 
 
 # schema for response
