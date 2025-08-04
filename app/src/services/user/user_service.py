@@ -13,11 +13,11 @@ class UserService:
         if user and verify_password(user_login.password, user.password):
             # Generate JWT token
             token = generate_jwt_token(
-                user_id=user.id,
-                first_name=user.first_name,
-                last_name=user.last_name,
-                user_role=user.role,
-                user_status=user.status,
+                user_id=user.id,  # type: ignore
+                first_name=user.first_name,  # type: ignore
+                last_name=user.last_name,  # type: ignore
+                user_role=user.role,  # type: ignore
+                user_status=user.status,  # type: ignore
                 secret_key="your_secret_key",  # Replace with your actual secret key
             )
             return UserLoginResponse(token=token, token_type="Bearer")
