@@ -12,3 +12,9 @@ class UserRepository:
         if user:
             return user
         return None
+
+    def register_user(self, user: User) -> User:
+        self.db.add(user)
+        self.db.commit()
+        self.db.refresh(user)
+        return user
