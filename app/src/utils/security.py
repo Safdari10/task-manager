@@ -51,3 +51,9 @@ def decode_jwt_token(
         return jwt.decode(token=token, key=secret_key, algorithms=[algorithm])
     except JWTError:
         return None
+
+
+def verify_jwt_token(token: str, secret_key: str, algorithm: str = "HS256") -> bool:
+    """Verify a JWT token."""
+
+    return decode_jwt_token(token, secret_key, algorithm) is not None
