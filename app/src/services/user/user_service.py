@@ -10,7 +10,7 @@ class UserService:
 
     def login(self, user_login: UserLogin) -> UserLoginResponse:
         user = self.user_repository.get_user_by_email(user_login.email)
-        if user and verify_password(user_login.password, user.password):
+        if user and verify_password(user_login.password, user.hashed_password):  # type: ignore
             # Generate JWT token
             token = generate_jwt_token(
                 user_id=user.id,  # type: ignore
