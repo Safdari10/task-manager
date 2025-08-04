@@ -31,3 +31,21 @@ class UserResponse(UserBase):
     model_config = ConfigDict(
         from_attributes=True,
     )
+
+
+class UserLogin(BaseModel):
+    email: EmailStr
+    password: str = Field(..., min_length=1, max_length=128)
+
+
+class UserLoginResponse(BaseModel):
+    token: str = Field(..., description="JWT token for user authentication")
+    token_type: str = Field("Bearer", description="Type of the token")
+    id: UUID4 = Field(..., description="User's unique identifier")
+    first_name: str = Field(..., description="User's first name")
+    last_name: str = Field(..., description="User's last name")
+    role: UserRole = Field(..., description="User's role in the system")
+    status: UserStatus = Field(..., description="User's current status")
+    model_config = ConfigDict(
+        from_attributes=True,
+    )
