@@ -2,7 +2,7 @@ from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
 from app.src.db.db import get_db_session
 from app.src.services.user.user_service import UserService
-from app.src.schemas.user.schemas import UserLoginResponse, UserLogin
+from app.src.schemas.user.schemas import UserLoginResponse, UserLogin, UserCreate, UserResponse
 
 router = APIRouter()
 
@@ -17,3 +17,16 @@ def login(
     if not user:
         raise HTTPException(status_code=401, detail="Invalid email or password")
     return user
+
+
+@router.post("/register", response_model=UserResponse, tags=["User Registration"])
+def register(
+    user_create: UserCreate,
+    db: Session = Depends(get_db_session),
+):
+    service = UserService(db)
+    try:
+        user = service.register(user_create)
+        return user
+    except IndentationError:
+        raise HTTPException(status_code=409, detail="Email already registered")
