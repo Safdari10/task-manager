@@ -5,7 +5,7 @@ sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 
 from fastapi.testclient import TestClient
 from app.main import app
-from app.src.schemas.task.schemas import TaskResponse
+from app.src.schemas.task_schemas import TaskResponse
 
 # initialize the test client
 client = TestClient(app)
@@ -48,9 +48,7 @@ def test_create_task():
 
 
 def test_get_task_by_id():
-    task_id = (
-        create_test_task()
-    )  # get the id from the helper function to ensure the task exists
+    task_id = create_test_task()  # get the id from the helper function to ensure the task exists
     response = client.get(f"/tasks/{task_id}")  # type: ignore
     assert response.status_code == 200
     data = response.json()  # type: ignore
@@ -69,9 +67,7 @@ def test_update_task():
     response = client.put(f"/tasks/{task_id}", json=updated_data)  # type: ignore
     assert response.status_code == 200
     data = response.json()  # type: ignore
-    TaskResponse.model_validate(
-        data
-    )  # Validating a single object against the TaskResponse schema
+    TaskResponse.model_validate(data)  # Validating a single object against the TaskResponse schema
 
 
 def test_delete_task():
@@ -79,6 +75,4 @@ def test_delete_task():
     response = client.delete(f"/tasks/{task_id}")  # type: ignore
     assert response.status_code == 200
     data = response.json()  # type: ignore
-    TaskResponse.model_validate(
-        data
-    )  # Validating a single object against the TaskResponse schema
+    TaskResponse.model_validate(data)  # Validating a single object against the TaskResponse schema

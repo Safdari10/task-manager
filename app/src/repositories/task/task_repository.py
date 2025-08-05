@@ -2,7 +2,7 @@ from sqlalchemy.orm import Session
 from typing import Optional
 from pydantic import UUID4
 from app.src.models.task.task import Task
-from app.src.schemas.task.schemas import (
+from app.src.schemas.task_schemas import (
     TaskCreate,
     TaskUpdate,
     TaskResponse,

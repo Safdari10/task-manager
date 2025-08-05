@@ -3,7 +3,7 @@ from sqlalchemy.orm import Session
 from pydantic import UUID4
 from app.src.db.db import get_db_session
 from app.src.services.task_service import TaskService
-from app.src.schemas.task.schemas import (
+from app.src.schemas.task_schemas import (
     TaskResponse,
     TaskUpdate,
     TaskCreate,

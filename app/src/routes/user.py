@@ -3,7 +3,7 @@ from sqlalchemy.orm import Session
 from app.src.db.db import get_db_session
 from pydantic import UUID4
 from app.src.services.user_service import UserService
-from app.src.schemas.user.schemas import (
+from app.src.schemas.user_schemas import (
     UserLoginResponse,
     UserLogin,
     UserCreate,
