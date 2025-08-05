@@ -1,5 +1,6 @@
 from sqlalchemy.orm import Session
 from typing import Optional
+from pydantic import UUID4
 from app.src.repositories.user.user_repository import UserRepository
 from app.src.schemas.user.schemas import (
     UserLogin,
@@ -43,7 +44,7 @@ class UserService:
         user = self.user_repository.create_user(user)
         return UserResponse.model_validate(user)
 
-    def update_user(self, user_id: str, user_update: UserUpdate) -> Optional[UserResponse]:
+    def update_user(self, user_id: UUID4, user_update: UserUpdate) -> Optional[UserResponse]:
         user = self.user_repository.get_user_by_id(user_id)
         if user:
             user.email = user_update.email or user.email  # type: ignore
@@ -56,7 +57,7 @@ class UserService:
         else:
             return None
 
-    def delete_user(self, user_id: str) -> None:
+    def delete_user(self, user_id: UUID4) -> None:
         user = self.user_repository.get_user_by_id(user_id)
         if user:
             self.user_repository.delete_user(user)
