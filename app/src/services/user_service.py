@@ -1,7 +1,7 @@
 from sqlalchemy.orm import Session
 from typing import Optional
 from pydantic import UUID4
-from app.src.repositories.user.user_repository import UserRepository
+from app.src.repositories.user_repository import UserRepository
 from app.src.schemas.user_schemas import (
     UserLogin,
     UserLoginResponse,
