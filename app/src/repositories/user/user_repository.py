@@ -13,6 +13,12 @@ class UserRepository:
             return user
         return None
 
+    def get_user_by_id(self, user_id: str) -> Optional[User]:
+        user = self.db.query(User).filter(User.id == user_id).first()
+        if user:
+            return user
+        return None
+
     def create_user(self, user: User) -> User:
         self.db.add(user)
         self.db.commit()
