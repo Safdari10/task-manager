@@ -9,7 +9,7 @@ from alembic import context
 from app.src.db.db import Base
 
 # Import all your models so Alembic can detect them
-from app.src.models.task.task import Task  # type: ignore
+from app.src.models.task import Task  # type: ignore
 from app.src.models.user.user import User  # type: ignore
 
 
