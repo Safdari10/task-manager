@@ -1,5 +1,6 @@
 from sqlalchemy.orm import Session
 from typing import Optional
+from pydantic import UUID4
 from app.src.models.user.user import User
 
 
@@ -13,7 +14,7 @@ class UserRepository:
             return user
         return None
 
-    def get_user_by_id(self, user_id: str) -> Optional[User]:
+    def get_user_by_id(self, user_id: UUID4) -> Optional[User]:
         user = self.db.query(User).filter(User.id == user_id).first()
         if user:
             return user
