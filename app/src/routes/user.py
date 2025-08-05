@@ -2,7 +2,7 @@ from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
 from app.src.db.db import get_db_session
 from pydantic import UUID4
-from app.src.services.user.user_service import UserService
+from app.src.services.user_service import UserService
 from app.src.schemas.user.schemas import (
     UserLoginResponse,
     UserLogin,
