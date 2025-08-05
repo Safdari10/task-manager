@@ -1,6 +1,12 @@
 from sqlalchemy.orm import Session
 from app.src.repositories.user.user_repository import UserRepository
-from app.src.schemas.user.schemas import UserLogin, UserLoginResponse, UserCreate, UserResponse
+from app.src.schemas.user.schemas import (
+    UserLogin,
+    UserLoginResponse,
+    UserCreate,
+    UserResponse,
+    UserUpdate,
+)
 from app.src.utils.security import verify_password, generate_jwt_token, hash_password
 from app.src.models.user.user import User
 
@@ -35,3 +41,16 @@ class UserService:
         )
         user = self.user_repository.create_user(user)
         return UserResponse.model_validate(user)
+
+    def update_user(self, user_id: str, user_update: UserUpdate) -> UserResponse:
+        user = self.user_repository.get_user_by_id(user_id)
+        if user:
+            user.email = user_update.email or user.email  # type: ignore
+            user.first_name = user_update.first_name or user.first_name  # type: ignore
+            user.last_name = user_update.last_name or user.last_name  # type: ignore
+            if user_update.password:
+                user.hashed_password = hash_password(user_update.password)  # type: ignore
+            user = self.user_repository.update_user(user)
+            return UserResponse.model_validate(user)
+        else:
+            raise ValueError("User not found")
