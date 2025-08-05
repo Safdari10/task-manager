@@ -1,6 +1,6 @@
 from fastapi import FastAPI
 from dotenv import load_dotenv
-from app.src.routes.task.task import router as task_router
+from app.src.routes.task import router as task_router
 
 # Load environment variables from .env file
 load_dotenv()
