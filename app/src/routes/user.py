@@ -1,8 +1,15 @@
 from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
 from app.src.db.db import get_db_session
+from pydantic import UUID4
 from app.src.services.user.user_service import UserService
-from app.src.schemas.user.schemas import UserLoginResponse, UserLogin, UserCreate, UserResponse
+from app.src.schemas.user.schemas import (
+    UserLoginResponse,
+    UserLogin,
+    UserCreate,
+    UserResponse,
+    UserUpdate,
+)
 
 router = APIRouter()
 
@@ -30,3 +37,16 @@ def register(
         return user
     except IndentationError:
         raise HTTPException(status_code=409, detail="Email already registered")
+
+
+@router.put("/users/{user_id}", response_model=UserResponse, tags=["Update User"])
+def update_user(
+    user_id: UUID4,
+    update_user: UserUpdate,
+    db: Session = Depends(get_db_session),
+):
+    service = UserService(db)
+    user = service.update_user(user_id, update_user)
+    if not user:
+        raise HTTPException(status_code=404, detail="User not found")
+    return user
