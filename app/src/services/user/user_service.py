@@ -54,3 +54,10 @@ class UserService:
             return UserResponse.model_validate(user)
         else:
             raise ValueError("User not found")
+
+    def delete_user(self, user_id: str) -> None:
+        user = self.user_repository.get_user_by_id(user_id)
+        if user:
+            self.user_repository.delete_user(user)
+        else:
+            raise ValueError("User not found")
