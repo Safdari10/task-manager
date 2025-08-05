@@ -50,3 +50,14 @@ def update_user(
     if not user:
         raise HTTPException(status_code=404, detail="User not found")
     return user
+
+
+@router.delete("/users/{user_id}", status_code=204, tags=["Delete User"])
+def delete_user(
+    user_id: UUID4,
+    db: Session = Depends(get_db_session),
+):
+    service = UserService(db)
+    user = service.delete_user(user_id)
+    if not user:
+        raise HTTPException(status_code=404, detail="User not found")
