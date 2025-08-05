@@ -10,7 +10,7 @@ from app.src.db.db import Base
 
 # Import all your models so Alembic can detect them
 from app.src.models.task import Task  # type: ignore
-from app.src.models.user.user import User  # type: ignore
+from app.src.models.user import User  # type: ignore
 
 
 # Load environment variables from .env file

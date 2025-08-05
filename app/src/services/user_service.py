@@ -10,7 +10,7 @@ from app.src.schemas.user_schemas import (
     UserUpdate,
 )
 from app.src.utils.security import verify_password, generate_jwt_token, hash_password
-from app.src.models.user.user import User
+from app.src.models.user import User
 
 
 class UserService:

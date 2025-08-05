@@ -1,7 +1,7 @@
 from sqlalchemy.orm import Session
 from typing import Optional
 from pydantic import UUID4
-from app.src.models.user.user import User
+from app.src.models.user import User
 
 
 class UserRepository:
