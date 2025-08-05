@@ -1,4 +1,5 @@
 from sqlalchemy.orm import Session
+from typing import Optional
 from app.src.repositories.user.user_repository import UserRepository
 from app.src.schemas.user.schemas import (
     UserLogin,
@@ -15,7 +16,7 @@ class UserService:
     def __init__(self, db: Session) -> None:
         self.user_repository = UserRepository(db)
 
-    def login(self, user_login: UserLogin) -> UserLoginResponse:
+    def login(self, user_login: UserLogin) -> Optional[UserLoginResponse]:
         user = self.user_repository.get_user_by_email(user_login.email)
         if user and verify_password(user_login.password, user.hashed_password):  # type: ignore
             # Generate JWT token
@@ -29,7 +30,7 @@ class UserService:
             )
             return UserLoginResponse(token=token, token_type="Bearer")
         else:
-            raise ValueError("Invalid email or password")
+            return None
 
     def register(self, user_create: UserCreate) -> UserResponse:
         hashed_password = hash_password(user_create.password)
@@ -42,7 +43,7 @@ class UserService:
         user = self.user_repository.create_user(user)
         return UserResponse.model_validate(user)
 
-    def update_user(self, user_id: str, user_update: UserUpdate) -> UserResponse:
+    def update_user(self, user_id: str, user_update: UserUpdate) -> Optional[UserResponse]:
         user = self.user_repository.get_user_by_id(user_id)
         if user:
             user.email = user_update.email or user.email  # type: ignore
@@ -53,11 +54,11 @@ class UserService:
             user = self.user_repository.update_user(user)
             return UserResponse.model_validate(user)
         else:
-            raise ValueError("User not found")
+            return None
 
     def delete_user(self, user_id: str) -> None:
         user = self.user_repository.get_user_by_id(user_id)
         if user:
             self.user_repository.delete_user(user)
         else:
-            raise ValueError("User not found")
+            return None
