@@ -53,3 +53,8 @@ def test_update_user(create_user: dict[str, str]):
     assert data["first_name"] == "Updated"
     assert data["last_name"] == "User"
     assert data["email"] == create_user["email"]
+
+
+def test_delete_user(create_user: dict[str, str]):
+    response = client.delete(f"/users/{create_user["id"]}")  # type: ignore
+    assert response.status_code == 204
