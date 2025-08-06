@@ -12,7 +12,7 @@ from app.src.schemas.user_schemas import (
     UserUpdate,
 )
 
-router = APIRouter()
+router = APIRouter(prefix="/users")
 
 
 @router.post("/login", response_model=UserLoginResponse, tags=["User Login"])
@@ -40,7 +40,7 @@ def register(
         raise HTTPException(status_code=409, detail="Email already registered")
 
 
-@router.put("/users/{user_id}", response_model=UserResponse, tags=["Update User"])
+@router.put("/{user_id}", response_model=UserResponse, tags=["Update User"])
 def update_user(
     user_id: UUID4,
     update_user: UserUpdate,
@@ -53,7 +53,7 @@ def update_user(
     return user
 
 
-@router.delete("/users/{user_id}", status_code=204, tags=["Delete User"])
+@router.delete("/{user_id}", status_code=204, tags=["Delete User"])
 def delete_user(
     user_id: UUID4,
     db: Session = Depends(get_db_session),
