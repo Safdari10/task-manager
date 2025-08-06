@@ -17,7 +17,7 @@ def generate_unique_email():
     return f"test.user.{uuid.uuid4()}@example.com"
 
 
-@pytest.fixture(scope="module")
+@pytest.fixture()
 def create_user() -> dict[str, str]:
     email = generate_unique_email()
     user = {
