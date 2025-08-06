@@ -18,7 +18,7 @@ def generate_unique_email():
 
 
 @pytest.fixture(scope="module")
-def create_user():
+def create_user() -> dict[str, str]:
     email = generate_unique_email()
     user = {
         "first_name": "Test",
@@ -30,4 +30,4 @@ def create_user():
     assert response.status_code == 201
     data = response.json()  # type: ignore
     UserResponse.model_validate(data)
-    return data["id"]
+    return {"email": user["email"], "password": user["password"], "id": data["id"]}
