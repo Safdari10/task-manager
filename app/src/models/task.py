@@ -3,7 +3,7 @@ from sqlalchemy.dialects.postgresql import UUID
 import uuid
 from sqlalchemy.orm import relationship
 from app.src.db.db import Base, utcnow
-from app.src.models.task.status import TaskStatus
+from app.src.models.task_status import TaskStatus
 
 
 # Define the Task model
