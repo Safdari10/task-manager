@@ -12,7 +12,7 @@ class Task(Base):
     __tablename__ = "tasks"
     id = Column(UUID(as_uuid=True), primary_key=True, index=True, default=uuid.uuid4)
     user_id = Column(UUID(as_uuid=True), ForeignKey("users.id"), index=True, nullable=False)
-    title = Column(String(length=255), index=True)
+    title = Column(String(length=255), index=True, nullable=False)
     description = Column(
         String(length=1000), nullable=True
     )  # Description is optional so can be null
