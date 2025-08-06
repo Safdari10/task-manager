@@ -5,22 +5,19 @@ from datetime import datetime
 
 
 #  Base model for Task
-class Task(BaseModel):
+class TaskBase(BaseModel):
     title: str = Field(..., max_length=255)
     description: Optional[str] = Field(None, max_length=1000)
 
 
 # Schema for creating
-class TaskCreate(BaseModel):
-    title: str = Field(..., max_length=255)
-    description: Optional[str] = Field(None, max_length=1000)
+class TaskCreate(TaskBase):
     status: Optional[TaskStatus] = TaskStatus.PENDING
 
 
 # Schema for updating
-class TaskUpdate(BaseModel):
-    title: Optional[str] = Field(None, max_length=255)
-    description: Optional[str] = Field(None, max_length=1000)
+class TaskUpdate(TaskBase):
+    status: Optional[TaskStatus] = None
 
 
 # schema for response
