@@ -26,7 +26,7 @@ def create_user() -> dict[str, str]:
         "email": email,
         "password": "Test@123",
     }
-    response = client.post("/register", json=user)  # type: ignore
+    response = client.post("/users/register", json=user)  # type: ignore
     assert response.status_code == 201
     data = response.json()  # type: ignore
     UserResponse.model_validate(data)
