@@ -54,7 +54,8 @@ def test_get_all_tasks():
 
 
 def test_create_task():
-    task_data = {
+    task_data = {  # type: ignore
+        "user_id": create_user(),
         "title": "Test Create Task",
         "description": "This is a test task for creation",
         "status": "pending",
@@ -67,7 +68,8 @@ def test_create_task():
 
 def test_get_task_by_id():
     task_id = create_test_task()  # get the id from the helper function to ensure the task exists
-    response = client.get(f"/tasks/{task_id}")  # type: ignore
+    user_id = create_user()
+    response = client.get(f"/tasks/{task_id}?user_id={user_id}")  # type: ignore
     assert response.status_code == 200
     data = response.json()  # type: ignore
     TaskResponse.model_validate(
@@ -77,7 +79,8 @@ def test_get_task_by_id():
 
 def test_update_task():
     task_id = create_test_task()
-    updated_data = {
+    updated_data = {  # type: ignore
+        "user_id": create_user(),
         "title": "Updated Task",
         "description": "This is an updated test task",
         "status": "completed",
@@ -90,7 +93,8 @@ def test_update_task():
 
 def test_delete_task():
     task_id = create_test_task()
-    response = client.delete(f"/tasks/{task_id}")  # type: ignore
+    user_id = create_user()
+    response = client.delete(f"/tasks/{task_id}?user_id={user_id}")  # type: ignore
     assert response.status_code == 200
     data = response.json()  # type: ignore
     TaskResponse.model_validate(data)  # Validating a single object against the TaskResponse schema
