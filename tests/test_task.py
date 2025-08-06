@@ -1,14 +1,30 @@
 import sys
 import os
 
+# Ensure the parent directory is in the system path for module imports
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 
 from fastapi.testclient import TestClient
 from app.main import app
 from app.src.schemas.task_schemas import TaskResponse
+from app.src.schemas.user_schemas import UserResponse
 
 # initialize the test client
 client = TestClient(app)
+
+
+def create_user():
+    user_data = {
+        "first_name": "Test",
+        "last_name": "User",
+        "email": "test.user@example.com",
+        "password": "testpassword",
+    }
+    response = client.post("/register", json=user_data)  # type: ignore
+    assert response.status_code == 201
+    data = response.json()  # type: ignore
+    UserResponse.model_validate(data)
+    return data["id"]  # Return the created user ID to be used in required tests
 
 
 def create_test_task():
