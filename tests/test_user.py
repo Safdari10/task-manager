@@ -37,3 +37,19 @@ def test_register_user():
     UserResponse.model_validate(data)
     assert data["email"] == email
     assert "id" in data
+
+
+def test_update_user(create_user: dict[str, str]):
+    updated_data: dict[str, str] = {
+        "first_name": "Updated",
+        "last_name": "User",
+        "email": create_user["email"],
+        "password": "Updated@123",
+    }
+    response = client.put(f"/users/{create_user["id"]}", json=updated_data)  # type: ignore
+    assert response.status_code == 200
+    data = response.json()  # type: ignore
+    UserResponse.model_validate(data)
+    assert data["first_name"] == "Updated"
+    assert data["last_name"] == "User"
+    assert data["email"] == create_user["email"]
