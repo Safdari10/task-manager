@@ -14,7 +14,7 @@ from app.src.schemas.task_schemas import TaskResponse
 client = TestClient(app)
 
 
-@pytest.fixture(scope="module")
+@pytest.fixture()
 def create_test_task(create_user: dict[str, str]) -> str:
     test_task: dict[str, str] = {
         "title": "Test Task",
