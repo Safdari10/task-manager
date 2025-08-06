@@ -28,7 +28,8 @@ def create_user():
 
 
 def create_test_task():
-    test_task = {
+    test_task = {  # type: ignore
+        "user_id": create_user(),  # get the user ID from the helper function to ensure the user exists
         "title": "Test Task",
         "description": "This is a test task",
         "status": "pending",
@@ -41,7 +42,8 @@ def create_test_task():
 
 
 def test_get_all_tasks():
-    response = client.get("/tasks")  # type: ignore
+    user_id = create_user()  # Ensure a user exists to fetch tasks
+    response = client.get(f"/tasks?user_id={user_id}")  # type: ignore
     assert response.status_code == 200  # type: ignore
     data = response.json()
     assert isinstance(data, list)  # Ensure the response is a list
