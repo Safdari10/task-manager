@@ -33,7 +33,7 @@ def get_task(
     return task
 
 
-@router.post("/tasks", response_model=TaskResponse, tags=["Create a task"])
+@router.post("/tasks", response_model=TaskResponse, status_code=201, tags=["Create a task"])
 def create_task(
     user_id: UUID4,
     task_create: TaskCreate,
