@@ -1,4 +1,5 @@
 from fastapi import APIRouter, Depends, HTTPException
+from sqlalchemy.exc import IntegrityError
 from sqlalchemy.orm import Session
 from app.src.db.db import get_db_session
 from pydantic import UUID4
@@ -26,7 +27,7 @@ def login(
     return user
 
 
-@router.post("/register", response_model=UserResponse, tags=["User Registration"])
+@router.post("/register", response_model=UserResponse, status_code=201, tags=["User Registration"])
 def register(
     user_create: UserCreate,
     db: Session = Depends(get_db_session),
@@ -35,7 +36,7 @@ def register(
     try:
         user = service.register(user_create)
         return user
-    except IndentationError:
+    except IntegrityError:
         raise HTTPException(status_code=409, detail="Email already registered")
 
 
