@@ -21,7 +21,7 @@ class User(Base):
 
     __table_args__ = (
         CheckConstraint(
-            "email ~* '^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\\.[a-zA-Z0-9-.]+$'",
+            "email ~* '^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\\.[a-zA-Z0-9.-]+$'",
             name="check_email_format",
         ),
     )
