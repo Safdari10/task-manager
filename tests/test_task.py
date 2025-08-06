@@ -1,5 +1,7 @@
 import sys
 import os
+import pytest
+
 
 # Ensure the parent directory is in the system path for module imports
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
@@ -7,43 +9,27 @@ sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 from fastapi.testclient import TestClient
 from app.main import app
 from app.src.schemas.task_schemas import TaskResponse
-from app.src.schemas.user_schemas import UserResponse
 
 # initialize the test client
 client = TestClient(app)
 
 
-def create_user():
-    user_data = {
-        "first_name": "Test",
-        "last_name": "User",
-        "email": "test.user@example.com",
-        "password": "testpassword",
-    }
-    response = client.post("/register", json=user_data)  # type: ignore
-    assert response.status_code == 201
-    data = response.json()  # type: ignore
-    UserResponse.model_validate(data)
-    return data["id"]  # Return the created user ID to be used in required tests
-
-
-def create_test_task():
+@pytest.fixture(scope="module")
+def create_test_task(create_user: str):
     test_task = {  # type: ignore
-        "user_id": create_user(),  # get the user ID from the helper function to ensure the user exists
         "title": "Test Task",
         "description": "This is a test task",
         "status": "pending",
     }
-    response = client.post("/tasks", json=test_task)  # type: ignore
+    response = client.post(f"/tasks?user_id={create_user}", json=test_task)  # type: ignore
     assert response.status_code in (200, 201)  # Accept either 200 or 201
     data = response.json()  # type: ignore
     TaskResponse.model_validate(data)
     return data["id"]  #  Return the created task ID to be used in required tests
 
 
-def test_get_all_tasks():
-    user_id = create_user()  # Ensure a user exists to fetch tasks
-    response = client.get(f"/tasks?user_id={user_id}")  # type: ignore
+def test_get_all_tasks(create_user: str):
+    response = client.get(f"/tasks?user_id={create_user}")  # type: ignore
     assert response.status_code == 200  # type: ignore
     data = response.json()
     assert isinstance(data, list)  # Ensure the response is a list
@@ -53,23 +39,20 @@ def test_get_all_tasks():
         )  # Validate each item against the TaskResponse schema, we are checking for a list of tasks
 
 
-def test_create_task():
+def test_create_task(create_user: str):
     task_data = {  # type: ignore
-        "user_id": create_user(),
         "title": "Test Create Task",
         "description": "This is a test task for creation",
         "status": "pending",
     }
-    response = client.post("/tasks", json=task_data)  # type: ignore
+    response = client.post(f"/tasks?user_id={create_user}", json=task_data)  # type: ignore
     assert response.status_code in (200, 201)  # Accept either 200 or 201
     data = response.json()  # type: ignore
     TaskResponse.model_validate(data)
 
 
-def test_get_task_by_id():
-    task_id = create_test_task()  # get the id from the helper function to ensure the task exists
-    user_id = create_user()
-    response = client.get(f"/tasks/{task_id}?user_id={user_id}")  # type: ignore
+def test_get_task_by_id(create_user: str, create_test_task: str):
+    response = client.get(f"/tasks/{create_test_task}?user_id={create_user}")  # type: ignore
     assert response.status_code == 200
     data = response.json()  # type: ignore
     TaskResponse.model_validate(
@@ -77,24 +60,20 @@ def test_get_task_by_id():
     )  # Validate the response against the TaskResponse schema, we checking for a specific task
 
 
-def test_update_task():
-    task_id = create_test_task()
+def test_update_task(create_user: str, create_test_task: str):
     updated_data = {  # type: ignore
-        "user_id": create_user(),
         "title": "Updated Task",
         "description": "This is an updated test task",
         "status": "completed",
     }
-    response = client.put(f"/tasks/{task_id}", json=updated_data)  # type: ignore
+    response = client.put(f"/tasks/{create_test_task}?user_id={create_user}", json=updated_data)  # type: ignore
     assert response.status_code == 200
     data = response.json()  # type: ignore
     TaskResponse.model_validate(data)  # Validating a single object against the TaskResponse schema
 
 
-def test_delete_task():
-    task_id = create_test_task()
-    user_id = create_user()
-    response = client.delete(f"/tasks/{task_id}?user_id={user_id}")  # type: ignore
+def test_delete_task(create_user: str, create_test_task: str):
+    response = client.delete(f"/tasks/{create_test_task}?user_id={create_user}")  # type: ignore
     assert response.status_code == 200
     data = response.json()  # type: ignore
     TaskResponse.model_validate(data)  # Validating a single object against the TaskResponse schema
