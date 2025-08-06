@@ -1,6 +1,6 @@
 from pydantic import BaseModel, EmailStr, Field, UUID4, ConfigDict
-from app.src.models.user.role import UserRole
-from app.src.models.user.status import UserStatus
+from app.src.models.role import UserRole
+from app.src.models.user_status import UserStatus
 from datetime import datetime
 from typing import Optional
 
