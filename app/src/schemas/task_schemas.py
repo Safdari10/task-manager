@@ -12,7 +12,9 @@ class Task(BaseModel):
 
 # Schema for creating
 class TaskCreate(BaseModel):
-    pass
+    title: str = Field(..., max_length=255)
+    description: Optional[str] = Field(None, max_length=1000)
+    status: Optional[TaskStatus] = TaskStatus.PENDING
 
 
 # Schema for updating
