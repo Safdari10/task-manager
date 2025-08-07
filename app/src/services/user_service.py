@@ -1,6 +1,8 @@
 from sqlalchemy.orm import Session
 from typing import Optional
 from pydantic import UUID4
+import os
+from dotenv import load_dotenv
 from app.src.repositories.user_repository import UserRepository
 from app.src.schemas.user_schemas import (
     UserLogin,
@@ -11,6 +13,11 @@ from app.src.schemas.user_schemas import (
 )
 from app.src.utils.security import verify_password, generate_jwt_token, hash_password
 from app.src.models.user import User
+
+load_dotenv()
+secret_key: str = os.getenv("SECRET_KEY")  # type: ignore
+if not secret_key:
+    raise ValueError("Failed to load SECRET_KEY from environment variables")
 
 
 class UserService:
@@ -27,7 +34,7 @@ class UserService:
                 last_name=user.last_name,  # type: ignore
                 user_role=user.role,  # type: ignore
                 user_status=user.status,  # type: ignore
-                secret_key="your_secret_key",  # Replace with your actual secret key
+                secret_key=secret_key,
             )
             return UserLoginResponse(token=token, token_type="Bearer")
         else:
