@@ -8,7 +8,7 @@ from fastapi.testclient import TestClient
 from dotenv import load_dotenv
 from app.main import app
 from app.src.db.db import Base, get_db_session
-from app.src.schemas.user_schemas import UserResponse
+from app.src.schemas.user_schemas import UserResponse, UserLoginResponse
 
 # Ensure the parent directory is in the system path for module imports
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..")))
@@ -74,3 +74,19 @@ def create_user(client: TestClient) -> dict[str, str]:
     data = response.json()  # type: ignore
     UserResponse.model_validate(data)
     return {"email": user["email"], "password": user["password"], "id": data["id"]}
+
+
+@pytest.fixture()
+def login_user(client: TestClient, create_user: dict[str, str]):
+    login_data = {
+        "email": create_user["email"],
+        "password": create_user["password"],
+    }
+    response = client.post("/users/login", json=login_data)  # type: ignore
+    assert response.status_code == 200
+    data = response.json()  # type: ignore
+    UserLoginResponse.model_validate(data)
+    assert "token" in data
+    assert data["token_type"] == "Bearer"
+    # Return the token for further use in tests
+    return data["token"]
