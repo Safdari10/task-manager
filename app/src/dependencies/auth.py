@@ -3,6 +3,10 @@ from dotenv import load_dotenv
 from fastapi import Depends, HTTPException, status
 from fastapi.security import HTTPBearer, HTTPAuthorizationCredentials
 from app.src.utils.security import decode_jwt_token
+from sqlalchemy.orm import Session
+from app.src.db.db import get_db_session
+from app.src.models.user import User
+
 
 load_dotenv()
 
@@ -14,6 +18,7 @@ if not SECRET_KEY:
 
 def get_current_user(
     credentials: HTTPAuthorizationCredentials = Depends(security),
+    db: Session = Depends(get_db_session),
 ):
     """
     FastAPI dependency to get the current user ID from a JWT token.
@@ -26,4 +31,7 @@ def get_current_user(
             status_code=status.HTTP_401_UNAUTHORIZED, detail="Invalid authentication credentials"
         )
     user_id = payload["sub"]
-    return user_id
+    user = db.query(User).filter(User.id == user_id).first()
+    if not user:
+        raise HTTPException(status_code=404, detail="User not found")
+    return user
