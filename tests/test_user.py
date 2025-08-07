@@ -1,7 +1,6 @@
 import os
 import sys
 from fastapi.testclient import TestClient
-from app.main import app
 from app.src.schemas.user_schemas import UserResponse, UserLoginResponse
 from tests.conftest import generate_unique_email
 
@@ -9,10 +8,7 @@ from tests.conftest import generate_unique_email
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 
 
-client = TestClient(app)
-
-
-def test_user_login(create_user: dict[str, str]):
+def test_user_login(client: TestClient, create_user: dict[str, str]):
     login_data: dict[str, str] = {
         "email": create_user["email"],
         "password": create_user["password"],
@@ -23,7 +19,7 @@ def test_user_login(create_user: dict[str, str]):
     UserLoginResponse.model_validate(data)
 
 
-def test_register_user():
+def test_register_user(client: TestClient):
     email = generate_unique_email()
     user_data: dict[str, str] = {
         "first_name": "Test",
@@ -39,7 +35,7 @@ def test_register_user():
     assert "id" in data
 
 
-def test_update_user(create_user: dict[str, str]):
+def test_update_user(client: TestClient, create_user: dict[str, str]):
     updated_data: dict[str, str] = {
         "first_name": "Updated",
         "last_name": "User",
@@ -55,6 +51,6 @@ def test_update_user(create_user: dict[str, str]):
     assert data["email"] == create_user["email"]
 
 
-def test_delete_user(create_user: dict[str, str]):
+def test_delete_user(client: TestClient, create_user: dict[str, str]):
     response = client.delete(f"/users/{create_user["id"]}")  # type: ignore
     assert response.status_code == 204
