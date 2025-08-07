@@ -57,9 +57,10 @@ class UserService:
         else:
             return None
 
-    def delete_user(self, user_id: UUID4) -> None:
+    def delete_user(self, user_id: UUID4) -> bool:
         user = self.user_repository.get_user_by_id(user_id)
         if user:
             self.user_repository.delete_user(user)
+            return True
         else:
-            return None
+            return False
