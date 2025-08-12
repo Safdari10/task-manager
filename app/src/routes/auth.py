@@ -1,0 +1,38 @@
+from fastapi import APIRouter, Depends, HTTPException
+from sqlalchemy.exc import IntegrityError
+from sqlalchemy.orm import Session
+from app.src.db.db import get_db_session
+from app.src.services.user_service import UserService
+from app.src.schemas.user_schemas import (
+    UserLoginResponse,
+    UserLogin,
+    UserCreate,
+    UserResponse,
+)
+
+router = APIRouter(prefix="/auth")
+
+
+@router.post("/login", response_model=UserLoginResponse, tags=["Auth"])
+def login(
+    user_login: UserLogin,
+    db: Session = Depends(get_db_session),
+):
+    service = UserService(db)
+    user = service.login(user_login)
+    if not user:
+        raise HTTPException(status_code=401, detail="Invalid email or password")
+    return user
+
+
+@router.post("/register", response_model=UserResponse, status_code=201, tags=["Auth"])
+def register(
+    user_create: UserCreate,
+    db: Session = Depends(get_db_session),
+):
+    service = UserService(db)
+    try:
+        user = service.register(user_create)
+        return user
+    except IntegrityError:
+        raise HTTPException(status_code=409, detail="Email already registered")

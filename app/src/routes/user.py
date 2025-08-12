@@ -1,13 +1,9 @@
 from fastapi import APIRouter, Depends, HTTPException
-from sqlalchemy.exc import IntegrityError
 from sqlalchemy.orm import Session
 from app.src.db.db import get_db_session
 from pydantic import UUID4
 from app.src.services.user_service import UserService
 from app.src.schemas.user_schemas import (
-    UserLoginResponse,
-    UserLogin,
-    UserCreate,
     UserResponse,
     UserUpdate,
 )
@@ -15,32 +11,7 @@ from app.src.schemas.user_schemas import (
 router = APIRouter(prefix="/users")
 
 
-@router.post("/login", response_model=UserLoginResponse, tags=["User Login"])
-def login(
-    user_login: UserLogin,
-    db: Session = Depends(get_db_session),
-):
-    service = UserService(db)
-    user = service.login(user_login)
-    if not user:
-        raise HTTPException(status_code=401, detail="Invalid email or password")
-    return user
-
-
-@router.post("/register", response_model=UserResponse, status_code=201, tags=["User Registration"])
-def register(
-    user_create: UserCreate,
-    db: Session = Depends(get_db_session),
-):
-    service = UserService(db)
-    try:
-        user = service.register(user_create)
-        return user
-    except IntegrityError:
-        raise HTTPException(status_code=409, detail="Email already registered")
-
-
-@router.put("/{user_id}", response_model=UserResponse, tags=["Update User"])
+@router.put("/{user_id}", response_model=UserResponse, tags=["Users"])
 def update_user(
     user_id: UUID4,
     update_user: UserUpdate,
@@ -53,7 +24,7 @@ def update_user(
     return user
 
 
-@router.delete("/{user_id}", status_code=204, tags=["Delete User"])
+@router.delete("/{user_id}", status_code=204, tags=["Users"])
 def delete_user(
     user_id: UUID4,
     db: Session = Depends(get_db_session),

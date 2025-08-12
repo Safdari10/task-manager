@@ -15,7 +15,7 @@ from app.src.schemas.task_schemas import (
 router = APIRouter(prefix="/tasks")
 
 
-@router.get("/", response_model=list[TaskResponse], tags=["Get all tasks"])
+@router.get("/", response_model=list[TaskResponse], tags=["Tasks"])
 def get_tasks(
     current_user: User = Depends(get_current_user),
     db: Session = Depends(get_db_session),
@@ -25,7 +25,7 @@ def get_tasks(
     return tasks
 
 
-@router.get("/{task_id}", response_model=TaskResponse, tags=["Get a task"])
+@router.get("/{task_id}", response_model=TaskResponse, tags=["Tasks"])
 def get_task(
     task_id: UUID4,
     current_user: User = Depends(get_current_user),
@@ -38,7 +38,7 @@ def get_task(
     return task
 
 
-@router.post("/", response_model=TaskResponse, status_code=201, tags=["Create a task"])
+@router.post("/", response_model=TaskResponse, status_code=201, tags=["Tasks"])
 def create_task(
     task_create: TaskCreate,
     current_user: User = Depends(get_current_user),
@@ -49,7 +49,7 @@ def create_task(
     return task
 
 
-@router.put("/{task_id}", response_model=TaskResponse, tags=["Update a task"])
+@router.put("/{task_id}", response_model=TaskResponse, tags=["Tasks"])
 def update_task(
     task_id: UUID4,
     task_update: TaskUpdate,
@@ -63,7 +63,7 @@ def update_task(
     return task
 
 
-@router.delete("/{task_id}", response_model=TaskResponse, tags=["Delete a task"])
+@router.delete("/{task_id}", response_model=TaskResponse, tags=["Tasks"])
 def delete_task(
     task_id: UUID4,
     current_user: User = Depends(get_current_user),

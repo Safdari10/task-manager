@@ -69,7 +69,7 @@ def create_user(client: TestClient) -> dict[str, str]:
         "email": email,
         "password": "Test@123",
     }
-    response = client.post("/users/register", json=user)  # type: ignore
+    response = client.post("/auth/register", json=user)  # type: ignore
     assert response.status_code == 201
     data = response.json()  # type: ignore
     UserResponse.model_validate(data)
@@ -82,7 +82,7 @@ def login_user(client: TestClient, create_user: dict[str, str]):
         "email": create_user["email"],
         "password": create_user["password"],
     }
-    response = client.post("/users/login", json=login_data)  # type: ignore
+    response = client.post("/auth/login", json=login_data)  # type: ignore
     assert response.status_code == 200
     data = response.json()  # type: ignore
     UserLoginResponse.model_validate(data)
