@@ -1,6 +1,6 @@
 services:
   db:
-    image: postgres:latest
+    image: postgres:16.2-alpine
     env_file: .env.production
     command: ["postgres", "-c", "shared_preload_libraries=pg_stat_statements"]
     ports:
@@ -8,6 +8,17 @@ services:
     volumes:
       - db_data:/var/lib/postgresql/data
       - ./init.db.sh:/docker-entrypoint-initdb.d/init.db.sh
+    restart: always
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U $POSTGRES_USER"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    deploy:
+      resources:
+        limits:
+          cpus: "0.25"
+          memory: 256M
 
   app:
     build:
@@ -20,6 +31,14 @@ services:
       - "8000:8000"
     volumes:
       - ./:/app
+    restart: always
+    environment:
+      - DISABLE_DOCS=1 # Set to 1 to disable docs in production
+    deploy:
+      resources:
+        limits:
+          cpus: "0.25"
+          memory: 256M
 
   test:
     build:
@@ -34,6 +53,11 @@ services:
     environment:
       - PYTHONPATH=/app
     command: ["pytest"]
+    deploy:
+      resources:
+        limits:
+          cpus: "0.25"
+          memory: 256M
 
 volumes:
   db_data:
