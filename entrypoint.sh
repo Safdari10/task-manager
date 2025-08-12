@@ -22,7 +22,7 @@ echo "Starting FastAPI app..."
 WORKERS="${UVICORN_WORKERS:-4}"
 # Optionally disable docs in production by setting DISABLE_DOCS env var
 if [ "$DISABLE_DOCS" = "1" ]; then
-	exec uvicorn app.main:app --host 0.0.0.0 --port 8000 --workers $WORKERS --no-server-header --proxy-headers --log-level info --env-file /app/.env.production --reload-dir /app --root-path / --lifespan on --reload-exclude /app/docs --reload-exclude /app/redoc
+	exec uvicorn app.main:app --host 0.0.0.0 --port 8000 --workers $WORKERS --no-server-header --proxy-headers --log-level info --env-file /app/.env.production --root-path / --lifespan on
 else
 	exec uvicorn app.main:app --host 0.0.0.0 --port 8000 --workers $WORKERS --no-server-header --proxy-headers --log-level info --env-file /app/.env.production
 fi
