@@ -18,5 +18,16 @@ services:
     volumes:
       - ./:/app
 
+  test:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    env_file: .env.production
+    depends_on:
+      - db
+    volumes:
+      - ./:/app
+    command: ["pytest"]
+
 volumes:
   db_data:
