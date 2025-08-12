@@ -30,9 +30,9 @@ services:
     ports:
       - "8000:8000"
     volumes:
-      - ./:/app
+      - ./src:/app/src
+      - ./tests:/app/tests
     restart: always
-    # Set DISABLE_DOCS=0 for local development to enable docs
     environment:
       - DISABLE_DOCS=0
     deploy:
