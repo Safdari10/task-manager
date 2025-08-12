@@ -2,6 +2,7 @@ from fastapi import FastAPI
 from dotenv import load_dotenv
 from app.src.routes.task import router as task_router
 from app.src.routes.user import router as user_router
+from app.src.routes.auth import router as auth_router
 
 # Load environment variables from .env file
 load_dotenv()
@@ -13,6 +14,7 @@ def create_app() -> FastAPI:
     app = FastAPI()
     app.include_router(task_router)
     app.include_router(user_router)
+    app.include_router(auth_router)
     return app
 
 
