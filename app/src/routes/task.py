@@ -63,7 +63,7 @@ def update_task(
     return task
 
 
-@router.delete("/{task_id}", response_model=TaskResponse, tags=["Delete a task"])
+@router.delete("/{task_id}", response_model=TaskResponse, tags=["Tasks"])
 def delete_task(
     task_id: UUID4,
     current_user: User = Depends(get_current_user),
