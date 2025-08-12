@@ -94,13 +94,25 @@ Each task has:
 
 ### Running the Project (Dockerized)
 
-1. Clone the repo.
-2. Copy `.env.production` and set your secrets and DB credentials.
-3. Build and start the stack:
+#### Local Development
+
+1. Copy `.env` from `.env.example` and set your local DB credentials and secrets.
+2. Start the stack with live code reload (host bind mount):
    ```sh
    docker compose up --build
    ```
-4. Visit [http://localhost:8000/docs](http://localhost:8000/docs) for the API docs.
+   - Uses `docker-compose.yml` (bind mounts your code, uses `.env` for environment variables)
+   - API docs are enabled by default at [http://localhost:8000/docs](http://localhost:8000/docs)
+
+#### Production
+
+1. Copy `.env.production` and set your production DB credentials and secrets.
+2. Build and start the stack with production settings:
+   ```sh
+   docker compose -f docker-compose.yml -f docker-compose.prod.yml up --build
+   ```
+   - Uses `docker-compose.prod.yml` (no bind mount, only named volumes, uses `.env.production` for environment variables)
+   - API docs are disabled by default for security (set `DISABLE_DOCS=1`)
 
 #### Running Tests in Docker
 
@@ -110,13 +122,17 @@ Each task has:
   ```
 - This uses a dedicated test database and ensures your code is portable and CI/CD ready.
 
-#### Running Locally (Dev Mode)
+---
 
-1. Install dependencies: `pip install -r requirements.txt`
-2. Set up your `.env` file with dev DB credentials and `SECRET_KEY`.
-3. Run PostgreSQL locally or with Docker.
-4. Run Alembic migrations: `alembic upgrade head`
-5. Start the app: `uvicorn app.main:app --reload`
+### Volumes and Environment Files
+
+- **Local development:**
+  - App service uses a bind mount (`- ./:/app`) for instant code reload.
+  - Uses `.env` for environment variables.
+- **Production:**
+  - App service does not use a bind mount (code is copied at build time).
+  - Uses `.env.production` for environment variables.
+  - Only named volumes are used for persistent data (e.g., database).
 
 ---
 
