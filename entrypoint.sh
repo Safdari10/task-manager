@@ -11,4 +11,4 @@ alembic upgrade head
 
 # Start FastAPI app with Uvicorn
 echo "Starting FastAPI app..."
-exec uvicorn app.src.main:app --host 0.0.0.0 --port 8000
+exec uvicorn app.main:app --host 0.0.0.0 --port 8000
