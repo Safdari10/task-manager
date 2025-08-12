@@ -1,7 +1,7 @@
 services:
   db:
     image: postgres:16.2-alpine
-    env_file: .env.production
+    env_file: .env
     command: ["postgres", "-c", "shared_preload_libraries=pg_stat_statements"]
     ports:
       - "5434:5432"
@@ -24,7 +24,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    env_file: .env.production
+    env_file: .env
     depends_on:
       - db
     ports:
@@ -32,8 +32,9 @@ services:
     volumes:
       - ./:/app
     restart: always
+    # Set DISABLE_DOCS=0 for local development to enable docs
     environment:
-      - DISABLE_DOCS=1 # Set to 1 to disable docs in production
+      - DISABLE_DOCS=0
     deploy:
       resources:
         limits:
@@ -44,7 +45,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    env_file: .env.production
+    env_file: .env
     depends_on:
       - db
     volumes:
