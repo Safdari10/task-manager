@@ -19,7 +19,7 @@ USER appuser
 EXPOSE 8000
 
 # Healthcheck on root path (not /docs)
-HEALTHCHECK --interval=30s --timeout=30s --start-period=5s --retries=3 CMD curl --fail http://localhost:8000/ || exit 1
+HEALTHCHECK --interval=30s --timeout=30s --start-period=5s --retries=3 CMD curl --fail http://localhost:8000/health || exit 1
 
 COPY wait-for-it.sh /app/wait-for-it.sh
 RUN chmod +x /app/entrypoint.sh /app/wait-for-it.sh
