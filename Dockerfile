@@ -12,9 +12,14 @@ RUN pip install --no-cache-dir -r /app/requirements.txt
 
 COPY . /app/
 
+# Create a non-root user and switch to it
+RUN useradd -m appuser && chown -R appuser /app
+USER appuser
+
 EXPOSE 8000
 
-HEALTHCHECK --interval=30s --timeout=30s --start-period=5s --retries=3 CMD curl --fail http://localhost:8000/docs || exit 1
+# Healthcheck on root path (not /docs)
+HEALTHCHECK --interval=30s --timeout=30s --start-period=5s --retries=3 CMD curl --fail http://localhost:8000/ || exit 1
 
 COPY wait-for-it.sh /app/wait-for-it.sh
 RUN chmod +x /app/entrypoint.sh /app/wait-for-it.sh
