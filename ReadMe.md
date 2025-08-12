@@ -92,11 +92,29 @@ Each task has:
 
 ---
 
-### Running the Project
+### Running the Project (Dockerized)
 
-1. Clone the repo and install dependencies (`pip install -r requirements.txt`)
-2. Set up your `.env` file with database credentials and a secure `SECRET_KEY`
-3. Run PostgreSQL (locally or with Docker)
+1. Clone the repo.
+2. Copy `.env.production` and set your secrets and DB credentials.
+3. Build and start the stack:
+   ```sh
+   docker compose up --build
+   ```
+4. Visit [http://localhost:8000/docs](http://localhost:8000/docs) for the API docs.
+
+#### Running Tests in Docker
+
+- To run tests in the same environment as production:
+  ```sh
+  docker compose run --rm test
+  ```
+- This uses a dedicated test database and ensures your code is portable and CI/CD ready.
+
+#### Running Locally (Dev Mode)
+
+1. Install dependencies: `pip install -r requirements.txt`
+2. Set up your `.env` file with dev DB credentials and `SECRET_KEY`.
+3. Run PostgreSQL locally or with Docker.
 4. Run Alembic migrations: `alembic upgrade head`
 5. Start the app: `uvicorn app.main:app --reload`
 
