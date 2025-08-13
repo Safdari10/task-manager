@@ -9,7 +9,7 @@ services:
       - db_data:/var/lib/postgresql/data
       - ./backend/init.db.sh:/docker-entrypoint-initdb.d/init.db.sh
 
-  app:
+  app-backend:
     build:
       context: ./backend
       dockerfile: Dockerfile
@@ -35,6 +35,17 @@ services:
     environment:
       - PYTHONPATH=/app
     command: ["pytest"]
+
+  app-frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    env_file: ./frontend/.env
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./frontend/src:/app/src
+      - ./frontend/public:/app/public
 
 volumes:
   db_data:
