@@ -1,6 +1,26 @@
 import React from "react";
 
-const SignupPage = () => {
+interface SignUpProps {
+  firstName: string;
+  setFirstName: (name: string) => void;
+  lastName: string;
+  setLastName: (name: string) => void;
+  email: string;
+  setEmail: (email: string) => void;
+  password: string;
+  setPassword: (password: string) => void;
+}
+
+const SignupPage = ({
+  firstName,
+  setFirstName,
+  lastName,
+  setLastName,
+  email,
+  setEmail,
+  password,
+  setPassword,
+}: SignUpProps) => {
   return (
     <div className="flex flex-col items-center justify-center bg-white w-full h-[100vh] p-16 rounded-2xl shadow-md text-center">
       <h1 className="text-3xl font-bold text-blue-600">Sign Up</h1>
@@ -15,6 +35,8 @@ const SignupPage = () => {
               name="first_name"
               required
               className="block mt-2 w-full p-1 border-b-1 border-b-gray-400"
+              value={firstName}
+              onChange={(e) => setFirstName(e.target.value)}
             />
           </label>
           <label htmlFor="last_name" className="mt-4 w-64 text-sm font-medium text-gray-600">
@@ -25,16 +47,20 @@ const SignupPage = () => {
               name="last_name"
               required
               className="block mt-2 w-full p-1 border-b-1 border-b-gray-400"
+              value={lastName}
+              onChange={(e) => setLastName(e.target.value)}
             />
           </label>
           <label htmlFor="email" className="mt-4 w-64 text-sm font-medium text-gray-600">
             EMAIL
             <input
-              type="email"
+              type="text"
               id="email"
               name="email"
               required
               className="block mt-2 w-full p-1 border-b-1 border-b-gray-400"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
             />
           </label>
           <label htmlFor="password" className="mt-4 w-64 text-sm font-medium text-gray-600">
@@ -45,6 +71,8 @@ const SignupPage = () => {
               name="password"
               required
               className="block mt-2 w-full p-1 border-b-1 border-b-gray-400"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
             />
           </label>
           <label htmlFor="confirm_password" className="mt-4 w-64 text-sm font-medium text-gray-600">
