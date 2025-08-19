@@ -6,9 +6,9 @@ const SignupPage = () => {
       <h1 className="text-3xl font-bold text-blue-600">Sign Up</h1>
       <p className="mt-4 text-lg text-gray-700">Please fill in the details to create an account.</p>
       <form>
-        <div className="flex flex-col items-center">
+        <div className="flex flex-col items-center mt-8">
           <label htmlFor="first_name" className="mt-4 w-64 text-sm font-medium text-gray-600">
-            First Name
+            FIRST NAME
             <input
               type="text"
               id="first_name"
@@ -18,7 +18,7 @@ const SignupPage = () => {
             />
           </label>
           <label htmlFor="last_name" className="mt-4 w-64 text-sm font-medium text-gray-600">
-            Last Name
+            LAST NAME
             <input
               type="text"
               id="last_name"
@@ -28,7 +28,7 @@ const SignupPage = () => {
             />
           </label>
           <label htmlFor="email" className="mt-4 w-64 text-sm font-medium text-gray-600">
-            Email
+            EMAIL
             <input
               type="email"
               id="email"
@@ -38,7 +38,7 @@ const SignupPage = () => {
             />
           </label>
           <label htmlFor="password" className="mt-4 w-64 text-sm font-medium text-gray-600">
-            Password
+            PASSWORD
             <input
               type="password"
               id="password"
