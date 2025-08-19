@@ -1,11 +1,31 @@
-export default function Home() {
+import React from "react";
+
+const Home = () => {
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100">
-      <main className="flex-row align-center justify-center bg-amber-50 max-w-md p-20">
-        <h1 className="text-2xl font-bold text-blue-600">Task Manager</h1>
-        <p className="mt-4 text-gray-600">Manage your tasks efficiently</p>
+    <div className="flex items-center justify-center min-h-screen">
+      <main className="flex flex-col items-center justify-center bg-[#c9def0] w-full h-[100vh] p-16 rounded-2xl shadow-md text-center">
+        <h1 className="text-2xl font-bold text-blue-600">Sign In</h1>
+        <p className="mt-4 text-gray-600">Please enter your credentials</p>
+        <form>
+          <div className="flex flex-col items-center justify-between mt-8">
+            <label htmlFor="email" className="w-64 text-sm font-medium text-gray-600">
+              EMAIL ADDRESS
+              <input type="email" className="block mt-2 w-full p-1 border-b-1 border-b-gray-400" />
+            </label>
+            <label htmlFor="password" className="w-64 mt-8 text-sm font-medium text-gray-600">
+              PASSWORD
+              <input type="text" className="block mt-2 w-full p-1 border-b-1 border-b-gray-400" />
+            </label>
+          </div>
+          <button
+            type="submit"
+            className="mt-8 w-64 p-2 bg-blue-600 text-lg font-medium text-white rounded-3xl hover:bg-blue-700">
+            SIGN IN
+          </button>
+        </form>
       </main>
-      <footer>{/* Footer content goes here */}</footer>
     </div>
   );
-}
+};
+
+export default Home;
