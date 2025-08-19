@@ -21,7 +21,7 @@ const SignupPage = ({
   const handleSignup = async () => {
     const response = await signup({ firstName, lastName, email, password, setError });
     if (response) {
-      router.push("/task_manager");
+      router.push("/");
     }
   };
 
