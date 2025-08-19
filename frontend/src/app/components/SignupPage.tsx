@@ -1,5 +1,6 @@
 "use client";
 
+import { useRouter } from "next/router";
 import { signup } from "../hooks/useSignUp";
 import { SignUpProps } from "../types/loginSignup";
 
@@ -15,10 +16,12 @@ const SignupPage = ({
   error,
   setError,
 }: SignUpProps) => {
+  const router = useRouter();
+
   const handleSignup = async () => {
     const response = await signup({ firstName, lastName, email, password, setError });
     if (response) {
-      // Handle successful signup (e.g., redirect or show a success message)
+      router.push("/task_manager");
     }
   };
 
