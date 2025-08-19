@@ -34,6 +34,8 @@ const Home = () => {
           setEmail={setEmail}
           password={password}
           setPassword={setPassword}
+          error={error}
+          setError={setError}
         />
       )}
       <LoginSignupToggle display={display} setDisplay={setDisplay} />
