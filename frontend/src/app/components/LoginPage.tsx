@@ -1,6 +1,6 @@
 "use client";
 
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 import { login } from "../hooks/useLogin";
 import { LoginProps } from "../types/loginSignup";
 
