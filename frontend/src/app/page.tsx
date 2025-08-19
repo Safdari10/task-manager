@@ -1,10 +1,19 @@
 "use client";
 
 import React, { useState } from "react";
+import { login } from "./hooks/useLogin";
 
 const Home = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
+
+  const handleLogin = async () => {
+    const response = await login({ email, password, setError });
+    if (response) {
+      // Handle successful login here (e.g., redirect to task_manager)
+    }
+  };
 
   return (
     <div className="flex items-center justify-center min-h-screen">
@@ -34,10 +43,12 @@ const Home = () => {
           </div>
           <button
             type="submit"
-            className="mt-8 w-64 p-2 bg-blue-600 text-lg font-medium text-white rounded-3xl hover:bg-blue-700">
+            className="mt-8 w-64 p-2 bg-blue-600 text-lg font-medium text-white rounded-3xl hover:bg-blue-700"
+            onClick={handleLogin}>
             SIGN IN
           </button>
         </form>
+        {error && <p className="mt-4 text-red-600">{error}</p>}
       </main>
     </div>
   );
