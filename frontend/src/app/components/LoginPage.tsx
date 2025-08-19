@@ -32,7 +32,7 @@ const LoginPage = ({ email, setEmail, password, setPassword, error, setError }: 
           <label htmlFor="password" className="w-64 mt-8 text-sm font-medium text-gray-600">
             PASSWORD
             <input
-              type="text"
+              type="password"
               className="block mt-2 w-full p-1 border-b-1 border-b-gray-400"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
