@@ -4,16 +4,23 @@ import { useRouter } from "next/navigation";
 import { login } from "../hooks/useLogin";
 import { LoginProps } from "../types/loginSignup";
 import { setToken } from "../utils/tokenStorage";
+import { decodeToken, isTokenExpired } from "../utils/jwt";
 
 const LoginPage = ({ email, setEmail, password, setPassword, error, setError }: LoginProps) => {
   const router = useRouter();
 
   const handleLogin = async () => {
     const response = await login({ email, password, setError });
-
-    if (response) {
-      setToken(response.token);
-      router.push("/task_manager");
+    if (response.token) {
+      const decoded = decodeToken(response.token);
+      if (decoded && !isTokenExpired(decoded)) {
+        setToken(response.token);
+        router.push("/task_manager");
+      } else {
+        setError("Invalid or expired token ");
+      }
+    } else {
+      setError("Login failed. Please check your credentials.");
     }
   };
 
