@@ -19,7 +19,7 @@ const LoginSignupToggle = ({ display, setDisplay }: LoginSignupToggleProps) => {
           </button>
         </div>
       ) : (
-        <div className="flex flex-col items-center justify-center gap-56 p-14 w-[40%] h-[100vh] bg-gray-700 ">
+        <div className="flex flex-col items-center justify-center gap-96 p-14 w-[40%] h-[100vh] bg-gray-700 ">
           <div className="flex flex-col items-center gap-4">
             <h1 className="text-3xl font-bold text-blue-600">One of us?</h1>
             <p className="text-lg text-white">Just sign in</p>
