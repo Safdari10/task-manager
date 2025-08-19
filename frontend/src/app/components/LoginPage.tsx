@@ -18,7 +18,11 @@ const LoginPage = ({ email, setEmail, password, setPassword, error, setError }: 
     <main className="flex flex-col items-center justify-center bg-[#c9def0] w-full h-[100vh] p-16 rounded-2xl shadow-md text-center">
       <h1 className="text-3xl font-bold text-blue-600">Sign In</h1>
       <p className="mt-4 text-lg text-gray-600">Please enter your credentials</p>
-      <form>
+      <form
+        onSubmit={(e) => {
+          e.preventDefault();
+          handleLogin();
+        }}>
         <div className="flex flex-col items-center justify-between mt-8">
           <label htmlFor="email" className="w-64 text-sm font-medium text-gray-600">
             EMAIL ADDRESS
@@ -41,8 +45,7 @@ const LoginPage = ({ email, setEmail, password, setPassword, error, setError }: 
         </div>
         <button
           type="submit"
-          className="mt-8 w-64 p-2 bg-blue-600 text-lg font-medium text-white rounded-3xl hover:bg-blue-700"
-          onClick={handleLogin}>
+          className="mt-8 w-64 p-2 bg-blue-600 text-lg font-medium text-white rounded-3xl hover:bg-blue-700">
           SIGN IN
         </button>
       </form>

@@ -29,7 +29,11 @@ const SignupPage = ({
     <div className="flex flex-col items-center justify-center bg-white w-full h-[100vh] p-16 rounded-2xl shadow-md text-center">
       <h1 className="text-3xl font-bold text-blue-600">Sign Up</h1>
       <p className="mt-4 text-lg text-gray-700">Please fill in the details to create an account.</p>
-      <form>
+      <form
+        onSubmit={(e) => {
+          e.preventDefault();
+          handleSignup();
+        }}>
         <div className="flex flex-col items-center mt-4">
           <label htmlFor="first_name" className="mt-4 w-64 text-sm font-medium text-gray-600">
             FIRST NAME
@@ -92,8 +96,7 @@ const SignupPage = ({
         </div>
         <button
           type="submit"
-          className="mt-8 w-64 p-2 bg-blue-600 text-lg font-medium text-white rounded-3xl hover:bg-blue-700"
-          onClick={handleSignup}>
+          className="mt-8 w-64 p-2 bg-blue-600 text-lg font-medium text-white rounded-3xl hover:bg-blue-700">
           Sign Up
         </button>
       </form>
