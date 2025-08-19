@@ -58,7 +58,7 @@ const SignupPage = ({
           <label htmlFor="email" className="mt-4 w-64 text-sm font-medium text-gray-600">
             EMAIL
             <input
-              type="text"
+              type="email"
               id="email"
               name="email"
               required
