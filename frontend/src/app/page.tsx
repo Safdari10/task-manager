@@ -6,6 +6,8 @@ import SignupPage from "./components/SignupPage";
 import LoginSignupToggle from "./components/LoginSignupToggle";
 
 const Home = () => {
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
@@ -23,7 +25,16 @@ const Home = () => {
           setError={setError}
         />
       ) : (
-        <SignupPage />
+        <SignupPage
+          firstName={firstName}
+          setFirstName={setFirstName}
+          lastName={lastName}
+          setLastName={setLastName}
+          email={email}
+          setEmail={setEmail}
+          password={password}
+          setPassword={setPassword}
+        />
       )}
       <LoginSignupToggle display={display} setDisplay={setDisplay} />
     </div>
