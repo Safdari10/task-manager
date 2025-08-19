@@ -2,27 +2,57 @@ import React from "react";
 
 const SignupPage = () => {
   return (
-    <div>
-      <h1>Sign Up</h1>
-      <p>Please fill in the details to create an account.</p>
+    <div className="flex flex-col items-center justify-center bg-white w-full h-[100vh] p-16 rounded-2xl shadow-md text-center">
+      <h1 className="text-3xl font-bold text-blue-600">Sign Up</h1>
+      <p className="mt-4 text-lg text-gray-700">Please fill in the details to create an account.</p>
       <form>
-        <label htmlFor="first_name">
-          First Name
-          <input type="text" id="first_name" name="first_name" required />
-        </label>
-        <label htmlFor="last_name">
-          Last Name
-          <input type="text" id="last_name" name="last_name" required />
-        </label>
-        <label htmlFor="email">
-          Email
-          <input type="email" id="email" name="email" required />
-        </label>
-        <label htmlFor="password">
-          Password
-          <input type="password" id="password" name="password" required />
-        </label>
-        <button type="submit">Sign Up</button>
+        <div className="flex flex-col items-center">
+          <label htmlFor="first_name" className="mt-4 w-64 text-sm font-medium text-gray-600">
+            First Name
+            <input
+              type="text"
+              id="first_name"
+              name="first_name"
+              required
+              className="block mt-2 w-full p-1 border-b-1 border-b-gray-400"
+            />
+          </label>
+          <label htmlFor="last_name" className="mt-4 w-64 text-sm font-medium text-gray-600">
+            Last Name
+            <input
+              type="text"
+              id="last_name"
+              name="last_name"
+              required
+              className="block mt-2 w-full p-1 border-b-1 border-b-gray-400"
+            />
+          </label>
+          <label htmlFor="email" className="mt-4 w-64 text-sm font-medium text-gray-600">
+            Email
+            <input
+              type="email"
+              id="email"
+              name="email"
+              required
+              className="block mt-2 w-full p-1 border-b-1 border-b-gray-400"
+            />
+          </label>
+          <label htmlFor="password" className="mt-4 w-64 text-sm font-medium text-gray-600">
+            Password
+            <input
+              type="password"
+              id="password"
+              name="password"
+              required
+              className="block mt-2 w-full p-1 border-b-1 border-b-gray-400"
+            />
+          </label>
+        </div>
+        <button
+          type="submit"
+          className="mt-8 w-64 p-2 bg-blue-600 text-lg font-medium text-white rounded-3xl hover:bg-blue-700">
+          Sign Up
+        </button>
       </form>
     </div>
   );
