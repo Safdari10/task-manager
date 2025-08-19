@@ -1,13 +1,16 @@
 "use client";
 
+import { useRouter } from "next/router";
 import { login } from "../hooks/useLogin";
 import { LoginProps } from "../types/loginSignup";
 
 const LoginPage = ({ email, setEmail, password, setPassword, error, setError }: LoginProps) => {
+  const router = useRouter();
+
   const handleLogin = async () => {
     const response = await login({ email, password, setError });
     if (response) {
-      // Handle successful login here (e.g., redirect to task_manager)
+      router.push("/task_manager");
     }
   };
 
