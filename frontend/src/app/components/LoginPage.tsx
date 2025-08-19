@@ -1,15 +1,7 @@
 "use client";
 
 import { login } from "../hooks/useLogin";
-
-interface LoginProps {
-  email: string;
-  setEmail: (email: string) => void;
-  password: string;
-  setPassword: (password: string) => void;
-  error: string;
-  setError: (error: string) => void;
-}
+import { LoginProps } from "../types/loginSignup";
 
 const LoginPage = ({ email, setEmail, password, setPassword, error, setError }: LoginProps) => {
   const handleLogin = async () => {
