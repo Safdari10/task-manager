@@ -1,4 +1,5 @@
 import React from "react";
+import { signup } from "../hooks/useSignUp";
 
 interface SignUpProps {
   firstName: string;
@@ -9,6 +10,8 @@ interface SignUpProps {
   setEmail: (email: string) => void;
   password: string;
   setPassword: (password: string) => void;
+  error: string;
+  setError: (error: string) => void;
 }
 
 const SignupPage = ({
@@ -20,7 +23,16 @@ const SignupPage = ({
   setEmail,
   password,
   setPassword,
+  error,
+  setError,
 }: SignUpProps) => {
+  const handleSignup = async () => {
+    const response = await signup({ firstName, lastName, email, password, setError });
+    if (response) {
+      // Handle successful signup (e.g., redirect or show a success message)
+    }
+  };
+
   return (
     <div className="flex flex-col items-center justify-center bg-white w-full h-[100vh] p-16 rounded-2xl shadow-md text-center">
       <h1 className="text-3xl font-bold text-blue-600">Sign Up</h1>
@@ -88,10 +100,12 @@ const SignupPage = ({
         </div>
         <button
           type="submit"
-          className="mt-8 w-64 p-2 bg-blue-600 text-lg font-medium text-white rounded-3xl hover:bg-blue-700">
+          className="mt-8 w-64 p-2 bg-blue-600 text-lg font-medium text-white rounded-3xl hover:bg-blue-700"
+          onClick={handleSignup}>
           Sign Up
         </button>
       </form>
+      {error && <p className="mt-4 text-red-500">{error}</p>}
     </div>
   );
 };
