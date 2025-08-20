@@ -6,7 +6,7 @@ interface LoginProps {
 
 export const login = async ({ email, password, setError }: LoginProps) => {
   try {
-    const apiUrl = process.env.NEXT_PUBLIC_LOGIN_URL || "http://localhost:8000/login";
+    const apiUrl = process.env.NEXT_PUBLIC_LOGIN_URL || "http://localhost:8000/auth/login";
     const response = await fetch(apiUrl, {
       method: "POST",
       headers: {
