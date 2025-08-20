@@ -14,7 +14,7 @@ export const signup = async ({
   setError,
 }: SignupPageProps) => {
   try {
-    const apiUrl = process.env.NEXT_PUBLIC_SIGNUP_URL || "http://localhost:8000/signup";
+    const apiUrl = process.env.NEXT_PUBLIC_SIGNUP_URL || "http://localhost:8000/auth/register";
     const response = await fetch(apiUrl, {
       method: "POST",
       headers: {
