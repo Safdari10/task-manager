@@ -20,7 +20,7 @@ export const signup = async ({
       headers: {
         "content-Type": "application/json",
       },
-      body: JSON.stringify({ firstName, lastName, email, password }),
+      body: JSON.stringify({ first_name: firstName, last_name: lastName, email, password }),
     });
     if (!response.ok) {
       const errorData = await response.json().catch(() => ({}));
