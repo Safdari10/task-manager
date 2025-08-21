@@ -18,4 +18,5 @@ export interface SignUpProps {
   setPassword: (password: string) => void;
   error: string;
   setError: (error: string) => void;
+  setDisplay: (display: "login" | "signup") => void;
 }
