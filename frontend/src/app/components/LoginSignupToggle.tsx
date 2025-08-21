@@ -7,7 +7,7 @@ const LoginSignupToggle = ({ display, setDisplay }: LoginSignupToggleProps) => {
   return (
     <>
       {display === "login" ? (
-        <div className="flex flex-col items-center justify-center gap-[250px] w-[40%] h-full pt-10 pb-20 px-14 bg-gray-700 rounded-r-2xl">
+        <div className="flex flex-col items-center justify-center gap-[300px] w-[40%] h-full p-14 bg-gray-700 rounded-r-2xl">
           <div className="flex flex-col items-center gap-4">
             <h1 className="text-4xl font-bold text-blue-600">New here?</h1>
             <p className="text-lg text-white">Sign up and discover</p>
@@ -19,7 +19,7 @@ const LoginSignupToggle = ({ display, setDisplay }: LoginSignupToggleProps) => {
           </button>
         </div>
       ) : (
-        <div className="flex flex-col items-center justify-center gap-[250px] w-[40%] h-full pt-10 pb-20 px-14 bg-gray-700 rounded-r-2xl">
+        <div className="flex flex-col items-center justify-center gap-[300px] w-[40%] h-full p-14 bg-gray-700 rounded-r-2xl">
           <div className="flex flex-col items-center gap-4">
             <h1 className="text-4xl font-bold text-blue-600">One of us?</h1>
             <p className="text-lg text-white">Just sign in</p>
