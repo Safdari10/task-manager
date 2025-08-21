@@ -26,7 +26,7 @@ const SignupPage = ({
   };
 
   return (
-    <div className="flex flex-col items-center justify-center bg-white w-full h-[100vh] p-16 rounded-2xl shadow-md text-center">
+    <div className="flex flex-col items-center justify-center bg-white w-full h-full p-14 shadow-md text-center">
       <h1 className="text-3xl font-bold text-blue-600">Sign Up</h1>
       <p className="mt-4 text-lg text-gray-700">Please fill in the details to create an account.</p>
       <form
