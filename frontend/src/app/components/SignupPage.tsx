@@ -1,6 +1,5 @@
 "use client";
 
-import { useRouter } from "next/navigation";
 import { signup } from "../hooks/useSignUp";
 import { SignUpProps } from "../types/loginSignup";
 
@@ -15,13 +14,12 @@ const SignupPage = ({
   setPassword,
   error,
   setError,
+  setDisplay,
 }: SignUpProps) => {
-  const router = useRouter();
-
   const handleSignup = async () => {
     const response = await signup({ firstName, lastName, email, password, setError });
     if (response) {
-      router.push("/");
+      setDisplay("login");
     }
   };
 
