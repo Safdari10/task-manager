@@ -37,6 +37,7 @@ const Home = () => {
             setPassword={setPassword}
             error={error}
             setError={setError}
+            setDisplay={setDisplay}
           />
         )}
         <LoginSignupToggle display={display} setDisplay={setDisplay} />
