@@ -15,7 +15,7 @@ const Home = () => {
 
   return (
     <div className="flex items-center justify-center w-full max-h-screen py-96">
-      <div className="w-[1024px] h-[700px] flex items-center justify-center shadow-lg">
+      <div className="w-[1024px] h-[700px] flex items-center justify-center shadow-lg rounded-2xl">
         {display === "login" ? (
           <LoginPage
             email={email}
