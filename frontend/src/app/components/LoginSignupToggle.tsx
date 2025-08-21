@@ -13,7 +13,7 @@ const LoginSignupToggle = ({ display, setDisplay }: LoginSignupToggleProps) => {
             <p className="text-lg text-white">Sign up and discover</p>
           </div>
           <button
-            className="w-full bg-blue-500 text-lg text-white py-2 px-4 rounded-3xl hover:bg-blue-600 transition-colors duration-300"
+            className="w-64 bg-blue-500 text-lg text-white py-2 px-4 rounded-3xl hover:bg-blue-600 transition-colors duration-300"
             onClick={() => setDisplay("signup")}>
             Sign Up
           </button>
@@ -25,7 +25,7 @@ const LoginSignupToggle = ({ display, setDisplay }: LoginSignupToggleProps) => {
             <p className="text-lg text-white">Just sign in</p>
           </div>
           <button
-            className="w-full bg-blue-500 text-lg text-white py-2 px-4 rounded-3xl hover:bg-blue-600 transition-colors duration-300"
+            className="w-64 bg-blue-500 text-lg text-white py-2 px-4 rounded-3xl hover:bg-blue-600 transition-colors duration-300"
             onClick={() => setDisplay("login")}>
             Sign In
           </button>
