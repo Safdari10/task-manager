@@ -25,7 +25,7 @@ const LoginPage = ({ email, setEmail, password, setPassword, error, setError }: 
   };
 
   return (
-    <main className="flex flex-col items-center justify-center bg-[#c9def0] w-full h-full p-14 shadow-md text-center">
+    <main className="flex flex-col items-center justify-center bg-[#c9def0] w-full h-full p-14 shadow-md rounded-l-2xl text-center">
       <h1 className="text-3xl font-bold text-blue-600">Sign In</h1>
       <p className="mt-4 text-lg text-gray-600">Please enter your credentials</p>
       <form
