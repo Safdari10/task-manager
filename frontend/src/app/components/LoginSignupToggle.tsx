@@ -9,7 +9,7 @@ const LoginSignupToggle = ({ display, setDisplay }: LoginSignupToggleProps) => {
       {display === "login" ? (
         <div className="flex flex-col items-center justify-center gap-[70vh] p-14 w-[40%] h-[100vh] bg-gray-700 ">
           <div className="flex flex-col items-center gap-4">
-            <h1 className="text-3xl font-bold text-blue-600">New here?</h1>
+            <h1 className="text-4xl font-bold text-blue-600">New here?</h1>
             <p className="text-lg text-white">Sign up and discover</p>
           </div>
           <button
@@ -21,7 +21,7 @@ const LoginSignupToggle = ({ display, setDisplay }: LoginSignupToggleProps) => {
       ) : (
         <div className="flex flex-col items-center justify-center gap-[70vh] p-14 w-[40%] h-[100vh] bg-gray-700 ">
           <div className="flex flex-col items-center gap-4">
-            <h1 className="text-3xl font-bold text-blue-600">One of us?</h1>
+            <h1 className="text-4xl font-bold text-blue-600">One of us?</h1>
             <p className="text-lg text-white">Just sign in</p>
           </div>
           <button
