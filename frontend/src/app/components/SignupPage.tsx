@@ -102,8 +102,11 @@ const SignupPage = ({
               name="confirm_password"
               required
               className="block mt-2 w-full p-1 border-b-1 border-b-gray-400"
+              value={confirmPassword}
+              onChange={(e) => setConfirmPassword(e.target.value)}
             />
           </label>
+          {confirmError && <span className="text-xs text-red-500 mt-1">{confirmError}</span>}
         </div>
         <button
           type="submit"
