@@ -54,7 +54,10 @@ const SignupPage = ({
               required
               className="block mt-2 w-full p-1 border-b-1 border-b-gray-400"
               value={firstName}
-              onChange={(e) => setFirstName(e.target.value)}
+              onChange={(e) => {
+                setFirstName(e.target.value);
+                setError("");
+              }}
             />
           </label>
           <label htmlFor="last_name" className="mt-4 w-64 text-sm font-medium text-gray-600">
@@ -66,7 +69,10 @@ const SignupPage = ({
               required
               className="block mt-2 w-full p-1 border-b-1 border-b-gray-400"
               value={lastName}
-              onChange={(e) => setLastName(e.target.value)}
+              onChange={(e) => {
+                setLastName(e.target.value);
+                setError("");
+              }}
             />
           </label>
           <label htmlFor="email" className="mt-4 w-64 text-sm font-medium text-gray-600">
@@ -78,7 +84,10 @@ const SignupPage = ({
               required
               className="block mt-2 w-full p-1 border-b-1 border-b-gray-400"
               value={email}
-              onChange={(e) => setEmail(e.target.value)}
+              onChange={(e) => {
+                setEmail(e.target.value);
+                setError("");
+              }}
             />
           </label>
           <label htmlFor="password" className="mt-4 w-64 text-sm font-medium text-gray-600">
@@ -94,7 +103,10 @@ const SignupPage = ({
               minLength={8}
               className="block mt-2 w-full p-1 border-b-1 border-b-gray-400"
               value={password}
-              onChange={(e) => setPassword(e.target.value)}
+              onChange={(e) => {
+                setPassword(e.target.value);
+                setError("");
+              }}
             />
           </label>
           <label htmlFor="confirm_password" className="mt-4 w-64 text-sm font-medium text-gray-600">
