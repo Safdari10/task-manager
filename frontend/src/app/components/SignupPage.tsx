@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import toast from "react-hot-toast";
 import { signup } from "../hooks/useSignUp";
 import { SignUpProps } from "../types/loginSignup";
 
@@ -28,6 +29,7 @@ const SignupPage = ({
     }
     const response = await signup({ firstName, lastName, email, password, setError });
     if (response) {
+      toast.success("Signup successful!");
       setDisplay("login");
     }
   };
