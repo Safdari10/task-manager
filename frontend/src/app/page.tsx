@@ -13,7 +13,7 @@ const Home = () => {
   const [error, setError] = useState("");
   const [display, setDisplay] = useState("login");
   const [loading, setLoading] = useState(false);
-
+  const [viewPassword, setViewPassword] = useState(false);
   return (
     <div className="flex items-center justify-center w-full max-h-screen py-96 bg-gray-100">
       <div className="w-[1024px] h-[700px] flex items-center justify-center shadow-lg rounded-2xl">
@@ -27,6 +27,8 @@ const Home = () => {
             setError={setError}
             loading={loading}
             setLoading={setLoading}
+            viewPassword={viewPassword}
+            setViewPassword={setViewPassword}
           />
         ) : (
           <SignupPage
@@ -43,6 +45,8 @@ const Home = () => {
             setDisplay={setDisplay}
             loading={loading}
             setLoading={setLoading}
+            viewPassword={viewPassword}
+            setViewPassword={setViewPassword}
           />
         )}
         <LoginSignupToggle display={display} setDisplay={setDisplay} />
