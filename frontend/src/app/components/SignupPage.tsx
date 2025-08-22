@@ -71,11 +71,15 @@ const SignupPage = ({
           </label>
           <label htmlFor="password" className="mt-4 w-64 text-sm font-medium text-gray-600">
             PASSWORD
+            <span className="block text-xs text-gray-500 mt-1">
+              Password must be at least 8 characters
+            </span>
             <input
               type="password"
               id="password"
               name="password"
               required
+              minLength={8}
               className="block mt-2 w-full p-1 border-b-1 border-b-gray-400"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
