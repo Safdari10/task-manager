@@ -19,9 +19,15 @@ const SignupPage = ({
   setDisplay,
   loading,
   setLoading,
+  viewPassword,
+  setViewPassword,
 }: SignUpProps) => {
   const [confirmPassword, setConfirmPassword] = useState("");
   const [confirmError, setConfirmError] = useState("");
+
+  const handleTogglePassword = () => {
+    setViewPassword(!viewPassword);
+  };
 
   const handleSignup = async () => {
     setLoading(true);
