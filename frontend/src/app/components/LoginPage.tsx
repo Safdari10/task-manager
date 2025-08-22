@@ -45,9 +45,13 @@ const LoginPage = ({ email, setEmail, password, setPassword, error, setError }: 
           </label>
           <label htmlFor="password" className="w-64 mt-8 text-sm font-medium text-gray-600">
             PASSWORD
+            <span className="block text-xs text-gray-500 mt-1">
+              Password must be at least 8 characters
+            </span>
             <input
               type="password"
               className="block mt-2 w-full p-1 border-b-1 border-b-gray-400"
+              minLength={8}
               value={password}
               onChange={(e) => setPassword(e.target.value)}
             />
