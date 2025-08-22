@@ -7,10 +7,20 @@ import { setToken } from "../utils/tokenStorage";
 import { decodeToken, isTokenExpired } from "../utils/jwt";
 import toast from "react-hot-toast";
 
-const LoginPage = ({ email, setEmail, password, setPassword, error, setError }: LoginProps) => {
+const LoginPage = ({
+  email,
+  setEmail,
+  password,
+  setPassword,
+  error,
+  setError,
+  loading,
+  setLoading,
+}: LoginProps) => {
   const router = useRouter();
 
   const handleLogin = async () => {
+    setLoading(true);
     const response = await login({ email, password, setError });
     if (response.token) {
       const decoded = decodeToken(response.token);
@@ -24,6 +34,7 @@ const LoginPage = ({ email, setEmail, password, setPassword, error, setError }: 
     } else {
       setError("Login failed. Please check your credentials.");
     }
+    setLoading(false);
   };
 
   return (
