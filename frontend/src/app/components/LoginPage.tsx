@@ -5,6 +5,7 @@ import { login } from "../hooks/useLogin";
 import { LoginProps } from "../types/loginSignup";
 import { setToken } from "../utils/tokenStorage";
 import { decodeToken, isTokenExpired } from "../utils/jwt";
+import toast from "react-hot-toast";
 
 const LoginPage = ({ email, setEmail, password, setPassword, error, setError }: LoginProps) => {
   const router = useRouter();
@@ -15,6 +16,7 @@ const LoginPage = ({ email, setEmail, password, setPassword, error, setError }: 
       const decoded = decodeToken(response.token);
       if (decoded && !isTokenExpired(decoded)) {
         setToken(response.token);
+        toast.success("Login successful!");
         router.push("/task_manager");
       } else {
         setError("Invalid or expired token ");
