@@ -127,18 +127,23 @@ const SignupPage = ({
           </label>
           <label htmlFor="confirm_password" className="mt-4 w-64 text-sm font-medium text-gray-600">
             CONFIRM PASSWORD
-            <input
-              type="password"
-              id="confirm_password"
-              name="confirm_password"
-              required
-              className="block mt-2 w-full p-1 border-b-1 border-b-gray-400"
-              value={confirmPassword}
-              onChange={(e) => {
-                setConfirmPassword(e.target.value);
-                setConfirmError("");
-              }}
-            />
+            <div className="flex items-center justify-between">
+              <input
+                type={viewPassword ? "text" : "password"}
+                id="confirm_password"
+                name="confirm_password"
+                required
+                className="block mt-2 w-full p-1 border-b-1 border-b-gray-400"
+                value={confirmPassword}
+                onChange={(e) => {
+                  setConfirmPassword(e.target.value);
+                  setConfirmError("");
+                }}
+              />
+              <button type="button" onClick={handleTogglePassword} className="p-1 mt-2">
+                {viewPassword ? <FiEyeOff /> : <FiEye />}
+              </button>
+            </div>
           </label>
           {confirmError && <span className="text-xs text-red-500 mt-1">{confirmError}</span>}
         </div>
