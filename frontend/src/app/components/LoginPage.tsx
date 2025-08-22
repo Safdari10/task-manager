@@ -16,8 +16,14 @@ const LoginPage = ({
   setError,
   loading,
   setLoading,
+  viewPassword,
+  setViewPassword,
 }: LoginProps) => {
   const router = useRouter();
+
+  const handleTogglePassword = () => {
+    setViewPassword(!viewPassword);
+  };
 
   const handleLogin = async () => {
     setLoading(true);
