@@ -118,7 +118,10 @@ const SignupPage = ({
               required
               className="block mt-2 w-full p-1 border-b-1 border-b-gray-400"
               value={confirmPassword}
-              onChange={(e) => setConfirmPassword(e.target.value)}
+              onChange={(e) => {
+                setConfirmPassword(e.target.value);
+                setConfirmError("");
+              }}
             />
           </label>
           {confirmError && <span className="text-xs text-red-500 mt-1">{confirmError}</span>}
