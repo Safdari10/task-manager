@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import toast from "react-hot-toast";
+import { FiEye, FiEyeOff } from "react-icons/fi";
 import { signup } from "../hooks/useSignUp";
 import { SignUpProps } from "../types/loginSignup";
 
@@ -105,19 +106,24 @@ const SignupPage = ({
             <span className="block text-xs text-gray-500 mt-1">
               Password must be at least 8 characters
             </span>
-            <input
-              type="password"
-              id="password"
-              name="password"
-              required
-              minLength={8}
-              className="block mt-2 w-full p-1 border-b-1 border-b-gray-400"
-              value={password}
-              onChange={(e) => {
-                setPassword(e.target.value);
-                setError("");
-              }}
-            />
+            <div className="flex items-center justify-between">
+              <input
+                type={viewPassword ? "text" : "password"}
+                id="password"
+                name="password"
+                required
+                minLength={8}
+                className="block mt-2 w-full p-1 border-b-1 border-b-gray-400"
+                value={password}
+                onChange={(e) => {
+                  setPassword(e.target.value);
+                  setError("");
+                }}
+              />
+              <button type="button" onClick={handleTogglePassword} className="p-1 mt-2">
+                {viewPassword ? <FiEyeOff /> : <FiEye />}
+              </button>
+            </div>
           </label>
           <label htmlFor="confirm_password" className="mt-4 w-64 text-sm font-medium text-gray-600">
             CONFIRM PASSWORD
