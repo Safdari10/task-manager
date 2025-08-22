@@ -7,6 +7,8 @@ export interface LoginProps {
   setError: (error: string) => void;
   loading: boolean;
   setLoading: (loading: boolean) => void;
+  viewPassword: boolean;
+  setViewPassword: (view: boolean) => void;
 }
 
 export interface SignUpProps {
@@ -23,4 +25,6 @@ export interface SignUpProps {
   setDisplay: (display: "login" | "signup") => void;
   loading: boolean;
   setLoading: (loading: boolean) => void;
+  viewPassword: boolean;
+  setViewPassword: (view: boolean) => void;
 }
