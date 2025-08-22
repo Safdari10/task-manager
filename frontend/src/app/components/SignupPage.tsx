@@ -17,11 +17,14 @@ const SignupPage = ({
   error,
   setError,
   setDisplay,
+  loading,
+  setLoading,
 }: SignUpProps) => {
   const [confirmPassword, setConfirmPassword] = useState("");
   const [confirmError, setConfirmError] = useState("");
 
   const handleSignup = async () => {
+    setLoading(true);
     setError("");
     setConfirmError("");
     if (password !== confirmPassword) {
@@ -33,6 +36,7 @@ const SignupPage = ({
       toast.success("Signup successful!");
       setDisplay("login");
     }
+    setLoading(false);
   };
 
   return (
