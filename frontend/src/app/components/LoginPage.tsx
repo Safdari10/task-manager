@@ -6,6 +6,7 @@ import { LoginProps } from "../types/loginSignup";
 import { setToken } from "../utils/tokenStorage";
 import { decodeToken, isTokenExpired } from "../utils/jwt";
 import toast from "react-hot-toast";
+import { FiEye, FiEyeOff } from "react-icons/fi";
 
 const LoginPage = ({
   email,
@@ -67,13 +68,18 @@ const LoginPage = ({
             <span className="block text-xs text-gray-500 mt-1">
               Password must be at least 8 characters
             </span>
-            <input
-              type="password"
-              className="block mt-2 w-full p-1 border-b-1 border-b-gray-400"
-              minLength={8}
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-            />
+            <div className="flex items-center justify-between w-full">
+              <input
+                type={viewPassword ? "text" : "password"}
+                className="block mt-2 w-full p-1 border-b-1 border-b-gray-400"
+                minLength={8}
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+              />
+              <button type="button" onClick={handleTogglePassword} className="p-1 mt-2">
+                {viewPassword ? <FiEyeOff /> : <FiEye />}
+              </button>
+            </div>
           </label>
         </div>
         <button
