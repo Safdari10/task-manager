@@ -12,6 +12,7 @@ const Home = () => {
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const [display, setDisplay] = useState("login");
+  const [loading, setLoading] = useState(false);
 
   return (
     <div className="flex items-center justify-center w-full max-h-screen py-96 bg-gray-100">
@@ -24,6 +25,8 @@ const Home = () => {
             setPassword={setPassword}
             error={error}
             setError={setError}
+            loading={loading}
+            setLoading={setLoading}
           />
         ) : (
           <SignupPage
@@ -38,6 +41,8 @@ const Home = () => {
             error={error}
             setError={setError}
             setDisplay={setDisplay}
+            loading={loading}
+            setLoading={setLoading}
           />
         )}
         <LoginSignupToggle display={display} setDisplay={setDisplay} />
