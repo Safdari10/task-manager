@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import { signup } from "../hooks/useSignUp";
 import { SignUpProps } from "../types/loginSignup";
 
@@ -16,7 +17,15 @@ const SignupPage = ({
   setError,
   setDisplay,
 }: SignUpProps) => {
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [confirmError, setConfirmError] = useState("");
+
   const handleSignup = async () => {
+    setConfirmError("");
+    if (password !== confirmPassword) {
+      setConfirmError("Passwords do not match");
+      return;
+    }
     const response = await signup({ firstName, lastName, email, password, setError });
     if (response) {
       setDisplay("login");
