@@ -1,5 +1,6 @@
 from fastapi import FastAPI
 from dotenv import load_dotenv
+from app.src.middleware.cors import add_cors_middleware
 from app.src.routes.health import router as health_router
 from app.src.routes.task import router as task_router
 from app.src.routes.user import router as user_router
@@ -21,3 +22,4 @@ def create_app() -> FastAPI:
 
 
 app = create_app()
+add_cors_middleware(app)
