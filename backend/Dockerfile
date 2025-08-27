@@ -20,8 +20,11 @@ EXPOSE 8000
 # Healthcheck on root path (not /docs)
 HEALTHCHECK --interval=30s --timeout=30s --start-period=5s --retries=3 CMD curl --fail http://localhost:8000/health || exit 1
 
-COPY wait-for-it.sh /app/wait-for-it.sh
-RUN chmod +x /app/entrypoint.sh /app/wait-for-it.sh
+# Ensure shell scripts have Unix line endings and are executable.
+# This avoids runtime errors when files were checked out with CRLF on Windows
+RUN if [ -f /app/entrypoint.sh ]; then sed -i 's/\r$//' /app/entrypoint.sh; fi \
+	&& if [ -f /app/wait-for-it.sh ]; then sed -i 's/\r$//' /app/wait-for-it.sh; fi \
+	&& chmod +x /app/entrypoint.sh /app/wait-for-it.sh || true
 
 # Switch to non-root user after permissions are set
 USER appuser
