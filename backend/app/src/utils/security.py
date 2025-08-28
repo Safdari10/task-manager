@@ -4,9 +4,7 @@ from jose.exceptions import JWTError
 from pydantic import UUID4
 from app.src.db.db import utcnow
 from datetime import timedelta
-
-
-SALT_ROUNDS = 12
+from app.src.core.config import settings
 
 
 def hash_password(plain_password: str) -> str:
@@ -15,7 +13,7 @@ def hash_password(plain_password: str) -> str:
     Uses an explicit salt rounds constant to make tuning easy.
     Returns the UTF-8 decoded bcrypt hash (str).
     """
-    return hashpw(plain_password.encode(), gensalt(SALT_ROUNDS)).decode()
+    return hashpw(plain_password.encode(), gensalt(settings.SALT_ROUNDS)).decode()
 
 
 def verify_password(plain_password: str, hashed_password: str) -> bool:
