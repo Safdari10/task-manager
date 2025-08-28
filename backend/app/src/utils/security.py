@@ -35,15 +35,16 @@ def generate_jwt_token(
 ) -> str:
     """Generate a JWT token."""
     expire = utcnow() + expires_delta
+    now_ts = int(utcnow().timestamp())
     payload: dict[str, object] = {
         "sub": str(user_id),
         "first_name": first_name,
         "last_name": last_name,
         "role": user_role,
         "status": user_status,
-        "exp": expire,
-        "iat": utcnow(),
-        "nbf": utcnow(),
+        "exp": int(expire.timestamp()),
+        "iat": now_ts,
+        "nbf": now_ts,
     }
     return jwt.encode(payload, secret_key, algorithm=algorithm)
 
