@@ -32,6 +32,15 @@ def generate_jwt_token(
     algorithm: str | None = None,
 ) -> str:
     """Generate a JWT token."""
+    if expires_delta is None:
+        expires_delta = timedelta(hours=settings.JWT_EXPIRE_HOURS)
+
+    if secret_key is None:
+        secret_key = settings.JWT_SECRET_KEY
+
+    if algorithm is None:
+        algorithm = settings.JWT_ALGORITHM
+
     expire = utcnow() + expires_delta
     now_ts = int(utcnow().timestamp())
     payload: dict[str, object] = {
