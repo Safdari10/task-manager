@@ -6,9 +6,16 @@ from app.src.db.db import utcnow
 from datetime import timedelta
 
 
+SALT_ROUNDS = 12
+
+
 def hash_password(plain_password: str) -> str:
-    """Hash a plain password using bcrypt."""
-    return hashpw(plain_password.encode(), gensalt()).decode()
+    """Hash a plain password using bcrypt.
+
+    Uses an explicit salt rounds constant to make tuning easy.
+    Returns the UTF-8 decoded bcrypt hash (str).
+    """
+    return hashpw(plain_password.encode(), gensalt(SALT_ROUNDS)).decode()
 
 
 def verify_password(plain_password: str, hashed_password: str) -> bool:
