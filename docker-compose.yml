@@ -34,7 +34,9 @@ services:
     depends_on:
       - db
     volumes:
-      - ./backend:/app
+      - ./backend/app/src:/app/src
+      - ./backend/tests:/app/tests
+      - ./backend/.env:/app/.env
     working_dir: /app
     environment:
       - PYTHONPATH=/app
