@@ -1,5 +1,8 @@
 import os
 import sys
+
+# Ensure the parent directory is in the system path for module imports
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 import uuid
 import pytest
 from sqlalchemy import create_engine
@@ -9,9 +12,6 @@ from dotenv import load_dotenv
 from app.main import app
 from app.src.db.db import Base, get_db_session
 from app.src.schemas.user_schemas import UserResponse, UserLoginResponse
-
-# Ensure the parent directory is in the system path for module imports
-sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..")))
 
 
 load_dotenv()
