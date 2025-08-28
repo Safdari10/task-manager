@@ -40,7 +40,13 @@ services:
     working_dir: /app
     environment:
       - PYTHONPATH=/app
-    command: ["./wait-for-it.sh", "db:5432", "--timeout=30", "--", "pytest"]
+    entrypoint:
+      - bash
+      - /app/wait-for-it.sh
+      - db:5432
+      - --timeout=30
+      - --
+      - pytest
 
   app-frontend:
     build:
