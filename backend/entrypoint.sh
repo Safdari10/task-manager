@@ -1,6 +1,5 @@
-#!/bin/sh
-# Entrypoint script for Docker container, we need this because we want to ensure that the database is ready before starting the application.
-
+#!/usr/bin/env bash
+# Entrypoint script for Docker container — ensure the DB is ready before starting the app.
 
 # If the command is 'pytest', run tests immediately and skip DB wait and app startup
 if [ "$1" = "pytest" ]; then
