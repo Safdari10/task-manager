@@ -136,9 +136,36 @@ Each task has:
 
 ---
 
-### Testing
+## Configuration (env, config.py)
 
-- Run tests with: `pytest`
+- This project centralizes runtime configuration in `app/src/core/config.py` (a Pydantic `Settings` class). That file is a schema and default provider — it MUST NOT contain real secrets.
+- Local development: copy `../../.env.example` to `backend/.env` and fill values. Do NOT commit `backend/.env`.
+- Use `backend/.env.example` as the onboarding template. It lists keys used by the app and safe placeholders.
+- Pydantic v2 uses the separate `pydantic-settings` package for `BaseSettings` — make sure your environment has `pydantic-settings` installed (it's listed in `backend/requirements.txt`).
+- We removed deprecated `Field(..., env=...)` usage and rely on attribute names matching environment variable names (e.g., `JWT_SECRET_KEY`).
+- For production, inject secrets via your environment, Docker secrets, or a dedicated secrets manager (do not bake secrets into images or commit them to git).
+
+Example (local):
+
+1. Copy `backend/.env.example` -> `backend/.env` and set values.
+2. Start with `docker compose up --build` or run the app locally with the same env loaded.
+
+If you need to change env variable naming or add a prefix (e.g., `APP_`), adjust `model_config` in `app/src/core/config.py` (`env_prefix`) rather than using `Field(..., env=...)`.
+
+## Running tests (quick tips)
+
+- To run all backend tests (may require a test DB):
+  ```sh
+  cd backend
+  pytest -q
+  ```
+- To run just the unit tests that do not require the DB (fast local checks), run the security tests:
+
+  ```sh
+  cd backend
+  pytest -q tests/test_security.py
+  ```
+
 - Tests cover registration, login, JWT protection, and all task operations
 
 ---
