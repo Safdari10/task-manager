@@ -23,6 +23,8 @@ services:
     volumes:
       - ./backend/app/src:/app/src
       - ./backend/tests:/app/tests
+    environment:
+      - RUN_MIGRATIONS=1
 
   test:
     build:
