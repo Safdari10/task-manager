@@ -27,9 +27,9 @@ def generate_jwt_token(
     last_name: str,
     user_role: str,
     user_status: str,
-    secret_key: str,
-    expires_delta: timedelta = timedelta(hours=1),
-    algorithm: str = "HS256",
+    secret_key: str | None = None,
+    expires_delta: timedelta | None = None,
+    algorithm: str | None = None,
 ) -> str:
     """Generate a JWT token."""
     expire = utcnow() + expires_delta
