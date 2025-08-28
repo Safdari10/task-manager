@@ -9,7 +9,7 @@ services:
       - "5434:5432"
     volumes:
       - db_data:/var/lib/postgresql/data
-      - ./backend/init.db.sh:/docker-entrypoint-initdb.d/init.db.sh
+      # init script is baked into custom image to avoid Windows mount/exec-bit issues
 
   app-backend:
     build:
