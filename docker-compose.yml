@@ -1,13 +1,15 @@
 services:
   db:
-    image: postgres:16.2-alpine
+    build:
+      context: .
+      dockerfile: backend/postgres-init/Dockerfile
     env_file: ./backend/.env
     command: ["postgres", "-c", "shared_preload_libraries=pg_stat_statements"]
     ports:
       - "5434:5432"
     volumes:
       - db_data:/var/lib/postgresql/data
-      - ./backend/init.db.sh:/docker-entrypoint-initdb.d/init.db.sh
+      # init script is baked into custom image to avoid Windows mount/exec-bit issues
 
   app-backend:
     build:
@@ -21,6 +23,8 @@ services:
     volumes:
       - ./backend/app/src:/app/src
       - ./backend/tests:/app/tests
+    environment:
+      - RUN_MIGRATIONS=1
 
   test:
     build:
@@ -30,11 +34,19 @@ services:
     depends_on:
       - db
     volumes:
-      - ./backend:/app
+      - ./backend/app/src:/app/src
+      - ./backend/tests:/app/tests
+      - ./backend/.env:/app/.env
     working_dir: /app
     environment:
       - PYTHONPATH=/app
-    command: ["./wait-for-it.sh", "db:5432", "--timeout=30", "--", "pytest"]
+    entrypoint:
+      - bash
+      - /app/wait-for-it.sh
+      - db:5432
+      - --timeout=30
+      - --
+      - pytest
 
   app-frontend:
     build:
