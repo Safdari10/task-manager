@@ -9,7 +9,8 @@ fi
 
 # Wait for the PostgreSQL database to be available
 echo "Waiting for db to be ready..."
-/app/wait-for-it.sh db:5432 --timeout=30 --strict -- echo "Database is up"
+# run wait-for-it with bash to support its bash-specific syntax
+bash /app/wait-for-it.sh db:5432 --timeout=30 --strict -- echo "Database is up"
 
 # Run Alembic migrations
 echo "Running Alembic migrations..."
