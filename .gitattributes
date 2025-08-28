@@ -1,0 +1,17 @@
+# Ensure shell scripts use LF in the repository and on checkout
+*.sh text eol=lf
+
+# Keep common text files LF
+*.py text eol=lf
+*.sql text eol=lf
+Dockerfile text eol=lf
+*.yaml text eol=lf
+*.yml text eol=lf
+
+# Prevent accidental normalization for binary files
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.zip binary
+*.gz binary
