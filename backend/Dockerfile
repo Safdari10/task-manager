@@ -1,7 +1,8 @@
 FROM python:3.12.3-slim
 
 # Install system updates and security patches
-RUN apt-get update && apt-get upgrade -y && apt-get install -y --no-install-recommends curl \
+RUN apt-get update && apt-get upgrade -y && apt-get install -y --no-install-recommends \
+	curl bash netcat-openbsd \
 	&& apt-get clean && rm -rf /var/lib/apt/lists/*
 
 WORKDIR /app
