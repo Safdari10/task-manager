@@ -38,6 +38,16 @@ task_manager/
 docker compose run --rm test
 ```
 
+## Configuration
+
+- Copy `backend/.env.example` to `backend/.env` and fill in local credentials and secrets. Do NOT commit `.env`.
+- Use `backend/.env.example` as the template for onboarding.
+- To run fast unit tests that don't require the DB, use the security tests:
+  ```sh
+  cd backend
+  pytest -q tests/test_security.py
+  ```
+
 ## Backend Documentation
 
 See [`backend/ReadMe.md`](backend/ReadMe.md) for backend API, DB, and developer details.
