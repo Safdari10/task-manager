@@ -17,7 +17,7 @@ services:
       resources:
         limits:
           cpus: "0.25"
-          memory: 256M
+          memory: "256M"
 
   app-backend:
     build:
@@ -35,7 +35,7 @@ services:
       resources:
         limits:
           cpus: "0.25"
-          memory: 256M
+          memory: "256M"
 
   app-frontend:
     build:
@@ -49,7 +49,7 @@ services:
       resources:
         limits:
           cpus: "0.25"
-          memory: 256M
+          memory: "256M"
 
 volumes:
   db_data:
