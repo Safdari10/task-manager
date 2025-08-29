@@ -30,7 +30,7 @@ const LoginPage = ({
     setLoading(true);
     try {
       const response = await login({ email, password, setError });
-      if (response.token) {
+      if (response && response.token) {
         const decoded = decodeToken(response.token);
         if (decoded && !isTokenExpired(decoded)) {
           setToken(response.token);
