@@ -1,4 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
+
+const TaskManager = () => {
+  const [tasks, setTasks] = useState<string[]>([]);
 
 const taskManager = () => {
   return (
