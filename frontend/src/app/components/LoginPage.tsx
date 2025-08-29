@@ -28,20 +28,23 @@ const LoginPage = ({
 
   const handleLogin = async () => {
     setLoading(true);
-    const response = await login({ email, password, setError });
-    if (response.token) {
-      const decoded = decodeToken(response.token);
-      if (decoded && !isTokenExpired(decoded)) {
-        setToken(response.token);
-        toast.success("Login successful!");
-        router.push("/task_manager");
+    try {
+      const response = await login({ email, password, setError });
+      if (response.token) {
+        const decoded = decodeToken(response.token);
+        if (decoded && !isTokenExpired(decoded)) {
+          setToken(response.token);
+          toast.success("Login successful!");
+          router.push("/task_manager");
+        } else {
+          setError("Invalid or expired token ");
+        }
       } else {
-        setError("Invalid or expired token ");
+        setError("Login failed. Please check your credentials.");
       }
-    } else {
-      setError("Login failed. Please check your credentials.");
+    } finally {
+      setLoading(false);
     }
-    setLoading(false);
   };
 
   return (
