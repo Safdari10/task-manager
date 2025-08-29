@@ -23,10 +23,21 @@ const TaskManager = () => {
     <div className="flex items-center justify-center bg-gray-100">
       <main className="flex-row align-center justify-center bg-amber-50 max-w-md p-20">
         <h1 className="text-2xl font-bold text-blue-600">Task Manager</h1>
-        <p className="mt-4 text-gray-600">Manage your tasks efficiently</p>{" "}
+        <p className="mt-4 text-gray-600">Manage your tasks efficiently</p>
+        {tasks && tasks.length > 0 ? (
+          <ul className="mt-4 list-disc list-inside">
+            {tasks.map((task, index) => (
+              <li key={index} className="text-gray-700 my-2">
+                {task}{" "}
+              </li>
+            ))}
+          </ul>
+        ) : (
+          <div className="">No tasks available</div>
+        )}
       </main>
     </div>
   );
 };
 
-export default taskManager;
+export default TaskManager;
