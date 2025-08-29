@@ -34,16 +34,19 @@ const SignupPage = ({
     setLoading(true);
     setError("");
     setConfirmError("");
-    if (password !== confirmPassword) {
-      setConfirmError("Passwords do not match");
-      return;
+    try {
+      if (password !== confirmPassword) {
+        setConfirmError("Passwords do not match");
+        return;
+      }
+      const response = await signup({ firstName, lastName, email, password, setError });
+      if (response) {
+        toast.success("Signup successful!");
+        setDisplay("login");
+      }
+    } finally {
+      setLoading(false);
     }
-    const response = await signup({ firstName, lastName, email, password, setError });
-    if (response) {
-      toast.success("Signup successful!");
-      setDisplay("login");
-    }
-    setLoading(false);
   };
 
   return (
