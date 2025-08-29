@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 const TaskManager = () => {
   const [tasks, setTasks] = useState<string[]>([]);
@@ -14,6 +14,10 @@ const TaskManager = () => {
       console.error("Error fetching tasks:", error);
     }
   };
+
+  useEffect(() => {
+    fetchTasks();
+  }, []);
 
   return (
     <div className="flex items-center justify-center bg-gray-100">
