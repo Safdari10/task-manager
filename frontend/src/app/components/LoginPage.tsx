@@ -35,7 +35,7 @@ const LoginPage = ({
         if (decoded && !isTokenExpired(decoded)) {
           setToken(response.token);
           toast.success("Login successful!");
-          router.push("/task_manager");
+          router.push("/dashboard");
         } else {
           setError("Invalid or expired token ");
         }
