@@ -3,6 +3,8 @@
 import { useState } from "react";
 import SidePanel from "./components/SidePanel";
 import TopBar from "./components/TopBar";
+import Dashboard from "./components/Dashboard";
+import MyTasks from "./components/MyTasks";
 
 const TaskManager = () => {
   const [openTab, setOpenTab] = useState("dashboard");
@@ -14,7 +16,8 @@ const TaskManager = () => {
       </div>
       <main className="w-3/4 h-full flex flex-col p-10 gap-6">
         <TopBar />
-        {/* Main content goes here */}
+        {openTab === "dashboard" && <Dashboard />}
+        {openTab === "myTasks" && <MyTasks />}
       </main>
     </div>
   );
