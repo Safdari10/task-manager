@@ -1,44 +1,12 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import SidePanel from "./components/SidePanel";
 
 const TaskManager = () => {
-  const [tasks, setTasks] = useState<string[]>([]);
-
-  const fetchTasks = async () => {
-    try {
-      const response = await fetch("/api/tasks");
-      if (response.ok) {
-        const data = await response.json();
-        setTasks(data.tasks);
-      }
-    } catch (error) {
-      console.error("Error fetching tasks:", error);
-    }
-  };
-
-  useEffect(() => {
-    fetchTasks();
-  }, []);
-
   return (
     <div className="flex items-center justify-center bg-gray-100">
-      <main className="flex-row align-center justify-center bg-amber-50 max-w-md p-20">
-        <h1 className="text-2xl font-bold text-blue-600">Task Manager</h1>
-        <p className="mt-4 text-gray-600">Manage your tasks efficiently</p>
-        <button className="mt-4 bg-blue-500 text-white py-2 px-4 rounded">+ New Task</button>
-        {tasks && tasks.length > 0 ? (
-          <ul className="mt-4 list-disc list-inside">
-            {tasks.map((task, index) => (
-              <li key={index} className="text-gray-700 my-2">
-                {task}{" "}
-              </li>
-            ))}
-          </ul>
-        ) : (
-          <div className="">No tasks available</div>
-        )}
-      </main>
+      <SidePanel />
+      <main className="flex-row align-center justify-center bg-amber-50 max-w-md p-20"></main>
     </div>
   );
 };
