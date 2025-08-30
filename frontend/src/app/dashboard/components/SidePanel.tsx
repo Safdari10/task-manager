@@ -4,7 +4,7 @@ import MyTasks from "./MyTasks";
 
 const SidePanel = () => {
   return (
-    <div>
+    <div className="flex flex-col items-start justify-between h-full">
       <div>
         <div>
           <h1 className="text-2xl font-bold text-blue-600">Task Manager</h1>
