@@ -1,9 +1,12 @@
 "use client";
 
+import { useState } from "react";
 import SidePanel from "./components/SidePanel";
 import TopBar from "./components/TopBar";
 
 const TaskManager = () => {
+  const [openTab, setOpenTab] = useState("dashboard");
+
   return (
     <div className="flex items-start justify-center w-full h-full bg-gray-100">
       <div className="w-1/4 h-screen py-10 pl-10">
