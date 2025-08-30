@@ -8,7 +8,7 @@ const TaskManager = () => {
       <div className="w-1/4 bg-white h-screen p-6 shadow-md">
         <SidePanel />
       </div>
-      <main className="flex-1 flex-row align-center justify-center bg-amber-50"></main>
+      <main className="flex-row align-center justify-center bg-amber-50"></main>
     </div>
   );
 };
