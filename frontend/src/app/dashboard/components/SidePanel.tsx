@@ -1,5 +1,6 @@
 import React from "react";
 import Dashboard from "./Dashboard";
+import MyTasks from "./MyTasks";
 
 const SidePanel = () => {
   return (
@@ -9,6 +10,7 @@ const SidePanel = () => {
         <p className="mt-4 text-gray-600">Manage your tasks efficiently</p>
       </div>
       <Dashboard />
+      <MyTasks />
     </div>
   );
 };
