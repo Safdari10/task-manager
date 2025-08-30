@@ -12,9 +12,17 @@ const SidePanel = ({ setOpenTab }: SidePanelProps) => {
           <h1 className="text-2xl font-bold text-blue-600">Task Manager</h1>
           <p className="mt-4 text-gray-600">Manage your tasks efficiently</p>
         </div>
-        <div className="flex flex-col items-start justify-center gap-4 w-full">
-          <button onClick={() => setOpenTab("dashboard")}>Dashboard</button>
-          <button onClick={() => setOpenTab("myTasks")}>My Tasks</button>
+        <div className="flex flex-col items-center justify-center gap-4 w-full">
+          <button
+            onClick={() => setOpenTab("dashboard")}
+            className="w-full text-left py-2 px-6 active:bg-amber-200 cursor-pointer">
+            Dashboard
+          </button>
+          <button
+            onClick={() => setOpenTab("myTasks")}
+            className="w-full text-left py-2 px-6 active:bg-amber-200 cursor-pointer">
+            My Tasks
+          </button>
         </div>
       </div>
       <div>
