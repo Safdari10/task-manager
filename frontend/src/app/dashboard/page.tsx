@@ -1,6 +1,7 @@
 "use client";
 
 import SidePanel from "./components/SidePanel";
+import TopBar from "./components/TopBar";
 
 const TaskManager = () => {
   return (
@@ -8,7 +9,10 @@ const TaskManager = () => {
       <div className="w-1/4 bg-white h-screen p-6 shadow-md">
         <SidePanel />
       </div>
-      <main className="flex-row align-center justify-center bg-amber-50"></main>
+      <main className="w-3/4 flex align-center justify-center bg-amber-50">
+        <TopBar />
+        {/* Main content goes here */}
+      </main>
     </div>
   );
 };
