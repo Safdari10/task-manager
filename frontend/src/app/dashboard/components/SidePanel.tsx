@@ -13,8 +13,8 @@ const SidePanel = ({ setOpenTab }: SidePanelProps) => {
           <p className="mt-4 text-gray-600">Manage your tasks efficiently</p>
         </div>
         <div>
-          <button>Dashboard</button>
-          <button>My Tasks</button>
+          <button onClick={() => setOpenTab("dashboard")}>Dashboard</button>
+          <button onClick={() => setOpenTab("myTasks")}>My Tasks</button>
         </div>
       </div>
       <div>
