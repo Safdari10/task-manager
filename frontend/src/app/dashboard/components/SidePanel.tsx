@@ -16,12 +16,16 @@ const SidePanel = ({ openTab, setOpenTab }: SidePanelProps) => {
         <div className="flex flex-col items-center justify-center gap-4 w-full">
           <button
             onClick={() => setOpenTab("dashboard")}
-            className="w-full text-left py-2 px-6 active:bg-amber-200 cursor-pointer">
+            className={`w-full text-left py-2 px-6 cursor-pointer ${
+              openTab === "dashboard" ? "bg-amber-100" : ""
+            }`}>
             Dashboard
           </button>
           <button
             onClick={() => setOpenTab("myTasks")}
-            className="w-full text-left py-2 px-6 active:bg-amber-200 cursor-pointer">
+            className={`w-full text-left py-2 px-6 cursor-pointer ${
+              openTab === "myTasks" ? "bg-amber-100" : ""
+            }`}>
             My Tasks
           </button>
         </div>
