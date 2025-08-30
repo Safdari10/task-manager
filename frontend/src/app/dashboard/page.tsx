@@ -5,7 +5,7 @@ import TopBar from "./components/TopBar";
 
 const TaskManager = () => {
   return (
-    <div className="flex items-center justify-between w-full bg-gray-100">
+    <div className="flex items-start justify-center w-full h-full bg-gray-100">
       <div className="w-1/4 bg-white h-screen p-6 shadow-md">
         <SidePanel />
       </div>
