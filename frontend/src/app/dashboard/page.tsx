@@ -26,6 +26,7 @@ const TaskManager = () => {
       <main className="flex-row align-center justify-center bg-amber-50 max-w-md p-20">
         <h1 className="text-2xl font-bold text-blue-600">Task Manager</h1>
         <p className="mt-4 text-gray-600">Manage your tasks efficiently</p>
+        <button className="mt-4 bg-blue-500 text-white py-2 px-4 rounded">+ New Task</button>
         {tasks && tasks.length > 0 ? (
           <ul className="mt-4 list-disc list-inside">
             {tasks.map((task, index) => (
