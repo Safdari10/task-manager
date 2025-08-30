@@ -1,10 +1,11 @@
 import React from "react";
 
 interface SidePanelProps {
+  openTab: string;
   setOpenTab: (tab: string) => void;
 }
 
-const SidePanel = ({ setOpenTab }: SidePanelProps) => {
+const SidePanel = ({ openTab, setOpenTab }: SidePanelProps) => {
   return (
     <div className="flex flex-col items-start justify-between w-full h-full py-2 bg-white rounded-3xl shadow-md">
       <div className="flex flex-col items-start justify-center gap-4 pt-4">
