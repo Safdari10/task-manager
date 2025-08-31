@@ -19,7 +19,7 @@ const Calender = () => {
     "December",
   ];
 
-  const weekDays = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+  const weekDays = ["Mo", "Tu", "We", "Th", "Fr", "Sa", "Su"];
 
   const handleMonthChange = (direction: ">" | "<") => {
     setCurrentMonth((prevMonth) => {
@@ -52,9 +52,11 @@ const Calender = () => {
           </button>
         </div>
       </div>
-      <div>
+      <div className="grid grid-cols-7 gap-2 w-full p-2 place-items-center">
         {weekDays.map((day) => (
-          <div key={day}>{day}</div>
+          <div key={day} className="text-center font-semibold">
+            {day}
+          </div>
         ))}
       </div>
     </div>
