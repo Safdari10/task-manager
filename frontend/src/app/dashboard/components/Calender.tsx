@@ -19,6 +19,16 @@ const Calender = () => {
     "December",
   ];
 
+  const handleMonthChange = (direction: ">" | "<") => {
+    setCurrentMonth((prevMonth) => {
+      if (direction === ">") {
+        return prevMonth + 1;
+      } else {
+        return prevMonth - 1;
+      }
+    });
+  };
+
   return (
     <div className="w-[20rem] h-[20rem] flex flex-col justify-start items-center gap-2 bg-white rounded-3xl shadow-md p-6">
       <div className="flex items-center justify-between w-full border-b-2 border-b-gray-200 pb-4">
@@ -26,10 +36,10 @@ const Calender = () => {
           {months[currentMonth]} {currentYear}
         </h2>
         <div className="flex items-center gap-2">
-          <button className="text-lg" onClick={() => setCurrentMonth(currentMonth - 1)}>
+          <button className="text-lg" onClick={() => handleMonthChange("<")}>
             {"<"}
           </button>
-          <button className="text-lg" onClick={() => setCurrentMonth(currentMonth + 1)}>
+          <button className="text-lg" onClick={() => handleMonthChange(">")}>
             {">"}
           </button>
         </div>
