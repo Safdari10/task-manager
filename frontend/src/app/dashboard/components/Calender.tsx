@@ -19,6 +19,8 @@ const Calender = () => {
     "December",
   ];
 
+  const weekDays = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+
   const handleMonthChange = (direction: ">" | "<") => {
     setCurrentMonth((prevMonth) => {
       if (direction === ">") {
@@ -49,6 +51,11 @@ const Calender = () => {
             {">"}
           </button>
         </div>
+      </div>
+      <div>
+        {weekDays.map((day) => (
+          <div key={day}>{day}</div>
+        ))}
       </div>
     </div>
   );
