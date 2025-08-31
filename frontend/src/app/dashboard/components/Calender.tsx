@@ -22,8 +22,14 @@ const Calender = () => {
   const handleMonthChange = (direction: ">" | "<") => {
     setCurrentMonth((prevMonth) => {
       if (direction === ">") {
+        if (prevMonth === 11) {
+          setCurrentYear((prevYear) => prevYear + 1);
+        }
         return prevMonth + 1;
       } else {
+        if (prevMonth === 0) {
+          setCurrentYear((prevYear) => prevYear - 1);
+        }
         return prevMonth - 1;
       }
     });
