@@ -1,7 +1,11 @@
-import React from "react";
+import Calender from "./Calender";
 
 const Dashboard = () => {
-  return <div>Dashboard</div>;
+  return (
+    <div>
+      <Calender />
+    </div>
+  );
 };
 
 export default Dashboard;
