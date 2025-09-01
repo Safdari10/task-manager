@@ -35,10 +35,25 @@ const TaskPreview = () => {
   ];
 
   return (
-    <div className="w-[20rem] w-max-content flex flex-col justify-start items-start gap-2 bg-white rounded-3xl shadow-md p-6">
+    <div className="w-[20rem] w-max-content flex flex-col justify-start items-start gap-2 bg-white rounded-3xl shadow-md py-6">
       <div className="flex items-center justify-between w-full border-b-2 border-b-gray-200 pb-4">
-        <h2 className="text-lg font-semibold">My Tasks</h2>
-        <FaEllipsisV />
+        <h2 className="text-lg font-semibold px-6">My Tasks</h2>
+        <div className="text-gray-700 cursor-pointer px-6">
+          <FaEllipsisV />
+        </div>
+      </div>
+      <div className="flex flex-col items-center justify-center w-full">
+        {sampleTasks.map((task) => (
+          <div
+            key={task.id}
+            className="flex items-center justify-between py-3 px-6 border-b last:border-b-0 border-b-gray-500 w-full">
+            <div>
+              <input type="checkbox" className="form-checkbox h-4 w-4 text-blue-600" />
+            </div>
+            <div className="">{task.title}</div>
+            <div className="text-right">{task.status}</div>
+          </div>
+        ))}
       </div>
     </div>
   );
