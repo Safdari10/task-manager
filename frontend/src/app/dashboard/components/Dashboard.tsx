@@ -3,7 +3,7 @@ import TaskPreview from "./TaskPreview";
 
 const Dashboard = () => {
   return (
-    <div>
+    <div className="w-full h-full flex items-start justify-start gap-10 ">
       <Calender />
       <TaskPreview />
     </div>
