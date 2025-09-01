@@ -22,7 +22,7 @@ const MonthView = ({ currentMonth, currentYear }: MonthViewProps) => {
       {totalDays.map((_, index) => (
         <div
           key={index}
-          className={`text-center ${
+          className={`text-center text-sm ${
             currentDate === index + 1
               ? "w-full font-bold bg-amber-300 rounded-full border border-gray-500"
               : ""
