@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import MonthView from "./MonthView";
 
 const Calender = () => {
   const [currentMonth, setCurrentMonth] = useState(new Date().getMonth());
@@ -59,6 +60,7 @@ const Calender = () => {
           </div>
         ))}
       </div>
+      <MonthView currentMonth={currentMonth} currentYear={currentYear} />
     </div>
   );
 };
