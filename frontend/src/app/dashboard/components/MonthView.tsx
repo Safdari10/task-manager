@@ -33,12 +33,18 @@ const MonthView = ({ currentMonth, currentYear }: MonthViewProps) => {
       : null;
   };
 
+  const getGridCells = () => {
+    const daysInMonth = new Date(currentYear, currentMonth + 1, 0).getDate();
+    const requiredCells = firstWeekdayOfMonth + daysInMonth;
+    const numRows = Math.ceil(requiredCells / 7);
+    return numRows * 7;
+  };
+
   // Next month's first days to fill the last week(s)
   const getNextMonthDays = () => {
-    const totalGridCells = 42; // 6 weeks x 7 days
     const prevDays = getPrevMonthDays().length;
     const currentDays = getCurrentMonthDays().length;
-    const nextDays = totalGridCells - (prevDays + currentDays);
+    const nextDays = getGridCells() - (prevDays + currentDays);
     return Array.from({ length: nextDays }, (_, i) => i + 1);
   };
 
