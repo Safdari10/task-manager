@@ -52,6 +52,11 @@ const MonthView = ({ currentMonth, currentYear }: MonthViewProps) => {
           {index + 1}
         </div>
       ))}
+      {nextMonthDays().map((day, index) => (
+        <div key={index} className="text-gray-400">
+          {day}
+        </div>
+      ))}
     </div>
   );
 };
