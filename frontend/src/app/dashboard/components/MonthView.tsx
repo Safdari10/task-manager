@@ -9,7 +9,10 @@ const MonthView = ({ currentMonth, currentYear }: MonthViewProps) => {
 
   const daysInMonth = new Date(currentYear, currentMonth + 1, 0).getDate();
   const totalDays = Array.from({ length: daysInMonth });
-  const currentDate = new Date().getDate();
+  const todayMonth = new Date().getMonth();
+  const todayYear = new Date().getFullYear();
+  const currentDate =
+    todayMonth === currentMonth && todayYear === currentYear ? new Date().getDate() : null;
 
   return (
     <div className="grid grid-cols-7 gap-2 w-full p-2 place-items-center">
