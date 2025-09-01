@@ -19,10 +19,11 @@ const MonthView = ({ currentMonth, currentYear }: MonthViewProps) => {
     return Array.from({ length: daysInMonth }, (_, i) => i + 1);
   };
 
-  const todayMonth = new Date().getMonth();
-  const todayYear = new Date().getFullYear();
-  const currentDate =
-    todayMonth === currentMonth && todayYear === currentYear ? new Date().getDate() : null;
+  const currentDate = () => {
+    const todayMonth = new Date().getMonth();
+    const todayYear = new Date().getFullYear();
+    return todayMonth === currentMonth && todayYear === currentYear ? new Date().getDate() : null;
+  };
 
   return (
     <div className="grid grid-cols-7 gap-2 w-full p-2 place-items-center">
@@ -35,7 +36,7 @@ const MonthView = ({ currentMonth, currentYear }: MonthViewProps) => {
         <div
           key={index}
           className={`text-center text-sm ${
-            currentDate === index + 1
+            currentDate() === index + 1
               ? "w-full font-bold bg-amber-300 rounded-full border border-gray-500"
               : ""
           }`}>
