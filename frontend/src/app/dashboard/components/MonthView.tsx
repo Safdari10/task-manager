@@ -14,8 +14,11 @@ const MonthView = ({ currentMonth, currentYear }: MonthViewProps) => {
       : Array.from({ length: firstDayIndex }, (_, i) => lastMonthDays - firstDayIndex + i + 1);
   };
 
-  const daysInMonth = new Date(currentYear, currentMonth + 1, 0).getDate();
-  const totalDays = Array.from({ length: daysInMonth });
+  const thisMonthDays = () => {
+    const daysInMonth = new Date(currentYear, currentMonth + 1, 0).getDate();
+    return Array.from({ length: daysInMonth }, (_, i) => i + 1);
+  };
+
   const todayMonth = new Date().getMonth();
   const todayYear = new Date().getFullYear();
   const currentDate =
@@ -28,7 +31,7 @@ const MonthView = ({ currentMonth, currentYear }: MonthViewProps) => {
           {day}
         </div>
       ))}
-      {totalDays.map((_, index) => (
+      {thisMonthDays().map((_, index) => (
         <div
           key={index}
           className={`text-center text-sm ${
