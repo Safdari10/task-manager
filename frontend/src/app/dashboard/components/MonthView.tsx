@@ -4,35 +4,48 @@ interface MonthViewProps {
 }
 
 const MonthView = ({ currentMonth, currentYear }: MonthViewProps) => {
-  let firstDayIndex = new Date(currentYear, currentMonth, 1).getDay();
-  firstDayIndex = (firstDayIndex + 6) % 7;
+  // Calculate the weekday index for the 1st day of the month (Monday = 0)
+  let firstWeekdayOfMonth = new Date(currentYear, currentMonth, 1).getDay();
+  firstWeekdayOfMonth = (firstWeekdayOfMonth + 6) % 7;
 
-  const daysToShowFromLast = () => {
-    const lastMonthDays = new Date(currentYear, currentMonth, 0).getDate();
-    return firstDayIndex === 0
+  // Previous month's last days to fill the first week
+  const getPrevMonthDays = () => {
+    const prevMonthTotalDays = new Date(currentYear, currentMonth, 0).getDate();
+    return firstWeekdayOfMonth === 0
       ? []
-      : Array.from({ length: firstDayIndex }, (_, i) => lastMonthDays - firstDayIndex + i + 1);
+      : Array.from(
+          { length: firstWeekdayOfMonth },
+          (_, i) => prevMonthTotalDays - firstWeekdayOfMonth + i + 1
+        );
   };
 
-  const thisMonthDays = () => {
+  // Current month's days
+  const getCurrentMonthDays = () => {
     const daysInMonth = new Date(currentYear, currentMonth + 1, 0).getDate();
     return Array.from({ length: daysInMonth }, (_, i) => i + 1);
   };
 
-  const currentDate = () => {
-    const todayMonth = new Date().getMonth();
-    const todayYear = new Date().getFullYear();
-    return todayMonth === currentMonth && todayYear === currentYear ? new Date().getDate() : null;
+  // Today's date (only if in current month/year)
+  const getToday = () => {
+    const today = new Date();
+    return today.getMonth() === currentMonth && today.getFullYear() === currentYear
+      ? today.getDate()
+      : null;
   };
 
-  const nextMonthDays = () => {
-    const totalGrid = 35;
-    const nextMonthDays = new Date(currentYear, currentMonth + 1, 1).getDate();
-    return Array.from(
-      { length: totalGrid - (daysToShowFromLast().length + thisMonthDays().length) },
-      (_, i) => nextMonthDays + i
-    );
+  // Next month's first days to fill the last week(s)
+  const getNextMonthDays = () => {
+    const totalGridCells = 42; // 6 weeks x 7 days
+    const prevDays = getPrevMonthDays().length;
+    const currentDays = getCurrentMonthDays().length;
+    const nextDays = totalGridCells - (prevDays + currentDays);
+    return Array.from({ length: nextDays }, (_, i) => i + 1);
   };
+
+  const prevMonthDays = getPrevMonthDays();
+  const currentMonthDays = getCurrentMonthDays();
+  const nextMonthDays = getNextMonthDays();
+  const today = getToday();
 
   return (
     <div className="grid grid-cols-7 gap-2 w-full p-2 place-items-center">
