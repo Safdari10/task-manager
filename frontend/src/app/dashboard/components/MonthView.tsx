@@ -25,6 +25,15 @@ const MonthView = ({ currentMonth, currentYear }: MonthViewProps) => {
     return todayMonth === currentMonth && todayYear === currentYear ? new Date().getDate() : null;
   };
 
+  const nextMonthDays = () => {
+    const totalGrid = 35;
+    const nextMonthDays = new Date(currentYear, currentMonth + 1, 1).getDate();
+    return Array.from(
+      { length: totalGrid - (daysToShowFromLast().length + thisMonthDays().length) },
+      (_, i) => nextMonthDays + i
+    );
+  };
+
   return (
     <div className="grid grid-cols-7 gap-2 w-full p-2 place-items-center">
       {daysToShowFromLast().map((day, index) => (
