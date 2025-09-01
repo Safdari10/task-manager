@@ -11,7 +11,7 @@ const MonthView = ({ currentMonth, currentYear }: MonthViewProps) => {
   const totalDays = Array.from({ length: daysInMonth });
 
   return (
-    <div>
+    <div className="grid grid-cols-7 gap-2 w-full p-2 place-items-center">
       {Array.from({ length: firstDayIndex }).map((_, index) => (
         <div key={index}></div>
       ))}
