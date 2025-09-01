@@ -6,7 +6,13 @@ interface MonthViewProps {
 const MonthView = ({ currentMonth, currentYear }: MonthViewProps) => {
   let firstDayIndex = new Date(currentYear, currentMonth, 1).getDay();
   firstDayIndex = (firstDayIndex + 6) % 7;
-  const firstDay = Array.from({ length: firstDayIndex });
+
+  const daysToShowFromLast = () => {
+    const lastMonthDays = new Date(currentYear, currentMonth, 0).getDate();
+    return firstDayIndex === 0
+      ? []
+      : Array.from({ length: firstDayIndex }, (_, i) => lastMonthDays - firstDayIndex + i + 1);
+  };
 
   const daysInMonth = new Date(currentYear, currentMonth + 1, 0).getDate();
   const totalDays = Array.from({ length: daysInMonth });
@@ -17,8 +23,10 @@ const MonthView = ({ currentMonth, currentYear }: MonthViewProps) => {
 
   return (
     <div className="grid grid-cols-7 gap-2 w-full p-2 place-items-center">
-      {firstDay.map((_, index) => (
-        <div key={index}></div>
+      {daysToShowFromLast().map((day, index) => (
+        <div key={index} className="text-gray-400">
+          {day}
+        </div>
       ))}
       {totalDays.map((_, index) => (
         <div
