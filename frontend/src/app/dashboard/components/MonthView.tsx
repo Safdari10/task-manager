@@ -49,24 +49,22 @@ const MonthView = ({ currentMonth, currentYear }: MonthViewProps) => {
 
   return (
     <div className="grid grid-cols-7 gap-2 w-full p-2 place-items-center">
-      {daysToShowFromLast().map((day, index) => (
-        <div key={index} className="text-gray-400">
+      {prevMonthDays.map((day, idx) => (
+        <div key={`prev-${day}-${idx}`} className="text-gray-400">
           {day}
         </div>
       ))}
-      {thisMonthDays().map((_, index) => (
+      {currentMonthDays.map((day) => (
         <div
-          key={index}
+          key={`current-${day}`}
           className={`text-center text-sm ${
-            currentDate() === index + 1
-              ? "w-full font-bold bg-amber-300 rounded-full border border-gray-500"
-              : ""
+            today === day ? "w-full font-bold bg-amber-300 rounded-full border border-gray-500" : ""
           }`}>
-          {index + 1}
+          {day}
         </div>
       ))}
-      {nextMonthDays().map((day, index) => (
-        <div key={index} className="text-gray-400">
+      {nextMonthDays.map((day, idx) => (
+        <div key={`next-${day}-${idx}`} className="text-gray-400">
           {day}
         </div>
       ))}
