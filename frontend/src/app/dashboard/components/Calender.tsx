@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import MonthView from "./MonthView";
+import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 
 const Calender = () => {
   const [currentMonth, setCurrentMonth] = useState(new Date().getMonth());
@@ -51,15 +52,11 @@ const Calender = () => {
           {months[currentMonth]} {currentYear}
         </h2>
         <div className="flex items-center gap-4">
-          <button
-            className="text-lg text-gray-700 font-semibold"
-            onClick={() => handleMonthChange("<")}>
-            {"<"}
+          <button className="text-gray-700 cursor-pointer" onClick={() => handleMonthChange("<")}>
+            <FaChevronLeft />
           </button>
-          <button
-            className="text-lg text-gray-700 font-semibold"
-            onClick={() => handleMonthChange(">")}>
-            {">"}
+          <button className="text-gray-700 cursor-pointer" onClick={() => handleMonthChange(">")}>
+            <FaChevronRight />
           </button>
         </div>
       </div>
