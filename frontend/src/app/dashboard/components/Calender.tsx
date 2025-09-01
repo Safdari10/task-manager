@@ -27,11 +27,13 @@ const Calender = () => {
       if (direction === ">") {
         if (prevMonth === 11) {
           setCurrentYear((prevYear) => prevYear + 1);
+          setCurrentMonth(0);
         }
         return prevMonth + 1;
       } else {
         if (prevMonth === 0) {
           setCurrentYear((prevYear) => prevYear - 1);
+          setCurrentMonth(11);
         }
         return prevMonth - 1;
       }
