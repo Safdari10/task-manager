@@ -23,23 +23,27 @@ const Calender = () => {
   const weekDays = ["Mo", "Tu", "We", "Th", "Fr", "Sa", "Su"];
 
   const handleMonthChange = (direction: ">" | "<") => {
-    setCurrentMonth((prevMonth) => {
-      if (direction === ">") {
-        if (prevMonth === 11) {
-          setCurrentYear((prevYear) => prevYear + 1);
-          setCurrentMonth(0);
-        }
-        return prevMonth + 1;
-      } else {
-        if (prevMonth === 0) {
-          setCurrentYear((prevYear) => prevYear - 1);
-          setCurrentMonth(11);
-        }
-        return prevMonth - 1;
-      }
-    });
-  };
+    let newMonth = currentMonth;
+    let newYear = currentYear;
 
+    if (direction === ">") {
+      if (newMonth === 11) {
+        newMonth = 0;
+        newYear = currentYear + 1;
+      } else {
+        newMonth = currentMonth + 1;
+      }
+    } else {
+      if (newMonth === 0) {
+        newMonth = 11;
+        newYear = currentYear - 1;
+      } else {
+        newMonth = currentMonth - 1;
+      }
+    }
+    setCurrentMonth(newMonth);
+    setCurrentYear(newYear);
+  };
   return (
     <div className="w-[20rem] h-max-content flex flex-col justify-start items-start gap-2 bg-white rounded-3xl shadow-md p-6">
       <div className="flex items-center justify-between w-full border-b-2 border-b-gray-200 pb-4">
