@@ -37,7 +37,7 @@ const TaskPreview = () => {
   return (
     <div className="w-[25rem] w-max-content flex flex-col justify-start items-start gap-2 bg-white rounded-3xl shadow-md py-4">
       <div className="flex items-center justify-between w-full border-b-2 border-b-gray-200 pb-4">
-        <h2 className="text-lg font-semibold px-6">My Tasks</h2>
+        <h2 className="text-md font-bold px-6">My Tasks</h2>
         <div className="text-gray-700 cursor-pointer px-6">
           <FaEllipsisV />
         </div>
