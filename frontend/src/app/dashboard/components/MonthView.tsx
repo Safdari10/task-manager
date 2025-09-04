@@ -70,7 +70,7 @@ const MonthView = ({ currentMonth, currentYear }: MonthViewProps) => {
       {currentMonthDays.map((day) => (
         <div
           key={`current-${day}`}
-          className={`text-center text-sm ${
+          className={`text-center text-md ${
             today === day ? "w-full font-bold bg-amber-300 rounded-full border border-gray-500" : ""
           }`}>
           {day}

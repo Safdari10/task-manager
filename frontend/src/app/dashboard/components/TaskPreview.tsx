@@ -50,8 +50,8 @@ const TaskPreview = () => {
             <div>
               <input type="checkbox" className="form-checkbox h-5 w-5" />
             </div>
-            <div className="text-sm">{task.title}</div>
-            <div className="text-right text-sm">{task.status}</div>
+            <div className="text-md">{task.title}</div>
+            <div className="text-right text-md">{task.status}</div>
           </div>
         ))}
       </div>
