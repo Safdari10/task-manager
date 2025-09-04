@@ -60,7 +60,7 @@ const Calender = () => {
           </button>
         </div>
       </div>
-      <div className="grid grid-cols-7 gap-2 w-full p-2 place-items-center">
+      <div className="grid grid-cols-7 gap-4 w-full p-2 place-items-center">
         {weekDays.map((day) => (
           <div key={day} className="text-center font-semibold">
             {day}
