@@ -54,9 +54,13 @@ const MonthView = ({ currentMonth, currentYear }: MonthViewProps) => {
   const today = getToday();
 
   const weekDays = ["Mo", "Tu", "We", "Th", "Fr", "Sa", "Su"];
+  const numRows = getGridCells() / 7;
 
   return (
-    <div className="grid grid-cols-7 gap-4 w-full p-2 place-items-center">
+    <div
+      className={`grid grid-cols-7 px-2 w-full place-items-center ${
+        numRows === 6 ? "gap-4 py-2" : "gap-6 py-3"
+      }`}>
       {weekDays.map((day) => (
         <div key={day} className="text-center font-semibold">
           {day}
