@@ -54,7 +54,7 @@ const MonthView = ({ currentMonth, currentYear }: MonthViewProps) => {
   const today = getToday();
 
   return (
-    <div className="grid grid-cols-7 gap-2 w-full p-2 place-items-center">
+    <div className="grid grid-cols-7 gap-4 w-full p-2 place-items-center">
       {prevMonthDays.map((day, idx) => (
         <div key={`prev-${day}-${idx}`} className="text-gray-400">
           {day}
