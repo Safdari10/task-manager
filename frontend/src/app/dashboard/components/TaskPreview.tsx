@@ -47,8 +47,9 @@ const TaskPreview = () => {
           <div
             key={task.id}
             className="flex items-center justify-between py-4 px-7 border-b last:border-b-0 border-b-gray-500 w-full">
-            <div>
-              <input type="checkbox" className="form-checkbox h-5 w-5" />
+            <div className="relative flex items-center">
+              <input type="checkbox" className="absolute opacity-0 h-5 w-5 cursor-pointer" />
+              <span className="w-5 h-5 rounded-full border-2 border-gray-300"></span>
             </div>
             <div className="text-md">{task.title}</div>
             <div className="text-right text-md">{task.status}</div>
