@@ -48,7 +48,7 @@ const Calender = () => {
   return (
     <div className="w-[20rem] h-max-content flex flex-col justify-start items-start gap-2 bg-white rounded-3xl shadow-md py-4 px-6">
       <div className="flex items-center justify-between w-full border-b-2 border-b-gray-200 pb-4">
-        <h2 className="text-lg font-semibold">
+        <h2 className="text-md font-bold">
           {months[currentMonth]} {currentYear}
         </h2>
         <div className="flex items-center gap-4">
