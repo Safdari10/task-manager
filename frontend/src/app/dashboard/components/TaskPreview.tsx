@@ -46,7 +46,7 @@ const TaskPreview = () => {
         {sampleTasks.map((task) => (
           <div
             key={task.id}
-            className="flex items-center justify-between py-3 px-6 border-b last:border-b-0 border-b-gray-500 w-full">
+            className="flex items-center justify-between py-3 px-7 border-b last:border-b-0 border-b-gray-500 w-full">
             <div>
               <input type="checkbox" className="form-checkbox h-4 w-4 text-blue-600" />
             </div>
