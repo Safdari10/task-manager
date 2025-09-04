@@ -49,7 +49,7 @@ const Calender = () => {
         <h2 className="text-md font-bold">
           {months[currentMonth]} {currentYear}
         </h2>
-        <div className="flex items-center gap-4">
+        <div className="flex items-center gap-4 pr-4">
           <button className="text-gray-700 cursor-pointer" onClick={() => handleMonthChange("<")}>
             <FaChevronLeft />
           </button>
