@@ -53,8 +53,15 @@ const MonthView = ({ currentMonth, currentYear }: MonthViewProps) => {
   const nextMonthDays = getNextMonthDays();
   const today = getToday();
 
+  const weekDays = ["Mo", "Tu", "We", "Th", "Fr", "Sa", "Su"];
+
   return (
-    <div className="grid grid-cols-7 gap-4 w-full p-3 place-items-center">
+    <div className="grid grid-cols-7 gap-4 w-full p-2 place-items-center">
+      {weekDays.map((day) => (
+        <div key={day} className="text-center font-semibold">
+          {day}
+        </div>
+      ))}
       {prevMonthDays.map((day, idx) => (
         <div key={`prev-${day}-${idx}`} className="text-gray-400">
           {day}

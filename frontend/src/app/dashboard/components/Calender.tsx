@@ -21,8 +21,6 @@ const Calender = () => {
     "December",
   ];
 
-  const weekDays = ["Mo", "Tu", "We", "Th", "Fr", "Sa", "Su"];
-
   const handleMonthChange = (direction: ">" | "<") => {
     let newMonth = currentMonth;
     let newYear = currentYear;
@@ -59,13 +57,6 @@ const Calender = () => {
             <FaChevronRight />
           </button>
         </div>
-      </div>
-      <div className="grid grid-cols-7 gap-4 w-full p-3 place-items-center">
-        {weekDays.map((day) => (
-          <div key={day} className="text-center font-semibold">
-            {day}
-          </div>
-        ))}
       </div>
       <MonthView currentMonth={currentMonth} currentYear={currentYear} />
     </div>
