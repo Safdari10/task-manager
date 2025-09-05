@@ -48,14 +48,14 @@ const TaskPreview = () => {
             key={task.id}
             className="flex items-center justify-between py-4 px-7 border-b last:border-b-0 border-b-gray-500 w-full">
             <div className="flex items-center">
-              <label className="cursor-pointer relative block w-6 h-6">
+              <label className="cursor-pointer relative block w-[1.6rem] h-[1.6rem]">
                 <input
                   type="checkbox"
                   id={`task-${task.id}`}
                   className="peer opacity-0 absolute inset-0"
                 />
                 <span
-                  className="w-6 h-6 rounded-full border-2 border-gray-300 bg-gray-100 flex items-center justify-center peer-checked:bg-amber-300
+                  className="w-[1.6rem] h-[1.6rem] rounded-full border-2 border-gray-300 bg-gray-100 flex items-center justify-center peer-checked:bg-amber-300
                 transition-colors duration-200 [&>svg]:hidden peer-checked:[&>svg]:block">
                   <FaCheck className="text-black text-xs" />
                 </span>
