@@ -61,8 +61,8 @@ const TaskPreview = () => {
                 </span>
               </label>
             </div>
-            <div className="text-md">{task.title}</div>
-            <div className="text-right text-md">{task.status}</div>
+            <div className="text-base">{task.title}</div>
+            <div className="text-right text-base">{task.status}</div>
           </div>
         ))}
       </div>
