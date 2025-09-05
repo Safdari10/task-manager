@@ -42,7 +42,7 @@ const TaskPreview = () => {
           <FaEllipsisV />
         </div>
       </div>
-      <div className="flex flex-col items-center justify-center w-full">
+      <div className="flex flex-col items-stretch w-full">
         {sampleTasks.map((task) => (
           <div
             key={task.id}
