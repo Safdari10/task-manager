@@ -11,7 +11,7 @@ const TaskManager = () => {
 
   return (
     <div className="flex items-center justify-center w-full h-full bg-gray-100">
-      <div className="flex items-start justify-center w-full h-full max-w-[1280px] m-8 bg-amber-50 rounded-3xl">
+      <div className="flex items-start justify-center w-full h-full max-w-screen-xl m-8 bg-amber-50 rounded-3xl">
         <div className="w-1/4 h-screen py-10 pl-10">
           <SidePanel openTab={openTab} setOpenTab={setOpenTab} />
         </div>
