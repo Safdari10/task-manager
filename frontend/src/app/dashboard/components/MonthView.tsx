@@ -75,7 +75,9 @@ const MonthView = ({ currentMonth, currentYear }: MonthViewProps) => {
         <div
           key={`current-${day}`}
           className={`text-center text-md ${
-            today === day ? "w-full font-bold bg-amber-300 rounded-full border border-gray-500" : ""
+            today === day
+              ? "w-7 h-7 font-semibold bg-amber-300 rounded-full border border-gray-500"
+              : ""
           }`}>
           {day}
         </div>
