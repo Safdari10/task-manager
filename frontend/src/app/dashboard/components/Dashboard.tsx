@@ -5,7 +5,7 @@ import TaskPreview from "./TaskPreview";
 
 const Dashboard = () => {
   return (
-    <div className="w-full h-full grid [grid-template-columns:18rem_23rem_10rem] gap-10 ">
+    <div className="w-full h-full grid [grid-template-columns:18rem_22rem_10rem] gap-10">
       <Calender />
       <TaskPreview />
       <Comments />
