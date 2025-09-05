@@ -56,8 +56,8 @@ const TaskPreview = () => {
                 />
                 <span
                   className="w-6 h-6 rounded-full border-2 border-gray-300 bg-gray-100 flex items-center justify-center peer-checked:bg-amber-300
-                transition-colors duration-200">
-                  <FaCheck className="hidden peer-checked:block text-black text-xs" />
+                transition-colors duration-200 [&>svg]:hidden peer-checked:[&>svg]:block">
+                  <FaCheck className="text-black text-xs" />
                 </span>
               </label>
             </div>
