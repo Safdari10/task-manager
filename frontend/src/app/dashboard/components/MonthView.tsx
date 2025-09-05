@@ -58,8 +58,8 @@ const MonthView = ({ currentMonth, currentYear }: MonthViewProps) => {
 
   return (
     <div
-      className={`grid grid-cols-7 px-7 w-full place-items-center ${
-        numRows === 6 ? "gap-4 py-2" : "gap-6 py-3"
+      className={`grid grid-cols-7 px-7 py-2 w-full place-items-center ${
+        numRows === 6 ? "gap-4" : "gap-6"
       }`}>
       {weekDays.map((day) => (
         <div key={day} className="text-center font-semibold">
