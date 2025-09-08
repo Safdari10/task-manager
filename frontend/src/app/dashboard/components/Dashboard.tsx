@@ -1,3 +1,4 @@
+import { FaPlus } from "react-icons/fa";
 import Calender from "./Calender";
 import Comments from "./Comments";
 import MyCategories from "./MyCategories";
@@ -13,7 +14,10 @@ const Dashboard = () => {
       <MyCategories />
       <TaskTracker />
       <div className="w-[10rem] h-[23rem] flex flex-col items-end justify-end">
-        <button className="bg-blue-500 text-white px-4 py-2 rounded-md">Add Widget</button>
+        <button className="bg-blue-500 text-white px-4 py-2 rounded-md flex flex-col items-center gap-2 cursor-pointer">
+          <FaPlus className="block" />
+          <p className="font-semibold">Add Widget</p>
+        </button>
       </div>
     </div>
   );
