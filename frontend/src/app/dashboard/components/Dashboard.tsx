@@ -12,7 +12,7 @@ const Dashboard = () => {
       <Comments />
       <MyCategories />
       <TaskTracker />
-      <div className="flex justify-end">
+      <div className="w-[10rem] h-[23rem] flex flex-col items-end justify-end">
         <button className="bg-blue-500 text-white px-4 py-2 rounded-md">Add Widget</button>
       </div>
     </div>
