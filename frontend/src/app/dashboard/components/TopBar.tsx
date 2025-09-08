@@ -9,10 +9,10 @@ const TopBar = () => {
         className="w-2/6 bg-gray-200 rounded-lg p-2 text-md"
       />
       <div className="flex items-center">
-        <button className="bg-blue-500 text-white py-2 px-4 rounded-lg flex items-center">
+        <button className="bg-blue-500 text-white py-2 px-4 rounded-lg flex items-center cursor-pointer">
           <FaPlus className="mr-2" /> New Task
         </button>
-        <button className="bg-gray-200 text-gray-800 p-2 rounded-full ml-4">
+        <button className="bg-gray-200 text-gray-800 p-2 rounded-full ml-4 cursor-pointer">
           <FaUserCircle className="text-2xl" />
         </button>
       </div>
