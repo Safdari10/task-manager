@@ -10,6 +10,7 @@ const TopBar = () => {
       />
       <div>
         <button className="bg-blue-500 text-white py-2 px-4 rounded-lg">+ New Task</button>
+        <button className="bg-gray-200 text-gray-800 p-2 rounded-full ml-2">Profile</button>
       </div>
     </div>
   );
