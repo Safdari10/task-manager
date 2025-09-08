@@ -2,6 +2,7 @@ import Calender from "./Calender";
 import Comments from "./Comments";
 import MyCategories from "./MyCategories";
 import TaskPreview from "./TaskPreview";
+import TaskTracker from "./TaskTracker";
 
 const Dashboard = () => {
   return (
@@ -10,6 +11,7 @@ const Dashboard = () => {
       <TaskPreview />
       <Comments />
       <MyCategories />
+      <TaskTracker />
     </div>
   );
 };
