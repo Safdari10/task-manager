@@ -38,12 +38,12 @@ const SidePanel = ({ openTab, setOpenTab }: SidePanelProps) => {
             My Tasks
           </button>
         </div>
-        <div>
-          <button className="bg-red-500 text-white py-2 px-4 rounded mt-4" onClick={handleLogout}>
-            <FaSignOutAlt className="inline mr-2" />
-            Logout
-          </button>
-        </div>
+      </div>
+      <div>
+        <button className="bg-red-500 text-white py-2 px-4 rounded mb-5" onClick={handleLogout}>
+          <FaSignOutAlt className="inline mr-2" />
+          Logout
+        </button>
       </div>
     </div>
   );
