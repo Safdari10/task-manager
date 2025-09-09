@@ -7,6 +7,13 @@ interface SidePanelProps {
 }
 
 const SidePanel = ({ openTab, setOpenTab }: SidePanelProps) => {
+  const router = useRouter();
+
+  const handleLogout = () => {
+    removeToken();
+    router.push("/");
+  };
+
   return (
     <div className="flex flex-col items-center justify-between w-full h-full py-2 bg-white rounded-3xl shadow-md">
       <div className="flex flex-col items-center justify-center w-full pt-4">
