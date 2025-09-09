@@ -37,9 +37,11 @@ const SidePanel = ({ openTab, setOpenTab }: SidePanelProps) => {
             My Tasks
           </button>
         </div>
-      </div>
-      <div>
-        <button className="bg-red-500 text-white py-2 px-4 rounded mt-4">Logout</button>
+        <div>
+          <button className="bg-red-500 text-white py-2 px-4 rounded mt-4" onClick={handleLogout}>
+            Logout
+          </button>
+        </div>
       </div>
     </div>
   );
