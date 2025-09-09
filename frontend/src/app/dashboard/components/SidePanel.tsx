@@ -39,8 +39,8 @@ const SidePanel = ({ openTab, setOpenTab }: SidePanelProps) => {
           </button>
         </div>
       </div>
-      <div className="w-full flex items-center justify-start px-6">
-        <button className="bg-red-500 text-white py-2 px-4 rounded mb-5" onClick={handleLogout}>
+      <div className="w-full flex items-center justify-center mb-5 px-6 bg-red-500 rounded-sm">
+        <button className=" text-white py-2 px-4 rounded" onClick={handleLogout}>
           <FaSignOutAlt className="inline mr-2" />
           Logout
         </button>
