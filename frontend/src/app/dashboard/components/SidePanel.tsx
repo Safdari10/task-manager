@@ -1,5 +1,6 @@
 import { removeToken } from "@/app/utils/tokenStorage";
 import { useRouter } from "next/navigation";
+import { FaSignOutAlt } from "react-icons/fa";
 
 interface SidePanelProps {
   openTab: string;
@@ -39,6 +40,7 @@ const SidePanel = ({ openTab, setOpenTab }: SidePanelProps) => {
         </div>
         <div>
           <button className="bg-red-500 text-white py-2 px-4 rounded mt-4" onClick={handleLogout}>
+            <FaSignOutAlt className="inline mr-2" />
             Logout
           </button>
         </div>
