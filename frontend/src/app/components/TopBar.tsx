@@ -1,6 +1,13 @@
+import { useState } from "react";
 import { FaUserCircle, FaPlus } from "react-icons/fa";
 
 const TopBar = () => {
+  const [isCreateTaskModalOpen, setIsCreateTaskModalOpen] = useState(false);
+
+  const handleNewTaskClick = () => {
+    setIsCreateTaskModalOpen(true);
+  };
+
   return (
     <div className="flex items-center justify-between w-full p-4 bg-white rounded-3xl  shadow-md">
       <input
