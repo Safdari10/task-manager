@@ -1,4 +1,4 @@
-import { removeToken } from "@/app/utils/tokenStorage";
+import { removeToken } from "@/utils/tokenStorage";
 import { useRouter } from "next/navigation";
 import { FaSignOutAlt } from "react-icons/fa";
 
