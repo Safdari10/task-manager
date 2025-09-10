@@ -28,7 +28,7 @@ const TopBar = () => {
           </button>
         </div>
       </div>
-      {isCreateTaskModalOpen && <CreateTask />}
+      {isCreateTaskModalOpen && <CreateTask onClose={() => setIsCreateTaskModalOpen(false)} />}
     </>
   );
 };
