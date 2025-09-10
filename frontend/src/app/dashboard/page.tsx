@@ -3,8 +3,8 @@
 import { useState } from "react";
 import SidePanel from "@/components/SidePanel";
 import TopBar from "@/components/TopBar";
-import Dashboard from "./components/Dashboard";
-import MyTasks from "./components/MyTasks";
+import Dashboard from "./dashboardTab/Dashboard";
+import MyTasks from "./dashboardTab/MyTasks";
 
 const TaskManager = () => {
   const [openTab, setOpenTab] = useState("dashboard");
