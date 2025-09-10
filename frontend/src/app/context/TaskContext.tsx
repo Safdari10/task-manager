@@ -4,3 +4,11 @@ interface Task {
   description: string;
   status: string;
 }
+
+interface TaskContextType {
+  tasks: Task[];
+  setTasks: (tasks: Task[]) => void;
+  addTask: (task: Task) => void;
+  updateTask: (updatedTask: Task) => void;
+  deleteTask: (taskId: number) => void;
+}
