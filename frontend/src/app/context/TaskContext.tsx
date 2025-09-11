@@ -1,3 +1,4 @@
+import { createContext } from "react";
 interface Task {
   id: number;
   title: string;
@@ -12,3 +13,7 @@ interface TaskContextType {
   updateTask: (updatedTask: Task) => void;
   deleteTask: (taskId: number) => void;
 }
+
+export const TaskContext = createContext<TaskContextType | undefined>(undefined);
+
+TaskContext.displayName = "TaskContext";
