@@ -21,5 +21,11 @@ TaskContext.displayName = "TaskContext";
 export const TaskProvider = ({ children }: { children: React.ReactNode }) => {
   const [tasks, setTasks] = useState<Task[]>([]);
 
-  return <TaskContext.Provider value={{ tasks, setTasks }}>{children}</TaskContext.Provider>;
+  const addTask = (task: Task) => {
+    setTasks((prevTasks) => [...prevTasks, task]);
+  };
+
+  return (
+    <TaskContext.Provider value={{ tasks, setTasks, addTask }}>{children}</TaskContext.Provider>
+  );
 };
