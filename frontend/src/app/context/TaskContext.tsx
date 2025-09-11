@@ -31,8 +31,12 @@ export const TaskProvider = ({ children }: { children: React.ReactNode }) => {
     );
   };
 
+  const deleteTask = (taskId: number) => {
+    setTasks((prevTasks) => prevTasks.filter((task) => task.id !== taskId));
+  };
+
   return (
-    <TaskContext.Provider value={{ tasks, setTasks, addTask, updateTask }}>
+    <TaskContext.Provider value={{ tasks, setTasks, addTask, updateTask, deleteTask }}>
       {children}
     </TaskContext.Provider>
   );
