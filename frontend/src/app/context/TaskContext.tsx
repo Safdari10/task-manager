@@ -1,4 +1,4 @@
-import { createContext } from "react";
+import { createContext, useState } from "react";
 interface Task {
   id: number;
   title: string;
@@ -19,5 +19,7 @@ export const TaskContext = createContext<TaskContextType | undefined>(undefined)
 TaskContext.displayName = "TaskContext";
 
 export const TaskProvider = ({ children }: { children: React.ReactNode }) => {
-  return <TaskContext.Provider value={{}}>{children}</TaskContext.Provider>;
+  const [tasks, setTasks] = useState<Task[]>([]);
+
+  return <TaskContext.Provider value={{ tasks, setTasks }}>{children}</TaskContext.Provider>;
 };
