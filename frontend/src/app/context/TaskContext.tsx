@@ -17,3 +17,7 @@ interface TaskContextType {
 export const TaskContext = createContext<TaskContextType | undefined>(undefined);
 
 TaskContext.displayName = "TaskContext";
+
+export const TaskProvider = ({ children }: { children: React.ReactNode }) => {
+  return <TaskContext.Provider value={{}}>{children}</TaskContext.Provider>;
+};
