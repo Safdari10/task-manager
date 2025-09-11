@@ -25,7 +25,15 @@ export const TaskProvider = ({ children }: { children: React.ReactNode }) => {
     setTasks((prevTasks) => [...prevTasks, task]);
   };
 
+  const updateTask = (updatedTask: Task) => {
+    setTasks((prevTasks) =>
+      prevTasks.map((task) => (task.id === updatedTask.id ? updatedTask : task))
+    );
+  };
+
   return (
-    <TaskContext.Provider value={{ tasks, setTasks, addTask }}>{children}</TaskContext.Provider>
+    <TaskContext.Provider value={{ tasks, setTasks, addTask, updateTask }}>
+      {children}
+    </TaskContext.Provider>
   );
 };
