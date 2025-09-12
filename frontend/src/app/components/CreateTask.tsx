@@ -1,5 +1,6 @@
 import { useTasks } from "@/hooks/useTasks";
 import { FormEvent, useState } from "react";
+import { toast } from "react-hot-toast";
 interface CreateTaskProps {
   onClose: () => void;
 }
@@ -8,11 +9,20 @@ const CreateTask = ({ onClose }: CreateTaskProps) => {
   const { createTask } = useTasks();
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
+  const [error, setError] = useState("");
+
+  if (error) {
+    toast.error(error);
+  }
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
     const newTask = { title, description, status: "pending" };
-    await createTask(newTask);
+    try {
+      await createTask(newTask);
+    } catch (error) {
+      setError("Failed to create task: " + error);
+    }
     onClose();
   };
 
