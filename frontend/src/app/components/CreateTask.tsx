@@ -1,11 +1,13 @@
 import { useTasks } from "@/hooks/useTasks";
-import { FormEvent } from "react";
+import { FormEvent, useState } from "react";
 interface CreateTaskProps {
   onClose: () => void;
 }
 
 const CreateTask = ({ onClose }: CreateTaskProps) => {
   const { addTask } = useTasks();
+  const [title, setTitle] = useState("");
+  const [description, setDescription] = useState("");
 
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
