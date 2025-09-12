@@ -18,6 +18,8 @@ const CreateTask = ({ onClose }: CreateTaskProps) => {
     }
   }, [error]);
 
+  const formIsInvalid = !title || title.trim().length > 255 || description.length > 1000;
+
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
     setError("");
