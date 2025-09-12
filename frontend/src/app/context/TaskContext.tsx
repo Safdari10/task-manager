@@ -30,6 +30,11 @@ TaskContext.displayName = "TaskContext";
 
 export const TaskProvider = ({ children }: { children: ReactNode }) => {
   const [tasks, setTasks] = useState<Task[]>([]);
+  const [newTask, setNewTask] = useState<NewTask[]>([]);
+
+  const createTask = (task: NewTask) => {
+    setNewTask((prevTasks) => [...prevTasks, task]);
+  };
 
   const addTask = (task: Task) => {
     setTasks((prevTasks) => [...prevTasks, task]);
@@ -46,7 +51,8 @@ export const TaskProvider = ({ children }: { children: ReactNode }) => {
   };
 
   return (
-    <TaskContext.Provider value={{ tasks, setTasks, addTask, updateTask, deleteTask }}>
+    <TaskContext.Provider
+      value={{ tasks, newTask, setTasks, createTask, addTask, updateTask, deleteTask }}>
       {children}
     </TaskContext.Provider>
   );
