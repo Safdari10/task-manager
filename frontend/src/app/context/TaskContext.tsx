@@ -1,14 +1,14 @@
 "use client";
 
 import { createContext, useState, ReactNode } from "react";
-interface Task {
+export interface Task {
   id: number;
   title: string;
   description: string;
   status: string;
 }
 
-interface NewTask {
+export interface NewTask {
   title: string;
   description: string;
   status: string;
