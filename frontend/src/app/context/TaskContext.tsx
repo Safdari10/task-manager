@@ -8,6 +8,12 @@ interface Task {
   status: string;
 }
 
+interface NewTask {
+  title: string;
+  description: string;
+  status: string;
+}
+
 interface TaskContextType {
   tasks: Task[];
   setTasks: (tasks: Task[]) => void;
