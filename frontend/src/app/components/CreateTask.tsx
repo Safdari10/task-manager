@@ -47,7 +47,8 @@ const CreateTask = ({ onClose }: CreateTaskProps) => {
             className="block w-full mb-2 p-2 border rounded"
             placeholder="Task description"
             value={description}
-            onChange={(e) => setDescription(e.target.value)}></textarea>
+            onChange={(e) => setDescription(e.target.value)}
+            maxLength={1000}></textarea>
           <div className="flex justify-end space-x-2">
             <button onClick={onClose} className="px-4 py-2 rounded" type="button">
               Close
