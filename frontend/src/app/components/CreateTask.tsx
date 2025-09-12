@@ -61,8 +61,11 @@ const CreateTask = ({ onClose }: CreateTaskProps) => {
             <button onClick={onClose} className="px-4 py-2 rounded" type="button">
               Close
             </button>
-            <button className="bg-blue-500 text-white px-4 py-2 rounded" type="submit">
-              Create Task
+            <button
+              className="bg-blue-500 text-white px-4 py-2 rounded"
+              type="submit"
+              disabled={formIsInvalid || isSubmitting}>
+              {isSubmitting ? "Creating..." : "Create Task"}
             </button>
           </div>
         </form>
