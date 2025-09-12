@@ -20,6 +20,17 @@ const CreateTask = ({ onClose }: CreateTaskProps) => {
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
     setError("");
+
+    if (!title || title.trim().length > 255) {
+      setError("Title is required and must be less than 255 characters.");
+      return;
+    }
+
+    if (description.length > 1000) {
+      setError("Description must be less than 1000 characters.");
+      return;
+    }
+
     const newTask = { title, description, status: "pending" };
     try {
       await createTask(newTask);
