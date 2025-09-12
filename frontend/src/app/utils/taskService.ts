@@ -2,7 +2,7 @@ import type { Task, NewTask } from "@/context/TaskContext";
 
 export const createTask = async (task: NewTask) => {
   try {
-    const URL = "http://localhost:8000/api/tasks";
+    const URL = `${process.env.NEXT_PUBLIC_API_URL}`;
     const response = await fetch(URL, {
       method: "POST",
       headers: {
