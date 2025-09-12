@@ -11,7 +11,8 @@ const CreateTask = ({ onClose }: CreateTaskProps) => {
 
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
-    // Logic to create a new task and add it using addTask from context
+    const newTask = { id: Date.now(), title, description, status: "pending" };
+    addTask(newTask);
     onClose();
   };
 
