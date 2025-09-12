@@ -5,14 +5,14 @@ interface CreateTaskProps {
 }
 
 const CreateTask = ({ onClose }: CreateTaskProps) => {
-  const { addTask } = useTasks();
+  const { createTask } = useTasks();
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
 
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
-    const newTask = { id: Date.now(), title, description, status: "pending" };
-    addTask(newTask);
+    const newTask = { title, description, status: "pending" };
+    createTask(newTask);
     onClose();
   };
 
