@@ -9,10 +9,10 @@ const CreateTask = ({ onClose }: CreateTaskProps) => {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
 
-  const handleSubmit = (e: FormEvent) => {
+  const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
     const newTask = { title, description, status: "pending" };
-    createTask(newTask);
+    await createTask(newTask);
     onClose();
   };
 
