@@ -24,15 +24,8 @@ const CreateTask = ({ onClose }: CreateTaskProps) => {
     e.preventDefault();
     setError("");
 
-    if (!title || title.trim().length > 255) {
-      setError("Title is required and must be less than 255 characters.");
-      return;
-    }
-
-    if (description.length > 1000) {
-      setError("Description must be less than 1000 characters.");
-      return;
-    }
+    if (formIsInvalid) return;
+    setIsSubmitting(true);
 
     const newTask = { title, description, status: "pending" };
     try {
@@ -40,6 +33,7 @@ const CreateTask = ({ onClose }: CreateTaskProps) => {
     } catch (error) {
       setError("Failed to create task: " + error);
     }
+    setIsSubmitting(false);
     onClose();
   };
 
