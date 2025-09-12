@@ -16,7 +16,9 @@ interface NewTask {
 
 interface TaskContextType {
   tasks: Task[];
+  newTask: NewTask[];
   setTasks: (tasks: Task[]) => void;
+  createTask: (task: NewTask) => void;
   addTask: (task: Task) => void;
   updateTask: (updatedTask: Task) => void;
   deleteTask: (taskId: number) => void;
