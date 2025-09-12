@@ -19,6 +19,7 @@ const CreateTask = ({ onClose }: CreateTaskProps) => {
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
+    setError("");
     const newTask = { title, description, status: "pending" };
     try {
       await createTask(newTask);
