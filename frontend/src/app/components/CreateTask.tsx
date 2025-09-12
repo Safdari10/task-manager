@@ -10,6 +10,7 @@ const CreateTask = ({ onClose }: CreateTaskProps) => {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [error, setError] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   useEffect(() => {
     if (error) {
