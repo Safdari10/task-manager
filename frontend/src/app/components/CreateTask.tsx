@@ -40,6 +40,8 @@ const CreateTask = ({ onClose }: CreateTaskProps) => {
             placeholder="Task title"
             value={title}
             onChange={(e) => setTitle(e.target.value)}
+            required
+            maxLength={255}
           />
           <textarea
             className="block w-full mb-2 p-2 border rounded"
