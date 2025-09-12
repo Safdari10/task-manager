@@ -1,6 +1,7 @@
 "use client";
 
 import { createContext, useState, ReactNode } from "react";
+import { createTask as createTaskApi } from "@/utils/taskService";
 export interface Task {
   id: number;
   title: string;
@@ -30,8 +31,13 @@ TaskContext.displayName = "TaskContext";
 export const TaskProvider = ({ children }: { children: ReactNode }) => {
   const [tasks, setTasks] = useState<Task[]>([]);
 
-  const createTask = (task: NewTask) => {
-    setTasks((prevTasks) => [...prevTasks, { id: Date.now(), ...task }]);
+  const createTask = async (task: NewTask) => {
+    try {
+      const newTask = await createTaskApi(task);
+      setTasks((prevTasks) => [...prevTasks, newTask]);
+    } catch (error) {
+      console.error("Error creating task:", error);
+    }
   };
 
   const addTask = (task: Task) => {
