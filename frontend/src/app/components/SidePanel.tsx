@@ -1,4 +1,4 @@
-import { removeToken } from "@/app/utils/tokenStorage";
+import { removeToken } from "@/utils/tokenStorage";
 import { useRouter } from "next/navigation";
 import { FaSignOutAlt } from "react-icons/fa";
 
@@ -16,7 +16,7 @@ const SidePanel = ({ openTab, setOpenTab }: SidePanelProps) => {
   };
 
   return (
-    <div className="flex flex-col items-center justify-between w-full h-full py-2 bg-white rounded-3xl shadow-md">
+    <div className="flex flex-col items-center justify-between w-full h-full max-h-[870px] py-2 bg-white rounded-3xl shadow-md">
       <div className="flex flex-col items-center justify-center w-full pt-4">
         <div className="flex flex-col items-center justify-center w-full pb-6 border-b-2 border-b-gray-200">
           <h1 className="w-full text-left text-2xl font-bold text-blue-600 px-6">Task Manager</h1>
