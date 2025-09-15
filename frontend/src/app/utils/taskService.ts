@@ -7,6 +7,7 @@ export const createTask = async (task: NewTask) => {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
       },
       body: JSON.stringify(task),
     });
