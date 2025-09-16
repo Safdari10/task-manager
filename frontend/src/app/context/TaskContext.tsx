@@ -8,6 +8,7 @@ export interface Task {
   description: string;
   status: string;
   created_at: string;
+  updated_at: string;
 }
 
 export interface NewTask {
