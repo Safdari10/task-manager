@@ -9,6 +9,11 @@ const TaskPreview = () => {
     fetchTasks();
   }, [fetchTasks]);
 
+  const latestTasks = [...tasks]
+    .filter((task) => task.created_at)
+    .sort((a, b) => new Date(b.created_at).getTime() - new Date(a.created_at).getTime())
+    .slice(0, 5);
+
   return (
     <div className="w-[22rem] h-[23rem] flex flex-col items-start gap-2 bg-white rounded-3xl shadow-md py-4">
       <div className="flex items-center justify-between w-full border-b-2 border-b-gray-200 pb-4 px-6">
@@ -18,7 +23,7 @@ const TaskPreview = () => {
         </div>
       </div>
       <div className="flex flex-col items-stretch w-full">
-        {tasks.map((task) => (
+        {latestTasks.map((task) => (
           <div
             key={task.id}
             className="flex items-center justify-between py-4 px-7 border-b last:border-b-0 border-b-gray-500 w-full">
