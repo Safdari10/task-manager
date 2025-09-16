@@ -1,6 +1,9 @@
 import { FaEllipsisV, FaCheck } from "react-icons/fa";
+import { useTasks } from "@/hooks/useTasks";
 
 const TaskPreview = () => {
+  const { tasks, fetchTasks } = useTasks();
+
   const sampleTasks = [
     {
       id: 1,
