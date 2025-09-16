@@ -1,8 +1,13 @@
+import { useEffect } from "react";
 import { FaEllipsisV, FaCheck } from "react-icons/fa";
 import { useTasks } from "@/hooks/useTasks";
 
 const TaskPreview = () => {
   const { tasks, fetchTasks } = useTasks();
+
+  useEffect(() => {
+    fetchTasks();
+  }, [fetchTasks]);
 
   const sampleTasks = [
     {
