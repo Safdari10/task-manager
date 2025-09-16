@@ -22,3 +22,23 @@ export const createTask = async (task: NewTask) => {
     throw error;
   }
 };
+
+export const fetchTasks = async () => {
+  try {
+    const response = await fetch(TASKS_API_URL, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+      },
+    });
+    if (!response.ok) {
+      throw new Error("Failed to fetch tasks");
+    }
+    const data = await response.json();
+    return data as Task[];
+  } catch (error) {
+    console.error("Error fetching tasks:", error);
+    throw error;
+  }
+};
