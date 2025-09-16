@@ -41,6 +41,15 @@ export const TaskProvider = ({ children }: { children: ReactNode }) => {
     }
   };
 
+  const fetchTasks = async () => {
+    try {
+      const fetchedTasks = await fetchTasksApi();
+      setTasks(fetchedTasks);
+    } catch (error) {
+      console.error("Error fetching tasks:", error);
+    }
+  };
+
   const addTask = (task: Task) => {
     setTasks((prevTasks) => [...prevTasks, task]);
   };
@@ -56,7 +65,8 @@ export const TaskProvider = ({ children }: { children: ReactNode }) => {
   };
 
   return (
-    <TaskContext.Provider value={{ tasks, setTasks, createTask, addTask, updateTask, deleteTask }}>
+    <TaskContext.Provider
+      value={{ tasks, setTasks, createTask, fetchTasks, addTask, updateTask, deleteTask }}>
       {children}
     </TaskContext.Provider>
   );
