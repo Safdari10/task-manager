@@ -51,7 +51,7 @@ const TaskPreview = () => {
         </div>
       </div>
       <div className="flex flex-col items-stretch w-full">
-        {sampleTasks.map((task) => (
+        {tasks.map((task) => (
           <div
             key={task.id}
             className="flex items-center justify-between py-4 px-7 border-b last:border-b-0 border-b-gray-500 w-full">
