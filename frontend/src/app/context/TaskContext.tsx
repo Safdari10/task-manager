@@ -1,7 +1,7 @@
 "use client";
 
 import { createContext, useState, ReactNode } from "react";
-import { createTask as createTaskApi } from "@/utils/taskService";
+import { createTask as createTaskApi, fetchTasks as fetchTasksApi } from "@/utils/taskService";
 export interface Task {
   id: number;
   title: string;
@@ -19,6 +19,7 @@ interface TaskContextType {
   tasks: Task[];
   setTasks: (tasks: Task[]) => void;
   createTask: (task: NewTask) => void;
+  fetchTasks: () => void;
   addTask: (task: Task) => void;
   updateTask: (updatedTask: Task) => void;
   deleteTask: (taskId: number) => void;
