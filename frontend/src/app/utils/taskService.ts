@@ -1,9 +1,10 @@
 import type { Task, NewTask } from "@/context/TaskContext";
 
+const TASKS_API_URL = process.env.NEXT_PUBLIC_API_URL as string;
+
 export const createTask = async (task: NewTask) => {
   try {
-    const URL = `${process.env.NEXT_PUBLIC_API_URL}`;
-    const response = await fetch(URL, {
+    const response = await fetch(TASKS_API_URL, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
