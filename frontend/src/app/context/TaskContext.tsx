@@ -1,6 +1,6 @@
 "use client";
 
-import { createContext, useState, ReactNode } from "react";
+import { createContext, useState, ReactNode, useCallback } from "react";
 import { createTask as createTaskApi, fetchTasks as fetchTasksApi } from "@/utils/taskService";
 export interface Task {
   id: number;
@@ -43,14 +43,14 @@ export const TaskProvider = ({ children }: { children: ReactNode }) => {
     }
   };
 
-  const fetchTasks = async () => {
+  const fetchTasks = useCallback(async () => {
     try {
       const fetchedTasks = await fetchTasksApi();
       setTasks(fetchedTasks);
     } catch (error) {
       console.error("Error fetching tasks:", error);
     }
-  };
+  }, []);
 
   const addTask = (task: Task) => {
     setTasks((prevTasks) => [...prevTasks, task]);
