@@ -8,11 +8,11 @@ const MyTasks = () => {
     fetchTasks();
   }, [fetchTasks]);
 
-  const tableHeaders = ["Title", "Description", "Status", "Created At", "Updated At"];
+  const tableHeaders = ["Task", "Description", "Status", "Created At", "Updated At"];
 
   return (
     <div className="w-full h-full flex flex-col items-start justify-start gap-4 bg-white rounded-3xl shadow-md p-4">
-      <div className="grid grid-cols-4">
+      <div className="w-full h-full grid grid-cols-5">
         {tableHeaders.map((header) => (
           <div key={header} className="text-center font-semibold">
             {header}
