@@ -12,7 +12,7 @@ const MyTasks = () => {
 
   return (
     <div className="w-full h-full flex flex-col items-start justify-start gap-4 bg-white rounded-3xl shadow-md p-4">
-      <div className="w-full h-full grid grid-cols-5">
+      <div className="w-full h-full grid grid-cols-5 place-items-center">
         {tableHeaders.map((header) => (
           <div key={header} className="text-center font-semibold border-b-2 border-b-gray-200 pb-4">
             {header}
