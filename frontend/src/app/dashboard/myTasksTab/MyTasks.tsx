@@ -7,7 +7,9 @@ const MyTasks = () => {
   useEffect(() => {
     fetchTasks();
   }, [fetchTasks]);
-  return <div>MyTasks</div>;
+  return (
+    <div className="w-full h-full flex flex-col items-start justify-start gap-4 bg-white rounded-3xl shadow-md p-4"></div>
+  );
 };
 
 export default MyTasks;
