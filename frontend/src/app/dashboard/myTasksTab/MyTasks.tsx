@@ -12,18 +12,20 @@ const MyTasks = () => {
 
   return (
     <div className="w-full h-full flex flex-col items-start justify-start gap-4 bg-white rounded-3xl shadow-md py-4">
-      <div className="w-full h-full grid grid-cols-5 place-items-center">
+      <div className="w-full h-full grid grid-cols-5">
         {tableHeaders.map((header) => (
           <div
             key={header}
-            className="text-center font-semibold border-b-2 border-b-gray-200 w-full pb-4">
+            className={`${
+              ["Task", "Description"].includes(header) ? "text-left pl-6" : "text-center"
+            } font-semibold border-b-2 border-b-gray-200 w-full pb-4`}>
             {header}
           </div>
         ))}
         {tasks.map((task) => (
           <>
-            <div className="text-center pb-4">{task.title}</div>
-            <div className="text-center pb-4">{task.description}</div>
+            <div className="text-left pb-4 pl-6">{task.title}</div>
+            <div className="text-left pb-4 pl-6">{task.description}</div>
             <div className="text-center pb-4">{task.status}</div>
             <div className="text-center pb-4">{task.created_at}</div>
             <div className="text-center pb-4">{task.updated_at}</div>
