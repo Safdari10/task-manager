@@ -11,7 +11,7 @@ const MyTasks = () => {
   const tableHeaders = ["Task", "Description", "Status", "Created At", "Updated At"];
 
   return (
-    <div className="w-full h-full flex flex-col items-start justify-start gap-4 bg-white rounded-3xl shadow-md p-4">
+    <div className="w-full h-full flex flex-col items-start justify-start gap-4 bg-white rounded-3xl shadow-md py-4">
       <div className="w-full h-full grid grid-cols-5 place-items-center">
         {tableHeaders.map((header) => (
           <div
