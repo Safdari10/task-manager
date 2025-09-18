@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, Fragment } from "react";
 import { useTasks } from "@/hooks/useTasks";
 import { FaCheck } from "react-icons/fa";
 import { formatDate } from "@/utils/dateUtils";
@@ -25,8 +25,8 @@ const MyTasks = () => {
           </div>
         ))}
         {tasks.map((task) => (
-          <>
-            <div key={task.id + "-title"} className="flex items-center text-left pb-4 pl-6">
+          <Fragment key={task.id}>
+            <div className="flex items-center text-left pb-4 pl-6">
               <label className="cursor-pointer relative block w-[1.4rem] h-[1.4rem] mr-2">
                 <input
                   type="checkbox"
@@ -41,19 +41,11 @@ const MyTasks = () => {
               </label>
               {task.title}
             </div>
-            <div key={task.id + "-desc"} className="text-left pb-4 pl-6">
-              {task.description}
-            </div>
-            <div key={task.id + "-status"} className="text-center pb-4">
-              {task.status}
-            </div>
-            <div key={task.id + "-created"} className="text-center pb-4">
-              {formatDate(task.created_at)}
-            </div>
-            <div key={task.id + "-updated"} className="text-center pb-4">
-              {formatDate(task.updated_at)}
-            </div>
-          </>
+            <div className="text-left pb-4 pl-6">{task.description}</div>
+            <div className="text-center pb-4">{task.status}</div>
+            <div className="text-center pb-4">{formatDate(task.created_at)}</div>
+            <div className="text-center pb-4">{formatDate(task.updated_at)}</div>
+          </Fragment>
         ))}
       </div>
     </div>
