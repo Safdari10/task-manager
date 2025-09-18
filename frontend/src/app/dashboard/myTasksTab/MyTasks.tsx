@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { useTasks } from "@/hooks/useTasks";
 import { FaCheck } from "react-icons/fa";
+import { formatDate } from "@/utils/dateUtils";
 
 const MyTasks = () => {
   const { tasks, fetchTasks } = useTasks();
@@ -47,10 +48,10 @@ const MyTasks = () => {
               {task.status}
             </div>
             <div key={task.id + "-created"} className="text-center pb-4">
-              {task.created_at}
+              {formatDate(task.created_at)}
             </div>
             <div key={task.id + "-updated"} className="text-center pb-4">
-              {task.updated_at}
+              {formatDate(task.updated_at)}
             </div>
           </>
         ))}
