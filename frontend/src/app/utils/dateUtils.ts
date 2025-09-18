@@ -6,8 +6,15 @@ export const formatDate = (dateString: string): string => {
     date.getMonth() === now.getMonth() &&
     date.getFullYear() === now.getFullYear();
 
+  const isYesterday =
+    date.getDate() === now.getDate() - 1 &&
+    date.getMonth() === now.getMonth() &&
+    date.getFullYear() === now.getFullYear();
+
   if (isToday) {
     return "Today";
+  } else if (isYesterday) {
+    return "Yesterday";
   } else {
     return date.toLocaleDateString(undefined, {
       year: "numeric",
