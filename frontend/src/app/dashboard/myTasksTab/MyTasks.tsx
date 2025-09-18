@@ -24,11 +24,21 @@ const MyTasks = () => {
         ))}
         {tasks.map((task) => (
           <>
-            <div className="text-left pb-4 pl-6">{task.title}</div>
-            <div className="text-left pb-4 pl-6">{task.description}</div>
-            <div className="text-center pb-4">{task.status}</div>
-            <div className="text-center pb-4">{task.created_at}</div>
-            <div className="text-center pb-4">{task.updated_at}</div>
+            <div key={task.id + "-title"} className="text-left pb-4 pl-6">
+              {task.title}
+            </div>
+            <div key={task.id + "-desc"} className="text-left pb-4 pl-6">
+              {task.description}
+            </div>
+            <div key={task.id + "-status"} className="text-center pb-4">
+              {task.status}
+            </div>
+            <div key={task.id + "-created"} className="text-center pb-4">
+              {task.created_at}
+            </div>
+            <div key={task.id + "-updated"} className="text-center pb-4">
+              {task.updated_at}
+            </div>
           </>
         ))}
       </div>
