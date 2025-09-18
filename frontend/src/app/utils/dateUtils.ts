@@ -6,10 +6,12 @@ export const formatDate = (dateString: string): string => {
     date.getMonth() === now.getMonth() &&
     date.getFullYear() === now.getFullYear();
 
+  const yesterday = new Date(now);
+  yesterday.setDate(now.getDate() - 1);
   const isYesterday =
-    date.getDate() === now.getDate() - 1 &&
-    date.getMonth() === now.getMonth() &&
-    date.getFullYear() === now.getFullYear();
+    date.getDate() === yesterday.getDate() &&
+    date.getMonth() === yesterday.getMonth() &&
+    date.getFullYear() === yesterday.getFullYear();
 
   if (isToday) {
     return "Today";
