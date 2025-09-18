@@ -25,6 +25,7 @@ const MyTasks = () => {
         {tasks.map((task) => (
           <>
             <div key={task.id + "-title"} className="text-left pb-4 pl-6">
+              <input type="checkbox" className="mr-2" />
               {task.title}
             </div>
             <div key={task.id + "-desc"} className="text-left pb-4 pl-6">
