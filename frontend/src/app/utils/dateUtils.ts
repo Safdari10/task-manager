@@ -1,27 +1,36 @@
 export const formatDate = (dateString: string): string => {
-  const date = new Date(dateString);
-  const now = new Date();
-  const isToday =
-    date.getDate() === now.getDate() &&
-    date.getMonth() === now.getMonth() &&
-    date.getFullYear() === now.getFullYear();
+  // Parse as UTC if possible
+  let date: Date;
+  if (dateString.endsWith("Z") || dateString.includes("+")) {
+    date = new Date(dateString);
+  } else {
+    // If no timezone info, treat as UTC
+    date = new Date(dateString + "Z");
+  }
+  if (isNaN(date.getTime())) return "";
 
+  const now = new Date();
+
+  // Compare local year/month/day
+  const isToday =
+    date.getFullYear() === now.getFullYear() &&
+    date.getMonth() === now.getMonth() &&
+    date.getDate() === now.getDate();
+
+  // Calculate yesterday in local time
   const yesterday = new Date(now);
   yesterday.setDate(now.getDate() - 1);
   const isYesterday =
-    date.getDate() === yesterday.getDate() &&
+    date.getFullYear() === yesterday.getFullYear() &&
     date.getMonth() === yesterday.getMonth() &&
-    date.getFullYear() === yesterday.getFullYear();
+    date.getDate() === yesterday.getDate();
 
-  if (isToday) {
-    return "Today";
-  } else if (isYesterday) {
-    return "Yesterday";
-  } else {
-    return date.toLocaleDateString(undefined, {
-      year: "numeric",
-      month: "short",
-      day: "numeric",
-    });
-  }
+  if (isToday) return "Today";
+  if (isYesterday) return "Yesterday";
+
+  return date.toLocaleDateString(undefined, {
+    year: "numeric",
+    month: "short",
+    day: "numeric",
+  });
 };
