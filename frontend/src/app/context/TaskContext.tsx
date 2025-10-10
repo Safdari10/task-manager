@@ -1,7 +1,11 @@
 "use client";
 
 import { createContext, useState, ReactNode, useCallback } from "react";
-import { createTask as createTaskApi, fetchTasks as fetchTasksApi } from "@/utils/taskService";
+import {
+  createTask as createTaskApi,
+  fetchTasks as fetchTasksApi,
+  updateTask as updateTaskApi,
+} from "@/utils/taskService";
 export interface Task {
   id: number;
   title: string;
@@ -56,10 +60,13 @@ export const TaskProvider = ({ children }: { children: ReactNode }) => {
     setTasks((prevTasks) => [...prevTasks, task]);
   };
 
-  const updateTask = (updatedTask: Task) => {
-    setTasks((prevTasks) =>
-      prevTasks.map((task) => (task.id === updatedTask.id ? updatedTask : task))
-    );
+  const updateTask = async (updatedTask: Task) => {
+    try {
+      const task = await updateTaskApi(updatedTask);
+      setTasks((prevTasks) => prevTasks.map((t) => (t.id === task.id ? task : t)));
+    } catch (error) {
+      console.error("Error updating task:", error);
+    }
   };
 
   const deleteTask = (taskId: number) => {
