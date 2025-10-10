@@ -38,11 +38,15 @@ const MyTasks = () => {
         {tasks.map((task) => (
           <Fragment key={task.id}>
             <div className="flex items-center text-left pb-4 pl-6">
-              <label className="cursor-pointer relative block w-[1.4rem] h-[1.4rem] mr-2">
+              <label
+                className="cursor-pointer relative block w-[1.4rem] h-[1.4rem] mr-2"
+                htmlFor={`task-${task.id}`}>
                 <input
                   type="checkbox"
                   id={`task-${task.id}`}
                   className="peer opacity-0 absolute inset-0"
+                  checked={selectedTasks.includes(task.id)}
+                  onChange={() => handleTaskSelect(task.id)}
                 />
                 <span
                   className="w-[1.4rem] h-[1.4rem] rounded-full border-2 border-gray-300 bg-gray-100 flex items-center justify-center peer-checked:bg-amber-300
