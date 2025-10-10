@@ -5,9 +5,10 @@ import {
   createTask as createTaskApi,
   fetchTasks as fetchTasksApi,
   updateTask as updateTaskApi,
+  deleteTask as deleteTaskApi,
 } from "@/utils/taskService";
 export interface Task {
-  id: number;
+  id: string;
   title: string;
   description: string;
   status: string;
@@ -28,7 +29,7 @@ interface TaskContextType {
   fetchTasks: () => void;
   addTask: (task: Task) => void;
   updateTask: (updatedTask: Task) => void;
-  deleteTask: (taskId: number) => void;
+  deleteTask: (taskId: string) => void;
 }
 
 export const TaskContext = createContext<TaskContextType | undefined>(undefined);
@@ -69,8 +70,13 @@ export const TaskProvider = ({ children }: { children: ReactNode }) => {
     }
   };
 
-  const deleteTask = (taskId: number) => {
-    setTasks((prevTasks) => prevTasks.filter((task) => task.id !== taskId));
+  const deleteTask = async (taskId: string) => {
+    try {
+      const task = await deleteTaskApi(taskId);
+      setTasks((prevTasks) => prevTasks.filter((t) => t.id !== task.id));
+    } catch (error) {
+      console.error("Error deleting task:", error);
+    }
   };
 
   return (
