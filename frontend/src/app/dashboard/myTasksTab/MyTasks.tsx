@@ -7,6 +7,16 @@ const MyTasks = () => {
   const { tasks, fetchTasks } = useTasks();
   const [selectedTasks, setSelectedTasks] = useState<number[]>([]);
 
+  const handleTaskSelect = (taskId: number) => {
+    setSelectedTasks((prevSelected) => {
+      if (prevSelected.includes(taskId)) {
+        return prevSelected.filter((id) => id !== taskId);
+      } else {
+        return [...prevSelected, taskId];
+      }
+    });
+  };
+
   useEffect(() => {
     fetchTasks();
   }, [fetchTasks]);
