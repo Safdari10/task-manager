@@ -47,7 +47,7 @@ const MyTasks = () => {
         ))}
         {tasks.map((task) => (
           <Fragment key={task.id}>
-            <div className="flex items-center text-left pb-4 pl-6">
+            <div className="flex items-center text-left pb-4 pl-6 text-sm">
               <label
                 className="cursor-pointer relative block w-[1.4rem] h-[1.4rem] mr-2"
                 htmlFor={`task-${task.id}`}>
@@ -66,10 +66,10 @@ const MyTasks = () => {
               </label>
               {task.title}
             </div>
-            <div className="text-left pb-4 pl-6">{task.description}</div>
-            <div className="text-center pb-4">{task.status}</div>
-            <div className="text-center pb-4">{formatDate(task.created_at)}</div>
-            <div className="text-center pb-4">{formatDate(task.updated_at)}</div>
+            <div className="text-left pb-4 pl-6 text-sm">{task.description}</div>
+            <div className="text-center pb-4 text-sm">{task.status}</div>
+            <div className="text-center pb-4 text-sm">{formatDate(task.created_at)}</div>
+            <div className="text-center pb-4 text-sm">{formatDate(task.updated_at)}</div>
           </Fragment>
         ))}
       </div>
