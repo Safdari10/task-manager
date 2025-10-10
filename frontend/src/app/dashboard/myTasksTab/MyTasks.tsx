@@ -1,10 +1,11 @@
-import { useEffect, Fragment } from "react";
+import { useEffect, Fragment, useState } from "react";
 import { useTasks } from "@/hooks/useTasks";
 import { FaCheck } from "react-icons/fa";
 import { formatDate } from "@/utils/dateUtils";
 
 const MyTasks = () => {
   const { tasks, fetchTasks } = useTasks();
+  const [selectedTasks, setSelectedTasks] = useState<number[]>([]);
 
   useEffect(() => {
     fetchTasks();
