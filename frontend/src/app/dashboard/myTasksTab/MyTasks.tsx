@@ -2,6 +2,7 @@ import { useEffect, Fragment, useState } from "react";
 import { useTasks } from "@/hooks/useTasks";
 import { FaCheck } from "react-icons/fa";
 import { formatDate } from "@/utils/dateUtils";
+import toast from "react-hot-toast";
 
 const MyTasks = () => {
   const { tasks, fetchTasks, deleteTask } = useTasks();
@@ -20,10 +21,12 @@ const MyTasks = () => {
   const handleDelete = async () => {
     try {
       await Promise.all(selectedTasks.map((taskId) => deleteTask(taskId.toString())));
+      toast.success("Tasks deleted successfully");
       setSelectedTasks([]);
       fetchTasks();
     } catch (error) {
       console.error("Error deleting tasks:", error);
+      toast.error("Error deleting tasks");
     }
   };
 
