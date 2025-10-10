@@ -45,6 +45,7 @@ export const TaskProvider = ({ children }: { children: ReactNode }) => {
       setTasks((prevTasks) => [...prevTasks, newTask]);
     } catch (error) {
       console.error("Error creating task:", error);
+      throw error;
     }
   };
 
@@ -54,6 +55,7 @@ export const TaskProvider = ({ children }: { children: ReactNode }) => {
       setTasks(fetchedTasks);
     } catch (error) {
       console.error("Error fetching tasks:", error);
+      throw error;
     }
   }, []);
 
@@ -67,6 +69,7 @@ export const TaskProvider = ({ children }: { children: ReactNode }) => {
       setTasks((prevTasks) => prevTasks.map((t) => (t.id === task.id ? task : t)));
     } catch (error) {
       console.error("Error updating task:", error);
+      throw error;
     }
   };
 
@@ -76,6 +79,7 @@ export const TaskProvider = ({ children }: { children: ReactNode }) => {
       setTasks((prevTasks) => prevTasks.filter((t) => t.id !== task.id));
     } catch (error) {
       console.error("Error deleting task:", error);
+      throw error;
     }
   };
 
