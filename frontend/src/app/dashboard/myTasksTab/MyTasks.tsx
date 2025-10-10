@@ -4,10 +4,10 @@ import { FaCheck } from "react-icons/fa";
 import { formatDate } from "@/utils/dateUtils";
 
 const MyTasks = () => {
-  const { tasks, fetchTasks } = useTasks();
-  const [selectedTasks, setSelectedTasks] = useState<number[]>([]);
+  const { tasks, fetchTasks, deleteTask } = useTasks();
+  const [selectedTasks, setSelectedTasks] = useState<string[]>([]);
 
-  const handleTaskSelect = (taskId: number) => {
+  const handleTaskSelect = (taskId: string) => {
     setSelectedTasks((prevSelected) => {
       if (prevSelected.includes(taskId)) {
         return prevSelected.filter((id) => id !== taskId);
@@ -15,6 +15,16 @@ const MyTasks = () => {
         return [...prevSelected, taskId];
       }
     });
+  };
+
+  const handleDelete = async () => {
+    try {
+      await Promise.all(selectedTasks.map((taskId) => deleteTask(taskId.toString())));
+      setSelectedTasks([]);
+      fetchTasks();
+    } catch (error) {
+      console.error("Error deleting tasks:", error);
+    }
   };
 
   useEffect(() => {
