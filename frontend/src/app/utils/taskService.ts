@@ -68,3 +68,27 @@ export const updateTask = async (task: Task) => {
     throw error;
   }
 };
+
+export const deleteTask = async (taskId: string) => {
+  try {
+    const token = localStorage.getItem("token");
+    if (!token) throw new Error("No auth token");
+
+    const response = await fetch(`${TASKS_API_URL}/${taskId}`, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    if (!response.ok) {
+      throw new Error("Failed to delete task");
+    }
+
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error("Error deleting task:", error);
+    throw error;
+  }
+};
