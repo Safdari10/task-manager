@@ -42,3 +42,29 @@ export const fetchTasks = async () => {
     throw error;
   }
 };
+
+export const updateTask = async (task: Task) => {
+  try {
+    const token = localStorage.getItem("token");
+    if (!token) throw new Error("No auth token");
+
+    const response = await fetch(`${TASKS_API_URL}/${task.id}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify(task),
+    });
+
+    if (!response.ok) {
+      throw new Error("Failed to update task");
+    }
+
+    const data = await response.json();
+    return data as Task;
+  } catch (error) {
+    console.error("Error updating task:", error);
+    throw error;
+  }
+};
