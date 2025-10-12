@@ -93,9 +93,10 @@ const MyTasks = () => {
             </Fragment>
           ))}
         </div>
-        <div className="w-full flex justify-end px-6 pb-2">
-          {selectedTasks.length > 0 && (
-            <div className="flex items-center space-x-4">
+
+        {selectedTasks.length > 0 && (
+          <div className="w-full flex justify-end px-6">
+            <div className="flex items-center space-x-4 pb-2">
               <button
                 onClick={handleUpdate}
                 className="bg-blue-500 text-white px-4 py-2 rounded-md cursor-pointer hover:bg-blue-600 transition">
@@ -107,8 +108,8 @@ const MyTasks = () => {
                 Delete Task
               </button>
             </div>
-          )}
-        </div>
+          </div>
+        )}
       </div>
       {isEditModalOpen && <EditTask task={taskToEdit} onClose={() => setIsEditModalOpen(false)} />}
     </>
