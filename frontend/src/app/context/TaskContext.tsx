@@ -75,8 +75,8 @@ export const TaskProvider = ({ children }: { children: ReactNode }) => {
 
   const deleteTask = async (taskId: string) => {
     try {
-      const task = await deleteTaskApi(taskId);
-      setTasks((prevTasks) => prevTasks.filter((t) => t.id !== task.id));
+      await deleteTaskApi(taskId);
+      setTasks((prevTasks) => prevTasks.filter((t) => t.id !== taskId));
     } catch (error) {
       console.error("Error deleting task:", error);
       throw error;
