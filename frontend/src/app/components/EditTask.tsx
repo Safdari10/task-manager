@@ -18,6 +18,9 @@ const EditTask = ({ task, onClose }: EditTaskProps) => {
   const [title, setTitle] = useState(task?.title || "");
   const [description, setDescription] = useState(task?.description || "");
   const [status, setStatus] = useState(task?.status || "pending");
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const formIsInvalid = !title || title.trim().length > 255 || description.length > 1000;
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
@@ -25,10 +28,13 @@ const EditTask = ({ task, onClose }: EditTaskProps) => {
 
     const updatedTask = { ...task, title, description, status };
     try {
+      setIsSubmitting(true);
       await updateTask(updatedTask);
       onClose();
     } catch (error) {
       console.error("Failed to update task:", error);
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
