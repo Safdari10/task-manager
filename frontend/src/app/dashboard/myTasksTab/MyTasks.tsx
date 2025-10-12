@@ -7,6 +7,7 @@ import toast from "react-hot-toast";
 const MyTasks = () => {
   const { tasks, fetchTasks, deleteTask } = useTasks();
   const [selectedTasks, setSelectedTasks] = useState<string[]>([]);
+  const [isEditModalOpen, setIsEditModalOpen] = useState(false);
 
   const handleTaskSelect = (taskId: string) => {
     setSelectedTasks((prevSelected) => {
@@ -16,6 +17,14 @@ const MyTasks = () => {
         return [...prevSelected, taskId];
       }
     });
+  };
+
+  const handleUpdate = async () => {
+    if (selectedTasks.length === 1) {
+      setIsEditModalOpen(true);
+    } else {
+      toast.error("Please select a single task to edit");
+    }
   };
 
   const handleDelete = async () => {
