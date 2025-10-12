@@ -1,5 +1,6 @@
 import React, { FormEvent, useState } from "react";
 import { useTasks } from "@/hooks/useTasks";
+import toast from "react-hot-toast";
 
 interface EditTaskProps {
   task: {
@@ -30,9 +31,11 @@ const EditTask = ({ task, onClose }: EditTaskProps) => {
     try {
       setIsSubmitting(true);
       await updateTask(updatedTask);
+      toast.success("Task updated successfully");
       onClose();
     } catch (error) {
       console.error("Failed to update task:", error);
+      toast.error("Failed to update task");
     } finally {
       setIsSubmitting(false);
     }
