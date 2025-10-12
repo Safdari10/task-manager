@@ -54,14 +54,14 @@ const MyTasks = () => {
 
   return (
     <>
-      <div className="w-full h-full flex flex-col items-start justify-start gap-4 bg-white rounded-3xl shadow-md py-4">
+      <div className="w-full h-full flex flex-col items-start justify-start gap-4 bg-white rounded-3xl shadow-md pt-4 pb-2">
         <div className="w-full h-full grid grid-cols-5">
           {tableHeaders.map((header) => (
             <div
               key={header}
               className={`${
                 ["Task", "Description"].includes(header) ? "text-left pl-6" : "text-center"
-              } font-semibold border-b-2 border-b-gray-200 w-full pb-4`}>
+              } font-semibold border-b-2 border-b-gray-200 w-full pb-4 mb-4`}>
               {header}
             </div>
           ))}
