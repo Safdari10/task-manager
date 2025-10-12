@@ -1,66 +1,65 @@
 # Task Manager Monorepo
 
-This repository contains both the backend (FastAPI) and frontend (to be added) for the Task Manager project.
+This repository contains both the **backend** (FastAPI) and **frontend** (Next.js/React) for the Task Manager project.
 
-## Project Structure
+---
+
+## 📁 Project Structure
 
 ```
 task_manager/
   backend/        # FastAPI backend (API, DB, tests, docs)
-  frontend/       # Frontend app (React, Vue, etc.)
-  docker-compose.yml           # Local/dev Compose (backend, db, test)
-  docker-compose.prod.yml      # Production Compose (backend, db)
-  README.md      # This file
+  frontend/       # Next.js frontend app
+  docker-compose.yml         # Local/dev Compose (backend, db, frontend)
+  docker-compose.prod.yml    # Production Compose (backend, db, frontend)
+  README.md                  # Project overview (this file)
 ```
 
-## Quick Start
+---
 
-### Local Development (Backend)
+## 🚀 Quick Start
 
-1. Copy `backend/.env.example` to `backend/.env` and set your secrets and DB credentials.
-2. Start backend and db:
-   ```sh
-   docker compose up --build
-   ```
-3. API docs: [http://localhost:8000/docs](http://localhost:8000/docs)
+### Local Development
+
+1. Create `backend/.env.example` and `backend/.env.production` if they do not exist, and use them to set your secrets and DB credentials.
+2. Copy `backend/.env.example` to `backend/.env` for local development.
+3. Start backend, frontend, and database:
+
+```sh
+docker compose up --build
+```
+
+3. Access API docs: [http://localhost:8000/docs](http://localhost:8000/docs)
+4. Access frontend: [http://localhost:3000](http://localhost:3000)
 
 ### Production
 
 1. Copy `backend/.env.production` and set your production secrets and DB credentials.
 2. Start with production settings:
-   ```sh
-   docker compose -f docker-compose.yml -f docker-compose.prod.yml up --build
-   ```
 
-### Running Backend Tests
+```sh
+docker compose -f docker-compose.yml -f docker-compose.prod.yml up --build
+```
+
+---
+
+## 🧪 Running Backend Tests
 
 ```sh
 docker compose run --rm test
 ```
 
-## Configuration
+---
 
-- Copy `backend/.env.example` to `backend/.env` and fill in local credentials and secrets. Do NOT commit `.env`.
-- Use `backend/.env.example` as the template for onboarding.
-- To run fast unit tests that don't require the DB, use the security tests:
-  ```sh
-  cd backend
-  pytest -q tests/test_security.py
-  ```
+## ⚙️ Configuration
 
-## Backend Documentation
-
-See [`backend/ReadMe.md`](backend/ReadMe.md) for backend API, DB, and developer details.
-
-## Frontend
-
-- To be added in the `frontend/` folder.
-- Add a `frontend/README.md` for frontend-specific setup and usage.
-
-## Adding More Services
-
-- Add new services (e.g., frontend, nginx, redis) to the Compose files as needed.
+- Create `backend/.env.example` and `backend/.env.production` as templates for onboarding and production configuration.
 
 ---
 
-For questions or contributions, see the backend and (future) frontend documentation.
+## 📚 Documentation
+
+- **Backend:** See [`backend/ReadMe.md`](backend/ReadMe.md) for API, DB, and developer details.
+- **Frontend:** See [`frontend/README.md`](frontend/README.md) for setup and usage.
+
+---
