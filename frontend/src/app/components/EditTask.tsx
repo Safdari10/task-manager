@@ -10,9 +10,10 @@ interface EditTaskProps {
     created_at: string;
     updated_at: string;
   } | null;
+  onClose: () => void;
 }
 
-const EditTask = ({ task }: EditTaskProps) => {
+const EditTask = ({ task, onClose }: EditTaskProps) => {
   const { updateTask } = useTasks();
   const [title, setTitle] = useState(task?.title || "");
   const [description, setDescription] = useState(task?.description || "");
@@ -59,7 +60,9 @@ const EditTask = ({ task }: EditTaskProps) => {
             <button className="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 transition">
               Save
             </button>
-            <button className="bg-gray-300 text-gray-700 px-4 py-2 rounded-md hover:bg-gray-400 transition">
+            <button
+              onClick={onClose}
+              className="bg-gray-300 text-gray-700 px-4 py-2 rounded-md hover:bg-gray-400 transition">
               Cancel
             </button>
           </div>
