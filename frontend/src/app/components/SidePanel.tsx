@@ -40,7 +40,9 @@ const SidePanel = ({ openTab, setOpenTab }: SidePanelProps) => {
         </div>
       </div>
       <div className="w-full flex items-center justify-start mb-3 pt-3 px-6 border-t-2 border-t-gray-200">
-        <button className="text-xl text-gray-600 py-2 px-4 rounded" onClick={handleLogout}>
+        <button
+          className="text-xl text-gray-600 py-2 px-4 rounded cursor-pointer"
+          onClick={handleLogout}>
           <FaSignOutAlt className="inline mr-2 text-2xl" />
           Log out
         </button>

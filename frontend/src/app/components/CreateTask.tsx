@@ -1,5 +1,5 @@
 import { useTasks } from "@/hooks/useTasks";
-import { FormEvent, useState, useEffect } from "react";
+import { FormEvent, useState } from "react";
 import { toast } from "react-hot-toast";
 interface CreateTaskProps {
   onClose: () => void;
@@ -9,20 +9,13 @@ const CreateTask = ({ onClose }: CreateTaskProps) => {
   const { createTask } = useTasks();
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
-  const [error, setError] = useState("");
-  const [isSubmitting, setIsSubmitting] = useState(false);
 
-  useEffect(() => {
-    if (error) {
-      toast.error(error);
-    }
-  }, [error]);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const formIsInvalid = !title || title.trim().length > 255 || description.length > 1000;
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
-    setError("");
 
     if (formIsInvalid) return;
     setIsSubmitting(true);
@@ -30,8 +23,12 @@ const CreateTask = ({ onClose }: CreateTaskProps) => {
     const newTask = { title, description, status: "pending" };
     try {
       await createTask(newTask);
+      toast.success("Task created successfully");
+      setTitle("");
+      setDescription("");
     } catch (error) {
-      setError("Failed to create task: " + error);
+      console.error("Failed to create task:", error);
+      toast.error("Failed to create task");
     }
     setIsSubmitting(false);
     onClose();

@@ -1,38 +1,18 @@
+import { useEffect } from "react";
 import { FaEllipsisV, FaCheck } from "react-icons/fa";
+import { useTasks } from "@/hooks/useTasks";
 
 const TaskPreview = () => {
-  const sampleTasks = [
-    {
-      id: 1,
-      title: "Task 1",
-      description: "Description for Task 1",
-      status: "in-progress",
-    },
-    {
-      id: 2,
-      title: "Task 2",
-      description: "Description for Task 2",
-      status: "completed",
-    },
-    {
-      id: 3,
-      title: "Task 3",
-      description: "Description for Task 3",
-      status: "in-progress",
-    },
-    {
-      id: 4,
-      title: "Task 4",
-      description: "Description for Task 4",
-      status: "completed",
-    },
-    {
-      id: 5,
-      title: "Task 5",
-      description: "Description for Task 5",
-      status: "in-progress",
-    },
-  ];
+  const { tasks, fetchTasks } = useTasks();
+
+  useEffect(() => {
+    fetchTasks();
+  }, [fetchTasks]);
+
+  const latestTasks = [...tasks]
+    .filter((task) => task.updated_at)
+    .sort((a, b) => new Date(b.updated_at).getTime() - new Date(a.updated_at).getTime())
+    .slice(0, 5);
 
   return (
     <div className="w-[22rem] h-[23rem] flex flex-col items-start gap-2 bg-white rounded-3xl shadow-md py-4">
@@ -43,7 +23,7 @@ const TaskPreview = () => {
         </div>
       </div>
       <div className="flex flex-col items-stretch w-full">
-        {sampleTasks.map((task) => (
+        {latestTasks.map((task) => (
           <div
             key={task.id}
             className="flex items-center justify-between py-4 px-7 border-b last:border-b-0 border-b-gray-500 w-full">

@@ -154,7 +154,7 @@ If you need to change env variable naming or add a prefix (e.g., `APP_`), adjust
 
 ## Running tests (quick tips)
 
-- To run all backend tests (may require a test DB):
+- To run all backend tests:
   ```sh
   cd backend
   pytest -q
@@ -172,6 +172,6 @@ If you need to change env variable naming or add a prefix (e.g., `APP_`), adjust
 
 ### Notes
 
-- For most use cases, you do not need server-side defaults or triggers for timestamps.
-- If you need database-level timestamp handling (for direct SQL), add server defaults or triggers and create a migration.
-- The project follows modern best practices for FastAPI, SQLAlchemy, and Pydantic v2.
+Server-side defaults or triggers for timestamps are not required for typical usage.
+For database-level timestamp handling (for direct SQL), add server defaults or triggers and create a migration.
+This project follows best practices for FastAPI, SQLAlchemy, and Pydantic v2.

@@ -1,12 +1,19 @@
 "use client";
 
-import { createContext, useState, ReactNode } from "react";
-import { createTask as createTaskApi } from "@/utils/taskService";
+import { createContext, useState, ReactNode, useCallback } from "react";
+import {
+  createTask as createTaskApi,
+  fetchTasks as fetchTasksApi,
+  updateTask as updateTaskApi,
+  deleteTask as deleteTaskApi,
+} from "@/utils/taskService";
 export interface Task {
-  id: number;
+  id: string;
   title: string;
   description: string;
   status: string;
+  created_at: string;
+  updated_at: string;
 }
 
 export interface NewTask {
@@ -19,9 +26,10 @@ interface TaskContextType {
   tasks: Task[];
   setTasks: (tasks: Task[]) => void;
   createTask: (task: NewTask) => void;
+  fetchTasks: () => void;
   addTask: (task: Task) => void;
   updateTask: (updatedTask: Task) => void;
-  deleteTask: (taskId: number) => void;
+  deleteTask: (taskId: string) => void;
 }
 
 export const TaskContext = createContext<TaskContextType | undefined>(undefined);
@@ -37,25 +45,47 @@ export const TaskProvider = ({ children }: { children: ReactNode }) => {
       setTasks((prevTasks) => [...prevTasks, newTask]);
     } catch (error) {
       console.error("Error creating task:", error);
+      throw error;
     }
   };
+
+  const fetchTasks = useCallback(async () => {
+    try {
+      const fetchedTasks = await fetchTasksApi();
+      setTasks(fetchedTasks);
+    } catch (error) {
+      console.error("Error fetching tasks:", error);
+      throw error;
+    }
+  }, []);
 
   const addTask = (task: Task) => {
     setTasks((prevTasks) => [...prevTasks, task]);
   };
 
-  const updateTask = (updatedTask: Task) => {
-    setTasks((prevTasks) =>
-      prevTasks.map((task) => (task.id === updatedTask.id ? updatedTask : task))
-    );
+  const updateTask = async (updatedTask: Task) => {
+    try {
+      const task = await updateTaskApi(updatedTask);
+      setTasks((prevTasks) => prevTasks.map((t) => (t.id === task.id ? task : t)));
+    } catch (error) {
+      console.error("Error updating task:", error);
+      throw error;
+    }
   };
 
-  const deleteTask = (taskId: number) => {
-    setTasks((prevTasks) => prevTasks.filter((task) => task.id !== taskId));
+  const deleteTask = async (taskId: string) => {
+    try {
+      await deleteTaskApi(taskId);
+      setTasks((prevTasks) => prevTasks.filter((t) => t.id !== taskId));
+    } catch (error) {
+      console.error("Error deleting task:", error);
+      throw error;
+    }
   };
 
   return (
-    <TaskContext.Provider value={{ tasks, setTasks, createTask, addTask, updateTask, deleteTask }}>
+    <TaskContext.Provider
+      value={{ tasks, setTasks, createTask, fetchTasks, addTask, updateTask, deleteTask }}>
       {children}
     </TaskContext.Provider>
   );
