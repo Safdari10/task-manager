@@ -110,7 +110,7 @@ const MyTasks = () => {
           )}
         </div>
       </div>
-      {isEditModalOpen && <EditTask />}
+      {isEditModalOpen && <EditTask task={taskToEdit} />}
     </>
   );
 };
