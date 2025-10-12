@@ -51,16 +51,21 @@ const EditTask = ({ task, onClose }: EditTaskProps) => {
             onChange={(e) => setTitle(e.target.value)}
             type="text"
             placeholder="Task title"
+            required
+            maxLength={255}
             className="border border-gray-300 p-2 rounded-md w-full mb-4"
           />
           <textarea
             value={description}
             onChange={(e) => setDescription(e.target.value)}
             placeholder="Task description"
+            required
+            maxLength={1000}
             className="border border-gray-300 p-2 rounded-md w-full mb-4"></textarea>
           <select
             value={status}
             onChange={(e) => setStatus(e.target.value)}
+            required
             className="border border-gray-300 p-2 rounded-md w-full mb-4">
             <option value="pending">Pending</option>
             <option value="in_progress">In Progress</option>
