@@ -4,11 +4,13 @@ import { FaCheck } from "react-icons/fa";
 import { formatDate } from "@/utils/dateUtils";
 import toast from "react-hot-toast";
 import EditTask from "@/components/EditTask";
+import { Task } from "@/context/TaskContext";
 
 const MyTasks = () => {
   const { tasks, fetchTasks, deleteTask } = useTasks();
   const [selectedTasks, setSelectedTasks] = useState<string[]>([]);
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
+  const [taskToEdit, setTaskToEdit] = useState<Task | null>(null);
 
   const handleTaskSelect = (taskId: string) => {
     setSelectedTasks((prevSelected) => {
@@ -22,7 +24,11 @@ const MyTasks = () => {
 
   const handleUpdate = async () => {
     if (selectedTasks.length === 1) {
-      setIsEditModalOpen(true);
+      const taskToEdit = tasks.find((task) => task.id === selectedTasks[0]);
+      if (taskToEdit) {
+        setTaskToEdit(taskToEdit);
+        setIsEditModalOpen(true);
+      }
     } else {
       toast.error("Please select a single task to edit");
     }
