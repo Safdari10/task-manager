@@ -64,8 +64,11 @@ const EditTask = ({ task, onClose }: EditTaskProps) => {
             <option value="completed">Completed</option>
           </select>
           <div className="flex justify-end space-x-2">
-            <button className="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 transition">
-              Save
+            <button
+              className="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 transition"
+              type="submit"
+              disabled={formIsInvalid || isSubmitting}>
+              {isSubmitting ? "Updating..." : "Update Task"}
             </button>
             <button
               onClick={onClose}
