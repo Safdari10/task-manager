@@ -36,7 +36,7 @@ const MyTasks = () => {
 
   const handleDelete = async () => {
     try {
-      await Promise.all(selectedTasks.map((taskId) => deleteTask(taskId.toString())));
+      await Promise.all(selectedTasks.map((taskId) => deleteTask(taskId)));
       toast.success("Tasks deleted successfully");
       setSelectedTasks([]);
       fetchTasks();
