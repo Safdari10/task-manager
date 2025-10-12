@@ -1,4 +1,35 @@
-const EditTask = () => {
+import React, { FormEvent, useState } from "react";
+import { useTasks } from "@/hooks/useTasks";
+
+interface EditTaskProps {
+  task: {
+    id: string;
+    title: string;
+    description: string;
+    status: string;
+    created_at: string;
+    updated_at: string;
+  } | null;
+}
+
+const EditTask = ({ task }: EditTaskProps) => {
+  const { updateTask } = useTasks();
+  const [title, setTitle] = useState(task?.title || "");
+  const [description, setDescription] = useState(task?.description || "");
+  const [status, setStatus] = useState(task?.status || "pending");
+
+  const handleSubmit = async (e: FormEvent) => {
+    e.preventDefault();
+    if (!task) return;
+
+    const updatedTask = { ...task, title, description, status };
+    try {
+      await updateTask(updatedTask);
+    } catch (error) {
+      console.error("Failed to update task:", error);
+    }
+  };
+
   return (
     <div className="fixed inset-0 flex items-center justify-center bg-black/30 z-50">
       <div className="bg-white p-8 rounded-xl shadow-lg w-full max-w-md">
