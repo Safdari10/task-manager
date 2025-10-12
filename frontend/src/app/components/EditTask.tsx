@@ -26,6 +26,7 @@ const EditTask = ({ task, onClose }: EditTaskProps) => {
     const updatedTask = { ...task, title, description, status };
     try {
       await updateTask(updatedTask);
+      onClose();
     } catch (error) {
       console.error("Failed to update task:", error);
     }
@@ -53,7 +54,7 @@ const EditTask = ({ task, onClose }: EditTaskProps) => {
             onChange={(e) => setStatus(e.target.value)}
             className="border border-gray-300 p-2 rounded-md w-full mb-4">
             <option value="pending">Pending</option>
-            <option value="in-progress">In Progress</option>
+            <option value="in_progress">In Progress</option>
             <option value="completed">Completed</option>
           </select>
           <div className="flex justify-end space-x-2">
