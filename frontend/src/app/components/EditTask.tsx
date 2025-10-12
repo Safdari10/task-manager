@@ -34,16 +34,23 @@ const EditTask = ({ task }: EditTaskProps) => {
     <div className="fixed inset-0 flex items-center justify-center bg-black/30 z-50">
       <div className="bg-white p-8 rounded-xl shadow-lg w-full max-w-md">
         <h2 className="text-lg font-semibold mb-4">Edit Task</h2>
-        <form>
+        <form onSubmit={handleSubmit}>
           <input
+            value={title}
+            onChange={(e) => setTitle(e.target.value)}
             type="text"
             placeholder="Task title"
             className="border border-gray-300 p-2 rounded-md w-full mb-4"
           />
           <textarea
+            value={description}
+            onChange={(e) => setDescription(e.target.value)}
             placeholder="Task description"
             className="border border-gray-300 p-2 rounded-md w-full mb-4"></textarea>
-          <select className="border border-gray-300 p-2 rounded-md w-full mb-4">
+          <select
+            value={status}
+            onChange={(e) => setStatus(e.target.value)}
+            className="border border-gray-300 p-2 rounded-md w-full mb-4">
             <option value="pending">Pending</option>
             <option value="in-progress">In Progress</option>
             <option value="completed">Completed</option>
