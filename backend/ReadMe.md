@@ -2,6 +2,26 @@
 
 This project is a FastAPI application for managing a personal task list with full CRUD (Create, Read, Update, Delete) functionality, user authentication, and robust validation.
 
+### Timestamp Handling (Best Practice)
+
+Timestamps are managed with Python-side defaults in the SQLAlchemy model:
+
+### Notes
+
+Server-side defaults or triggers for timestamps are not required for typical usage.
+
+### Notes
+
+For database-level timestamp handling (for direct SQL), add server defaults or triggers and create a migration.
+
+### Notes
+
+This project follows best practices for FastAPI, SQLAlchemy, and Pydantic v2.
+
+## Task Manager FastAPI Project
+
+This project is a FastAPI application for managing a personal task list with full CRUD (Create, Read, Update, Delete) functionality, user authentication, and robust validation.
+
 ---
 
 ### Features
@@ -154,7 +174,7 @@ If you need to change env variable naming or add a prefix (e.g., `APP_`), adjust
 
 ## Running tests (quick tips)
 
-- To run all backend tests (may require a test DB):
+- To run all backend tests:
   ```sh
   cd backend
   pytest -q
@@ -172,6 +192,6 @@ If you need to change env variable naming or add a prefix (e.g., `APP_`), adjust
 
 ### Notes
 
-- For most use cases, you do not need server-side defaults or triggers for timestamps.
-- If you need database-level timestamp handling (for direct SQL), add server defaults or triggers and create a migration.
-- The project follows modern best practices for FastAPI, SQLAlchemy, and Pydantic v2.
+Server-side defaults or triggers for timestamps are not required for typical usage.
+For database-level timestamp handling (for direct SQL), add server defaults or triggers and create a migration.
+This project follows best practices for FastAPI, SQLAlchemy, and Pydantic v2.
